@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Variables
+   專案中所有設計代幣 (Design Tokens) 的定義：顏色、字體、間距等。
+   ========================================================================== */
+
+// 1. 顏色變數 (Colors)
+// --------------------------------------------------------------------------
+// 1.1 文字顏色 (Text Colors)
+$color-text-primary: #2D3033;
+$color-text-secondary: #515A68;
+$color-text-accent:#FF6700;
+$color-text-link: $color-text-accent;
+$color-text-invert-dark: #FFFFFF;
+$color-text-disabled: #A8AEB8;
+// 1.2 表面顏色 (Surface Colors)
+$color-surface-accent: #FF6700;
+$color-surface-accent-dark: #F45100;
+$color-surface-disabled: #E9EBEF;
+$color-surface-form: #EEF3F6;
+$color-surface-primary: #FFFFFF;
+$color-surface-footer:#000000;
+// 2. 字體變數 (Typography)
+// --------------------------------------------------------------------------
+// 字體堆疊 
+$font-stack-primary: 'Noto Sans TC',
+'Microsoft JhengHei',
+'PingFang TC',
+sans-serif;
+// 基礎字體大小 (在 _reset.scss 設置 html { font-size: 62.5%; } 的前提下)
+$font-size-base: 1.6rem; // 16px
+// 3. 間距變數 (Spacing)
+// --------------------------------------------------------------------------
+// 採用 8pt 網格系統，定義基礎間距單位
+$spacing-unit: 0.8rem; // 8px (基礎單位)

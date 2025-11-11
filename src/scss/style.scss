@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Style Styles Entry (src/scss/style.scss)
+   這是專案的主入口檔案，用於編譯生成 dist/style.css。
+   ========================================================================== */
+
+// 1. 基礎層與抽象層 (Base & Abstracts) - 變數、Mixins 必須最先引入
+@use 'base/mixins';
+@use 'base/variables';
+@use 'base/reset';
+@use 'base/typography';
+// 2. 全域組件與佈局 (Components & Layout)
+@use 'components/layout';
+@use 'components/button';
+@use 'components/card';
+// ... 其他通用組件

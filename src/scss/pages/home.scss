@@ -1,0 +1,41 @@
+// 引入抽象層
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.home-content-block {
+    flex-direction: column-reverse;
+    margin: m.space(7.5) auto;
+    @include m.media-query('lg') {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+    .content {
+        width: 100%;
+        h1 {
+            color: v.$color-text-primary;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 1.54px;
+            margin-bottom: m.space(1);
+        }
+        p {
+            color: v.$color-text-secondary;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .btn-wrap {
+            margin-top: m.space(3);
+            display: grid;
+            gap: 16px;
+        }
+    }
+}

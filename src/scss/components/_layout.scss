@@ -1,0 +1,74 @@
+/* ==========================================================================
+Layout Component (_layout.scss)
+定義專案中用於結構佈局的類別，例如容器、網格、頁頭、頁腳等。
+========================================================================== */
+
+// 引入抽象層
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: m.space(2);
+    padding-right: m.space(2);
+}
+
+// 範例：定義一個區塊間距
+.section-gap {
+    margin-top: m.space(4);
+    margin-bottom: m.space(4);
+}
+
+// --- 頁頭 (Header) 樣式 ---
+.header {
+    background: linear-gradient(180deg, rgba(20, 22, 29, 0.70) 0%, rgba(48, 63, 69, 0.00) 100%);
+    padding: m.space(2) 0;
+    .logo-TWM {
+        width: auto;
+        margin: 0 auto;
+    }
+}
+
+// --- 頁腳 (Footer) 樣式 ---
+.footer {
+    background-color: v.$color-surface-footer;
+    color: v.$color-text-invert-dark;
+    padding: m.space(1.5) 0;
+    text-align: center;
+    font-size: 1.2rem;
+    @include m.media-query('lg') {
+        padding: m.space(3) 0;
+    }
+    p {
+        margin: 0;
+    }
+}
+
+
+/* --- 
+* 全站滿版底圖樣式 (Full-screen background)
+* 透過 body::before 套用至所有頁面
+*/
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* --- 小網 (Mobile-First) 樣式 --- */
+    background-image: url('/src/images/bg-sm.png'), linear-gradient(to right, v.$color-surface-accent, #FF6700);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center top, center;
+    background-size: 100%, cover;
+    transition: background-image 0.3s ease-in-out, background-position 0.3s ease-in-out;
+    /* --- 大網 (Desktop) 樣式 --- */
+    @include m.media-query('lg') {
+        background-image: url('/src/images/bg-lg.png'), radial-gradient(125.07% 180.93% at -21.46% 10.1%, #FFEC58 5.11%, #FF6700 61.54%, #FF3010 87.5%);
+        background-position: right center, center;
+        background-size: auto 100vh, cover;
+    }
+}

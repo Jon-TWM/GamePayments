@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Card Component (_card.scss)
+   定義專案中用於卡片和內容區塊的樣式。
+   ========================================================================== */
+
+// 引入抽象層
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+/* --- 1. 狀態卡片 (.card) ---
+ * 用於顯示狀態、通知或簡短資訊。
+ */
+
+.card {
+    background-color: v.$color-surface-primary;
+    border-radius: m.space(1); // [已更新] 8px 圓角
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: m.space(3); // [已更新] 24px 內部間距
+    // 小網 (Mobile Default): 離邊緣 20px
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto; // 寬度自動
+    // 大網 (Desktop, >= 992px)
+    @include m.media-query('lg') {
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* --- 2. 內容區塊 (.content-block) ---
+ * 用於承載主要內容，例如文章、表單或詳細資訊。
+ */
+
+.content-block {
+    background: linear-gradient(0deg, #FFF6F4 0%, #FFF6F4 100%), #FFF;
+    border-radius: m.space(2.5);
+    // 小網 (Mobile Default): 
+    width: auto;
+    margin: 0 m.space(2.5);
+    padding: m.space(3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    // 大網 (Desktop, >= 992px)
+    @include m.media-query('lg') {
+        margin: 0 auto;
+        width: 1020px;
+        max-width: 1020px;
+        display: flex;
+        padding: m.space(7.5);
+        align-items: flex-start;
+        gap: 40px;
+    }
+}

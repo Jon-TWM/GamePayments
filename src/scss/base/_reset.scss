@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Base Reset
+   重設瀏覽器預設樣式，確保跨瀏覽器的一致性。
+   ========================================================================== */
+
+// 1. 使用 Normalize.css 的核心概念：調整預設樣式以達到一致性。
+// 2. 設定通用 box-sizing 模型。
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* 確保 padding 和 border 不會增加元素的總寬高 */
+}
+
+// 3. 重設 HTML 基礎
+html {
+    line-height: 1.15;
+    /* 保持一致的行高 */
+    -webkit-text-size-adjust: 100%;
+    /* 防止移動裝置在橫向時放大字體 */
+    font-size: 62.5%;
+    /* 設置 1rem = 10px (方便計算，但需要在 _typography.scss 中修正) */
+}
+
+// 4. 重設 Body 基礎樣式
+body {
+    margin: 0;
+    /* 移除 body 的預設 margin */
+    padding: 0;
+    /* 移除 body 的預設 padding */
+    font-family: sans-serif;
+    /* 設置一個基礎字體，建議在 _typography.scss 中定義更詳細的字體堆疊 */
+}
+
+// 5. 移除常見元素的預設邊距 (Margin/Padding)
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+// 6. 列表重設
+ul,
+ol {
+    list-style: none;
+    /* 移除列表符號 */
+    padding: 0;
+    /* 移除預設左側 padding */
+    margin: 0;
+    /* 移除預設 margin */
+}
+
+// 7. 圖片與媒體
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    /* 將這些元素設為區塊級 */
+    max-width: 100%;
+    /* 確保圖片不超出父容器 */
+    height: auto;
+    /* 維持圖片的長寬比 */
+}
+
+// 8. 表單元素重設 (確保輸入框等元素繼承字體)
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    /* 繼承父元素的字體樣式 */
+}
+
+// 9. 移除按鈕在某些瀏覽器上的預設樣式
+button {
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+// 10. 確保錨點元素 (a) 的基礎樣式
+a {
+    text-decoration: none;
+    /* 移除預設的下劃線 */
+    color: inherit;
+    /* 繼承父元素的顏色 */
+}

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Variables
+   專案中所有設計代幣 (Design Tokens) 的定義：顏色、字體、間距等。
+   ========================================================================== */
+/* ==========================================================================
+   Mixins (抽象層)
+   通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
+   ========================================================================== */
+body {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.home-content-block {
+  flex-direction: column-reverse;
+  margin: 6rem auto;
+}
+@media (min-width: 992px) {
+  .home-content-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+}
+.home-content-block .content {
+  width: 100%;
+}
+.home-content-block .content h1 {
+  color: #2D3033;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 1.54px;
+  margin-bottom: 0.8rem;
+}
+.home-content-block .content p {
+  color: #515A68;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.home-content-block .content .btn-wrap {
+  margin-top: 2.4rem;
+  display: grid;
+  gap: 16px;
+}/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Mixins (抽象層)
+   通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
+   ========================================================================== */
+
+// 引入抽象層
+@use '../base/variables' as v;
+// --- 0. Breakpoints (斷點) ---
+// 定義常見的響應式斷點
+$breakpoints: ( 'sm': 576px, 'md': 768px, 'lg': 992px, 'xl': 1200px) !default;
+// --- 1. 尺寸 Mixin ---
+@mixin btn-size($padding-y, $padding-x, $font-size) {
+    padding: $padding-y $padding-x;
+    font-size: $font-size;
+}
+
+// --- 2. Media Query Mixin ---
+// 使用方法：@include media-query('md') { ... }
+@mixin media-query($size) {
+    $breakpoint-value: map-get($breakpoints, $size);
+    @if $breakpoint-value {
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    }
+    @else {
+        @warn "Invalid breakpoint: #{$size}.";
+    }
+}
+
+// --- 3. [新函式] 活用間距 (Spacing Function) ---
+// 讓您可以用自訂倍數計算間距
+@function space($multiplier) {
+    // @return $multiplier * v.$spacing-unit;
+    // [更新] 使用 Sass 內建的 calc() 確保單位正確
+    @return calc($multiplier * v.$spacing-unit);
+}
