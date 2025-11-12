@@ -4,6 +4,7 @@
    ========================================================================== */
 
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 // 1. Body 基礎字體設定
 // 在 _reset.scss 中設定了 html { font-size: 62.5%; } (1rem = 10px)，
 // 這裡的 1.6rem 即等於 16px。
@@ -26,10 +27,15 @@ h1,
 
 h2,
 .heading-2 {
-    font-size: 2.8rem;
-    line-height: 1.3;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    color: v.$color-text-primary;
+    font-size: 2.2rem;
+    font-weight: 500;
+    letter-spacing: 1.54px;
+    margin-bottom: m.space(1);
+    @include m.media-query('lg') {
+        font-size: 3.4rem;
+        letter-spacing: 2.38px;
+    }
 }
 
 h3,
@@ -44,11 +50,6 @@ h4,
 .heading-4 {
     font-size: 1.8rem;
     font-weight: 500;
-}
-
-// 3. 段落 (Paragraphs) 設定
-p {
-    margin-bottom: 1.5rem;
 }
 
 // 4. 連結 (Links) 設定

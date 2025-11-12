@@ -16,22 +16,11 @@ body {
   align-items: center;
 }
 
-.home-content-block {
-  flex-direction: column-reverse;
-  margin: 6rem auto;
-}
-@media (min-width: 992px) {
-  .home-content-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-  }
-}
-.home-content-block .content {
-  width: 100%;
-}
-.home-content-block .content .btn-wrap {
-  margin-top: 2.4rem;
+.card {
   display: grid;
-  gap: 16px;
-}/*# sourceMappingURL=home.css.map */
+  justify-items: center;
+  gap: 8px;
+}
+.card .btn {
+  margin-top: 2.4rem;
+}/*# sourceMappingURL=result.css.map */

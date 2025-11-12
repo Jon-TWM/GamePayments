@@ -20,18 +20,6 @@ body {
     }
     .content {
         width: 100%;
-        h1 {
-            color: v.$color-text-primary;
-            font-size: 2.2rem;
-            font-weight: 500;
-            letter-spacing: 1.54px;
-            margin-bottom: m.space(1);
-        }
-        p {
-            color: v.$color-text-secondary;
-            font-size: 1.5rem;
-            font-weight: 400;
-        }
         .btn-wrap {
             margin-top: m.space(3);
             display: grid;

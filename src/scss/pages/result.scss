@@ -1,0 +1,20 @@
+// 引入抽象層
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.card {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    .btn {
+        margin-top: m.space(3);
+    }
+}

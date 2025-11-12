@@ -13,18 +13,25 @@
 
 .card {
     background-color: v.$color-surface-primary;
-    border-radius: m.space(1); // [已更新] 8px 圓角
+    border-radius: m.space(1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
-    padding: m.space(3); // [已更新] 24px 內部間距
+    padding: m.space(3);
     // 小網 (Mobile Default): 離邊緣 20px
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 20px;
     width: auto; // 寬度自動
     // 大網 (Desktop, >= 992px)
     @include m.media-query('lg') {
         width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
+    }
+    // 卡片內的 <p> 專屬樣式
+    p {
+        color: v.$color-text-secondary;
+        font-size: 1.5rem;
+        font-weight: 400;
+        @include m.media-query('lg') {
+            font-size: 1.8rem;
+        }
     }
 }
 

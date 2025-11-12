@@ -100,6 +100,10 @@ a {
 }
 
 /* ==========================================================================
+   Style Styles Entry (src/scss/style.scss)
+   這是專案的主入口檔案，用於編譯生成 dist/style.css。
+   ========================================================================== */
+/* ==========================================================================
    Typography Styles
    專案的基礎字體排版、標題及文字樣式設定。
    ========================================================================== */
@@ -120,10 +124,18 @@ h1,
 
 h2,
 .heading-2 {
-  font-size: 2.8rem;
-  line-height: 1.3;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  color: #2D3033;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 1.54px;
+  margin-bottom: 0.8rem;
+}
+@media (min-width: 992px) {
+  h2,
+  .heading-2 {
+    font-size: 3.4rem;
+    letter-spacing: 2.38px;
+  }
 }
 
 h3,
@@ -138,10 +150,6 @@ h4,
 .heading-4 {
   font-size: 1.8rem;
   font-weight: 500;
-}
-
-p {
-  margin-bottom: 1.5rem;
 }
 
 a {
@@ -366,15 +374,23 @@ body::before {
   border-radius: 0.8rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 2.4rem;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px;
   width: auto;
 }
 @media (min-width: 992px) {
   .card {
     width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+  }
+}
+.card p {
+  color: #515A68;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+@media (min-width: 992px) {
+  .card p {
+    font-size: 1.8rem;
   }
 }
 
