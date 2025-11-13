@@ -16,7 +16,9 @@ body {
     @include m.media-query('lg') {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 40px;
         justify-items: center;
+        align-items: center;
     }
     .content {
         width: 100%;

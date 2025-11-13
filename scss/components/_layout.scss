@@ -12,6 +12,10 @@ Layout Component (_layout.scss)
     margin-right: auto;
     padding-left: m.space(2);
     padding-right: m.space(2);
+    @include m.media-query('md') {
+        padding-left: m.space(7.5);
+        padding-right: m.space(7.5);
+    }
 }
 
 // 範例：定義一個區塊間距

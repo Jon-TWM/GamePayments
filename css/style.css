@@ -174,6 +174,12 @@ Layout Component (_layout.scss)
   padding-left: 1.6rem;
   padding-right: 1.6rem;
 }
+@media (min-width: 768px) {
+  .container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
 
 .section-gap {
   margin-top: 3.2rem;
@@ -411,7 +417,7 @@ body::before {
 @media (min-width: 992px) {
   .content-block {
     margin: 0 auto;
-    width: 1020px;
+    width: 100%;
     max-width: 1020px;
     display: flex;
     padding: 6rem;

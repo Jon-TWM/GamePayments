@@ -24,7 +24,9 @@ body {
   .home-content-block {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 40px;
     justify-items: center;
+    align-items: center;
   }
 }
 .home-content-block .content {

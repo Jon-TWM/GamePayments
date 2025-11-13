@@ -54,7 +54,7 @@
     // 大網 (Desktop, >= 992px)
     @include m.media-query('lg') {
         margin: 0 auto;
-        width: 1020px;
+        width: 100%;
         max-width: 1020px;
         display: flex;
         padding: m.space(7.5);
