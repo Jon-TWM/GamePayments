@@ -1,0 +1,174 @@
+/* ==========================================================================
+     Form Controls (_form.scss)
+     包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
+     ========================================================================== */
+
+// 引入抽象層
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+/* ---------- Text inputs / textarea / select ---------- */
+.form-item {
+  display: grid;
+  gap: 8px;
+  label,
+  .label {
+    font-size: 1.5rem;
+    line-height: 150%;
+    color: v.$color-text-secondary;
+  }
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select,
+.form-input {
+  display: block;
+  width: 100%;
+  padding: m.space(1.5) m.space(2);
+  border-radius: m.space(10);
+  border: 1px solid v.$color-surface-primary-dark;
+  color: v.$color-text-primary;
+  font-family: v.$font-stack-primary;
+  font-size: 1.5rem;
+  line-height: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:focus {
+    outline: none;
+    border-color: v.$color-surface-accent;
+  }
+  &.--error {
+    border-color: v.$color-danger;
+  }
+  &:disabled {
+    background-color: v.$color-surface-disabled;
+    color: v.$color-text-disabled;
+    cursor: not-allowed;
+  }
+}
+
+/* ---------- Checkbox & Radio (custom visuals, accessible) ---------- */
+
+.form-check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: m.space(1.5);
+  position: relative;
+  input[type="checkbox"],
+  input[type="radio"] {
+    /* keep native control available for assistive tech but visually hide it while preserving focus */
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: none;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+  /* label holds the visual custom control */
+  label,
+  .label {
+    position: relative;
+    padding-left: m.space(4);
+    font-size: 1.5rem;
+    line-height: 150%;
+    color: v.$color-text-primary;
+    cursor: pointer;
+    user-select: none;
+  }
+  /* base box / circle (unchecked) */
+  label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    transform: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: v.$color-surface-primary;
+    border: 1px solid v.$color-surface-primary-dark;
+    box-sizing: border-box;
+    transition: background 0.12s ease;
+  }
+  /* checkmark for checkbox */
+  input[type="checkbox"] + label::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 0;
+    transform: rotate(45deg) scale(0);
+    transform-origin: center;
+    width: 8px;
+    height: 16px;
+    /* draw white check when visible */
+    border: solid v.$color-surface-primary;
+    border-width: 0 4px 4px 0;
+    transition: transform 0.12s ease;
+    z-index: 3;
+  }
+  /* radio dot */
+  input[type="radio"] + label::before {
+    border-radius: 50%;
+  }
+  input[type="radio"] + label::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    transform: translateY(-50%) scale(0);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: v.$color-surface-accent;
+    transition: transform 0.12s ease;
+    z-index: 3;
+  }
+  /* checked states */
+  input[type="checkbox"]:checked + label::after {
+    transform: rotate(45deg) scale(1);
+  }
+  input[type="checkbox"]:checked + label::before {
+    background: v.$color-surface-accent;
+    border-color: v.$color-surface-accent;
+  }
+  input[type="radio"]:checked + label::after {
+    transform: translateY(-50%) scale(1);
+  }
+  input[type="radio"]:checked + label::before {
+    border-color: v.$color-surface-primary-dark;
+  }
+  /* disabled */
+  input[disabled] + label,
+  input[disabled] {
+    cursor: not-allowed;
+    color: v.$color-text-disabled;
+  }
+  /* keep accent-color as progressive enhancement for browsers that render native controls */
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: v.$color-surface-accent;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* ---------- Inline helpers ---------- */
+
+.form-inline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  gap: m.space(2);
+  align-items: center;
+  justify-content: start; // 靠左對齊
+}

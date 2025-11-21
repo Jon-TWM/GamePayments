@@ -1,281 +1,582 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>元件與色票預覽 (Design System) - No Tailwind</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
 
     <style>
-        /* --- 1. Variables (CSS 變數) --- */
-        /* [保留] 供此預覽頁面的輔助工具使用 */
-        
-         :root {
-            --color-text-primary: #2D3033;
-            --color-text-secondary: #515A68;
-            --color-text-accent: #FF6700;
-            --color-text-link: #FF6700;
-            --color-text-invert-dark: #FFFFFF;
-            --color-text-disabled: #A8AEB8;
-            --color-surface-primary: #FFFFFF;
-            --color-surface-accent: #FF6700;
-            --color-surface-accent-dark: #F45100;
-            --color-surface-disabled: #E9EBEF;
-            --color-surface-footer: #000000;
-            --spacing-xs: 0.4rem;
-            --spacing-sm: 0.8rem;
-            --spacing-md: 1.6rem;
-            --spacing-lg: 2.4rem;
-            --spacing-xl: 3.2rem;
-            --font-stack-primary: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
-            --font-size-base: 1.6rem;
-        }
-        /* --- 2. 模擬 Base SCSS (Reset & Base Layout) --- */
-        
-        html {
-            font-size: 62.5%;
-            /* 確保 rem 單位 (1rem = 10px) 正確 */
-            box-sizing: border-box;
-        }
-        
-        *,
-        *::before,
-        *::after {
-            box-sizing: inherit;
-        }
-        
-        body {
-            /* 僅保留最基礎的字體設定，以便輔助工具正常顯示 */
-            font-family: var(--font-stack-primary);
-            font-size: var(--font-size-base);
-            line-height: 1.6;
-            color: var(--color-text-primary);
-            margin: 0;
-            padding: 0;
-        }
-        
-        main {
-            padding-top: var(--spacing-xl);
-            padding-bottom: var(--spacing-xl);
-        }
-        
-        .color-sample {
-            height: 100px;
-            width: 100%;
-            border-radius: var(--spacing-xs);
-        }
-        
+      /* --- 1. Variables (CSS 變數) --- */
+      /* [保留] 供此預覽頁面的輔助工具使用 */
+
+      :root {
+        --color-text-primary: #2d3033;
+        --color-text-secondary: #515a68;
+        --color-text-accent: #ff6700;
+        --color-text-link: #ff6700;
+        --color-text-invert-dark: #ffffff;
+        --color-text-disabled: #a8aeb8;
+        --color-surface-primary: #ffffff;
+        --color-surface-accent: #ff6700;
+        --color-surface-accent-dark: #f45100;
+        --color-surface-disabled: #e9ebef;
+        --color-surface-footer: #000000;
+        --spacing-xs: 0.4rem;
+        --spacing-sm: 0.8rem;
+        --spacing-md: 1.6rem;
+        --spacing-lg: 2.4rem;
+        --spacing-xl: 3.2rem;
+        --font-stack-primary: "Noto Sans TC", "Microsoft JhengHei",
+          "PingFang TC", sans-serif;
+        --font-size-base: 1.6rem;
+      }
+      /* --- 2. 模擬 Base SCSS (Reset & Base Layout) --- */
+
+      html {
+        font-size: 62.5%;
+        /* 確保 rem 單位 (1rem = 10px) 正確 */
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      body {
+        /* 僅保留最基礎的字體設定，以便輔助工具正常顯示 */
+        font-family: var(--font-stack-primary);
+        font-size: var(--font-size-base);
+        line-height: 1.6;
+        color: var(--color-text-primary);
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        padding-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-xl);
+      }
+
+      .color-sample {
+        height: 100px;
+        width: 100%;
+        border-radius: var(--spacing-xs);
+      }
+
+      .color-palette-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+      }
+
+      @media (min-width: 576px) {
         .color-palette-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-lg);
+          grid-template-columns: repeat(3, 1fr);
         }
-        
-        @media (min-width: 576px) {
-            .color-palette-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+      }
+
+      @media (min-width: 768px) {
+        .color-palette-grid {
+          grid-template-columns: repeat(5, 1fr);
         }
-        
-        @media (min-width: 768px) {
-            .color-palette-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-        
-        .color-sample-label {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: var(--color-text-secondary);
-        }
-        
-        .color-sample-wrapper {
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .color-sample-border {
-            border: 1px solid var(--color-surface-disabled);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        
-        .color-sample-shadow {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .flex-group {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            gap: var(--spacing-md);
-        }
-        
-        .border-t-separator {
-            border-top: 1px solid var(--color-surface-disabled);
-        }
-        
-        .margin-top-md {
-            margin-top: var(--spacing-md);
-        }
-        
-        .margin-top-lg {
-            margin-top: var(--spacing-xl);
-        }
-        
-        .margin-bottom-md {
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .margin-bottom-lg {
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .margin-left-sm {
-            margin-left: var(--spacing-sm);
-        }
-        
-        .font-bold {
-            font-weight: 700;
-        }
-        
-        .text-sm-secondary {
-            font-size: 1.4rem;
-            color: var(--color-text-secondary);
-        }
+      }
+
+      .color-sample-label {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+      }
+
+      .color-sample-wrapper {
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .color-sample-border {
+        border: 1px solid var(--color-surface-disabled);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .color-sample-shadow {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .flex-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: var(--spacing-md);
+      }
+
+      .border-t-separator {
+        border-top: 1px solid var(--color-surface-disabled);
+      }
+
+      .margin-top-md {
+        margin-top: var(--spacing-md);
+      }
+
+      .margin-top-lg {
+        margin-top: var(--spacing-xl);
+      }
+
+      .margin-bottom-md {
+        margin-bottom: var(--spacing-md);
+      }
+
+      .margin-bottom-lg {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .margin-left-sm {
+        margin-left: var(--spacing-sm);
+      }
+
+      .font-bold {
+        font-weight: 700;
+      }
+
+      .text-sm-secondary {
+        font-size: 1.4rem;
+        color: var(--color-text-secondary);
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header class="header">
-        <div class="container">
-            <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="">
-        </div>
+      <div class="container">
+        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+      </div>
     </header>
 
     <main>
-        <div class="container">
+      <div class="container">
+        <!-- 顏色色票：文字顏色 -->
+        <section class="section-gap content-block">
+          <h2 class="margin-bottom-lg">顏色色票 (Text Colors)</h2>
+          <div class="color-palette-grid">
+            <!-- Text Colors -->
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-border"
+                style="
+                  color: var(--color-text-primary);
+                  background-color: var(--color-surface-primary);
+                  border-color: var(--color-text-disabled);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                ">
+                text-primary
+              </div>
+              <p class="color-sample-label">#2D3033</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-border"
+                style="
+                  color: var(--color-text-secondary);
+                  background-color: var(--color-surface-primary);
+                  border-color: var(--color-text-disabled);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                ">
+                text-secondary
+              </div>
+              <p class="color-sample-label">#515A68</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-border"
+                style="
+                  color: var(--color-text-accent);
+                  background-color: var(--color-surface-primary);
+                  border-color: var(--color-text-disabled);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                ">
+                text-accent
+              </div>
+              <p class="color-sample-label">#FF6700</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-border"
+                style="
+                  color: var(--color-text-disabled);
+                  background-color: var(--color-surface-primary);
+                  border-color: var(--color-text-disabled);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                ">
+                text-disabled
+              </div>
+              <p class="color-sample-label">#A8AEB8</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-shadow"
+                style="
+                  color: var(--color-text-primary);
+                  background-color: var(--color-surface-footer);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  color: var(--color-text-invert-dark);
+                ">
+                text-invert-dark
+              </div>
+              <p class="color-sample-label">#FFFFFF</p>
+            </div>
+          </div>
+        </section>
 
-            <!-- 顏色色票：文字顏色 -->
-            <section class="section-gap">
-                <h2 class="margin-bottom-lg">顏色色票 (Text Colors)</h2>
-                <div class="color-palette-grid">
+        <!-- 顏色色票：表面顏色 -->
+        <section class="section-gap border-t-separator content-block">
+          <h2 class="margin-bottom-lg">顏色色票 (Surface Colors)</h2>
+          <div class="color-palette-grid">
+            <!-- Surface Colors -->
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-border"
+                style="background-color: var(--color-surface-primary)"></div>
+              <p class="color-sample-label">surface-primary: #FFFFFF</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-shadow"
+                style="background-color: var(--color-surface-accent)"></div>
+              <p class="color-sample-label">surface-accent: #FF6700</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-shadow"
+                style="
+                  background-color: var(--color-surface-accent-dark);
+                "></div>
+              <p class="color-sample-label">accent-dark: #F45100</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-shadow"
+                style="background-color: var(--color-surface-disabled)"></div>
+              <p class="color-sample-label">surface-disabled: #E9EBEF</p>
+            </div>
+            <div class="color-sample-wrapper">
+              <div
+                class="color-sample color-sample-shadow"
+                style="background-color: var(--color-surface-footer)"></div>
+              <p class="color-sample-label">surface-footer: #000000</p>
+            </div>
+          </div>
+        </section>
 
-                    <!-- Text Colors -->
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="color: var(--color-text-primary); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">text-primary</div>
-                        <p class="color-sample-label">#2D3033</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="color: var(--color-text-secondary); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">text-secondary</div>
-                        <p class="color-sample-label">#515A68</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="color: var(--color-text-accent); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">text-accent</div>
-                        <p class="color-sample-label">#FF6700</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="color: var(--color-text-disabled); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">text-disabled</div>
-                        <p class="color-sample-label">#A8AEB8</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="color: var(--color-text-primary); background-color: var(--color-surface-footer); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--color-text-invert-dark);">text-invert-dark</div>
-                        <p class="color-sample-label">#FFFFFF</p>
-                    </div>
+        <section class="section-gap border-t-separator content-block">
+          <h2 class="margin-bottom-lg">排版 (Typography)</h2>
+          <div>
+            <h1>H1 這是主標題</h1>
+            <h2>H2 這是次標題</h2>
+            <h3>H3 這是三級標題</h3>
+            <h4>H4 這是四級標題</h4>
+            <p>
+              這是標準段落文字。排版是網站的基礎，請確保易讀性。這是
+              <a href="#link">一個連結</a>。
+            </p>
+            <p>
+              按鈕式連結範例：
+              <a href="#" class="link-action">橘色無底線連結</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="section-gap border-t-separator content-block">
+          <h2 class="margin-bottom-lg">按鈕組件 (Buttons)</h2>
+          <p class="margin-bottom-md text-sm-secondary">
+            請拖曳瀏覽器視窗大小，測試按鈕尺寸自動變化：小 (手機) &rarr; normal
+            (平板) &rarr; 大 (桌面)
+          </p>
+
+          <h3 class="margin-bottom-md">實心按鈕 (.btn)</h3>
+          <div class="flex-group">
+            <button class="btn">RWD 實心按鈕</button>
+            <button class="btn" disabled>Disabled</button>
+          </div>
+
+          <h3 class="margin-top-lg margin-bottom-md">
+            外框按鈕 (.btn--outline)
+          </h3>
+          <div class="flex-group">
+            <button class="btn btn--outline">RWD 外框按鈕</button>
+            <button class="btn btn--outline" disabled>Disabled</button>
+          </div>
+
+          <h3 class="margin-top-lg margin-bottom-md">
+            按鈕帶圖示 (.btn--icon)
+          </h3>
+          <div class="flex-group">
+            <button class="btn btn--icon">
+              <span>有icon的按鈕</span>
+              <img class="icon" src="/src/images/icon-btn-Arrow.svg" alt="" />
+            </button>
+            <button class="btn btn--block-mobile btn--icon">
+              <span>滿版 + icon</span>
+              <img class="icon" src="/src/images/icon-btn-Arrow.svg" alt="" />
+            </button>
+          </div>
+
+          <h3 class="margin-top-lg margin-bottom-md">
+            文字卡片按鈕 (.btn-text-card)
+          </h3>
+          <div class="flex-group">
+            <button class="btn-text-card">
+              RWD 文字按鈕
+              <div class="arrow">
+                <img
+                  src="/src/images/icon-btn-text-card-arrow.svg"
+                  alt=""
+                  class="" />
+              </div>
+            </button>
+            <button class="btn-text-card">
+              <img class="method" src="/src/images/method-MyCard.svg" alt="" />
+              <div class="arrow">
+                <img
+                  src="/src/images/icon-btn-text-card-arrow.svg"
+                  alt=""
+                  class="" />
+              </div>
+            </button>
+          </div>
+        </section>
+
+        <section class="section-gap border-t-separator">
+          <h2 class="margin-bottom-lg">卡片組件 (Cards)</h2>
+          <div class="margin-bottom-md">
+            <button id="open-popup" class="btn">開啟 Popup 預覽</button>
+          </div>
+          <p class="margin-bottom-md text-sm-secondary">
+            請拖曳瀏覽器視窗大小，測試卡片寬度自動變化。
+          </p>
+
+          <h3 class="margin-bottom-md">狀態卡片 (.card)</h3>
+          <div class="card">
+            <h4 class="margin-bottom-sm">狀態卡片</h4>
+            <p>這是一個狀態卡片，用於通知。大網 (>=992px) 寬度固定為 600px。</p>
+            <div class="margin-top-md">
+              <button class="btn btn--block-mobile">卡片內的按鈕</button>
+            </div>
+          </div>
+
+          <h3 class="margin-top-lg margin-bottom-md">
+            內容區塊 (.content-block)
+          </h3>
+          <div class="content-block">
+            <h4>主要內容區塊</h4>
+            <p>
+              這是一個內容區塊，用於承載主要文章或表單。大網 (>=992px)
+              最大寬度為 1020px，並有 60px 的內部間距。
+            </p>
+            <div class="margin-top-md">
+              <button class="btn-text-card">
+                次要動作
+                <div class="arrow">
+                  <img
+                    src="/src/images/icon-btn-text-card-arrow.svg"
+                    alt=""
+                    class="" />
                 </div>
-            </section>
+              </button>
+            </div>
+          </div>
+        </section>
 
-            <!-- 顏色色票：表面顏色 -->
-            <section class="section-gap border-t-separator">
-                <h2 class="margin-bottom-lg">顏色色票 (Surface Colors)</h2>
-                <div class="color-palette-grid">
+        <section class="section-gap border-t-separator content-block">
+          <h2 class="margin-bottom-lg">表單元件 (Form Controls)</h2>
+          <p class="margin-bottom-md text-sm-secondary">
+            範例：文字欄位、textarea、select、checkbox 與 radio。使用
+            `.form-input` / `.form-check` / `.form-inline` 來預覽樣式。
+          </p>
 
-                    <!-- Surface Colors -->
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="background-color: var(--color-surface-primary);"></div>
-                        <p class="color-sample-label">surface-primary: #FFFFFF</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-accent);"></div>
-                        <p class="color-sample-label">surface-accent: #FF6700</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-accent-dark);"></div>
-                        <p class="color-sample-label">accent-dark: #F45100</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-disabled);"></div>
-                        <p class="color-sample-label">surface-disabled: #E9EBEF</p>
-                    </div>
-                    <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-footer);"></div>
-                        <p class="color-sample-label">surface-footer: #000000</p>
-                    </div>
+          <h3 class="margin-bottom-md">文字欄位 (Text inputs)</h3>
+          <div class="margin-bottom-md">
+            <label for="example-text" class="text-sm-secondary">標準輸入</label>
+            <input
+              id="example-text"
+              type="text"
+              class="form-input"
+              placeholder="輸入文字..." />
+          </div>
 
-                </div>
-            </section>
+          <div class="margin-bottom-md">
+            <label for="example-text-error" class="text-sm-secondary"
+              >錯誤狀態</label
+            >
+            <input
+              id="example-text-error"
+              type="text"
+              class="form-input --error"
+              placeholder="錯誤範例" />
+          </div>
 
+          <div class="margin-bottom-md">
+            <label for="example-text-disabled" class="text-sm-secondary"
+              >Disabled</label
+            >
+            <input
+              id="example-text-disabled"
+              type="text"
+              class="form-input"
+              placeholder="不可輸入"
+              disabled />
+          </div>
 
-            <section class="section-gap border-t-separator">
-                <h2 class="margin-bottom-lg">排版 (Typography)</h2>
-                <div>
-                    <h1>H1 這是主標題</h1>
-                    <h2>H2 這是次標題</h2>
-                    <h3>H3 這是三級標題</h3>
-                    <h4>H4 這是四級標
-                        <p>這是標準段落文字。排版是網站的基礎，請確保易讀性。這是 <a href="#link">一個連結</a>。</p>
-                    </h4>
-                </div>
-            </section>
+          <h3 class="margin-top-lg margin-bottom-md">
+            多行與選單 (Textarea / Select)
+          </h3>
+          <div class="margin-bottom-md">
+            <label for="example-textarea" class="text-sm-secondary"
+              >多行文字</label
+            >
+            <textarea
+              id="example-textarea"
+              class="form-input"
+              rows="4"
+              placeholder="這是一個 textarea 範例..."></textarea>
+          </div>
 
-            <section class="section-gap border-t-separator">
-                <h2 class="margin-bottom-lg">按鈕組件 (Buttons) - RWD 尺寸測試</h2>
-                <p class="margin-bottom-md text-sm-secondary">請拖曳瀏覽器視窗大小，測試按鈕尺寸自動變化：小 (手機) &rarr; normal (平板) &rarr; 大 (桌面)</p>
+          <div class="margin-bottom-md">
+            <label for="example-select" class="text-sm-secondary">選單</label>
+            <select id="example-select" class="form-input">
+              <option>請選擇</option>
+              <option>選項 A</option>
+              <option>選項 B</option>
+            </select>
+          </div>
 
-                <h3 class_="margin-bottom-md">實心按鈕 (.btn)</h3>
-                <div class="flex-group">
-                    <button class="btn">RWD 實心按鈕</button>
-                    <button class="btn" disabled>Disabled</button>
-                </div>
+          <h3 class="margin-top-lg margin-bottom-md">Checkbox / Radio</h3>
+          <div class="margin-bottom-md">
+            <div class="form-check">
+              <input id="chk-1" type="checkbox" />
+              <label for="chk-1">選項 A (checkbox)</label>
+            </div>
+            <div class="form-check">
+              <input id="chk-2" type="checkbox" disabled />
+              <label for="chk-2">選項 B (disabled)</label>
+            </div>
+          </div>
+          <div class="margin-bottom-md">
+            <div class="form-check">
+              <input id="chk-privacy" type="checkbox" />
+              <label for="chk-privacy"
+                >本人已閱讀 <a href="#" id="open-privacy">隱私權政策</a> 與
+                <a href="#" id="open-terms">使用者條款</a>
+                ，並確認訂購交易資料正確無誤，並確認訂購交易資料正確無誤，並確認訂購交易資料正確無誤，並確認訂購交易資料正確無誤，並確認訂購交易資料正確無誤。</label
+              >
+            </div>
+          </div>
 
-                <h3 class="margin-top-lg margin-bottom-md">文字卡片按鈕 (.btn-text-card)</h3>
-                <div class="flex-group">
-                    <button class="btn-text-card">RWD 文字按鈕<div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
-                    <button class="btn-text-card"><img class="method" src="/src/images/method-MyCard.svg" alt="" ><div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
-                </div>
-            </section>
+          <div class="margin-bottom-md">
+            <div class="form-check">
+              <input id="r-1" name="rad-group" type="radio" />
+              <label for="r-1">選項 1 (radio)</label>
+            </div>
+            <div class="form-check">
+              <input id="r-2" name="rad-group" type="radio" />
+              <label for="r-2">選項 2 (radio)</label>
+            </div>
+          </div>
 
-            <section class="section-gap border-t-separator">
-                <h2 class="margin-bottom-lg">卡片組件 (Cards)</h2>
-                <p class="margin-bottom-md text-sm-secondary">請拖曳瀏覽器視窗大小，測試卡片寬度自動變化。</p>
-
-                <h3 class="margin-bottom-md">狀態卡片 (.card)</h3>
-                <div class="card">
-                    <h4 class="margin-bottom-sm">狀態卡片</h4>
-                    <p>這是一個狀態卡片，用於通知。大網 (>=992px) 寬度固定為 600px。</p>
-                    <div class="margin-top-md">
-                        <button class="btn btn--block-mobile">卡片內的按鈕</button>
-                    </div>
-                </div>
-
-                <h3 class="margin-top-lg margin-bottom-md">內容區塊 (.content-block)</h3>
-                <div class="content-block">
-                    <h4>主要內容區塊</h4>
-                    <p>這是一個內容區塊，用於承載主要文章或表單。大網 (>=992px) 最大寬度為 1020px，並有 60px 的內部間距。</p>
-                    <div class="margin-top-md">
-                        <button class="btn-text-card">次要動作<div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
-                    </div>
-                </div>
-            </section>
-        </div>
+          <h3 class="margin-top-lg margin-bottom-md">
+            Inline 範例 (.form-inline)
+          </h3>
+          <p class="margin-bottom-md text-sm-secondary">
+            用於輸入框搭配按鈕或連結的場景，例如驗證碼輸入。
+          </p>
+          <div class="form-inline margin-bottom-md">
+            <label for="inline-example">手機號碼</label>
+            <input
+              id="inline-example"
+              type="text"
+              class="form-input"
+              placeholder="請輸入手機號碼" />
+            <a href="#" class="link-action">取得驗證碼</a>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
+      </div>
     </footer>
-</body>
+    <!-- Popup overlay (preview) -->
+    <div class="popup-overlay" id="demo-popup" aria-hidden="true">
+      <div class="popup" role="dialog" aria-modal="true">
+        <button class="popup-close" id="popup-close" aria-label="關閉">
+          &times;
+        </button>
+        <div class="content-block">
+          <h4>Popup 範例標題</h4>
+          <p>
+            這是 popup 內容區塊，使用現有的 <code>.content-block</code> 樣式。
+          </p>
+          <div class="margin-top-md">
+            <button class="btn" id="popup-action">知道了</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <script>
+      (function () {
+        var openBtn = document.getElementById("open-popup");
+        var overlay = document.getElementById("demo-popup");
+        var closeBtn = document.getElementById("popup-close");
+        var popupAction = document.getElementById("popup-action");
+
+        function openPopup() {
+          overlay.classList.add("is-open");
+          overlay.setAttribute("aria-hidden", "false");
+          // focus the close button for keyboard users
+          closeBtn && closeBtn.focus();
+        }
+
+        function closePopup() {
+          overlay.classList.remove("is-open");
+          overlay.setAttribute("aria-hidden", "true");
+          openBtn && openBtn.focus();
+        }
+
+        openBtn && openBtn.addEventListener("click", openPopup);
+        closeBtn && closeBtn.addEventListener("click", closePopup);
+        popupAction && popupAction.addEventListener("click", closePopup);
+
+        // click overlay to close when clicking outside popup
+        overlay &&
+          overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) closePopup();
+          });
+
+        // close on Escape
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && overlay.classList.contains("is-open")) {
+            closePopup();
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>

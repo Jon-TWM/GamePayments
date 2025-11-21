@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Variables
+   專案中所有設計代幣 (Design Tokens) 的定義：顏色、字體、間距等。
+   ========================================================================== */
+/* ==========================================================================
+   Mixins (抽象層)
+   通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
+   ========================================================================== */
+.invoice-content-block .content {
+  display: grid;
+  gap: 24px;
+}
+.invoice-content-block .content .otp-timer {
+  color: #A8AEB8;
+}
+.invoice-content-block .content .btn-wrap {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16px;
+  justify-content: center;
+}
+@media (min-width: 992px) {
+  .invoice-content-block .content .btn-wrap {
+    display: grid;
+    grid-template-columns: min-content max-content;
+  }
+}
+
+.popup .content-block {
+  display: grid;
+  gap: 2.4rem;
+}
+.popup .content-block h4 {
+  text-align: center;
+}
+.popup .content-block .text-wrap {
+  max-height: 56vh;
+  overflow-y: auto;
+}
+@media (min-width: 992px) {
+  .popup .content-block .text-wrap {
+    max-height: 524px;
+  }
+}
+.popup .content-block .text-wrap ul {
+  list-style: disc;
+  padding-left: 2em;
+}
+.popup .content-block .btn-wrap {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+}/*# sourceMappingURL=invoice.css.map */

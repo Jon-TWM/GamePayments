@@ -148,15 +148,31 @@ h3,
 
 h4,
 .heading-4 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 1.02px;
+}
+@media (min-width: 992px) {
+  h4,
+  .heading-4 {
+    font-size: 2.1rem;
+    letter-spacing: 1.26px;
+  }
 }
 
 a {
-  text-decoration: none;
-}
-a:hover {
   text-decoration: underline;
+}
+
+.link-action {
+  color: #FF6700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.link-action:hover {
+  color: #F45100;
 }
 
 /* ==========================================================================
@@ -167,7 +183,17 @@ a:hover {
 Layout Component (_layout.scss)
 定義專案中用於結構佈局的類別，例如容器、網格、頁頭、頁腳等。
 ========================================================================== */
+body {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  align-items: center;
+}
+
 .container {
+  width: 100%;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -224,7 +250,7 @@ body::before {
   height: 100vh;
   z-index: -1;
   /* --- 小網 (Mobile-First) 樣式 --- */
-  background-image: url("/src/images/bg-sm.png"), linear-gradient(to right, #FF6700, #FF6700);
+  background-image: url("/src/images/bg-sm.png"), linear-gradient(to right, #FF6700, #ff6700);
   background-repeat: no-repeat, no-repeat;
   background-position: center top, center;
   background-size: 100%, cover;
@@ -233,7 +259,7 @@ body::before {
 }
 @media (min-width: 992px) {
   body::before {
-    background-image: url("/src/images/bg-lg.png"), radial-gradient(125.07% 180.93% at -21.46% 10.1%, #FFEC58 5.11%, #FF6700 61.54%, #FF3010 87.5%);
+    background-image: url("/src/images/bg-lg.png"), radial-gradient(125.07% 180.93% at -21.46% 10.1%, #ffec58 5.11%, #ff6700 61.54%, #ff3010 87.5%);
     background-position: right center, center;
     background-size: auto 100vh, cover;
   }
@@ -254,25 +280,27 @@ body::before {
   cursor: pointer;
   border: none;
   text-align: center;
+  white-space: nowrap;
   text-decoration: none;
   font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
   font-weight: 400;
   height: 44px;
+  min-width: 9rem;
   border-radius: 4rem;
-  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  padding: 0rem 1.6rem;
-  font-size: 1.3rem;
   background-color: #FF6700;
   color: #FFFFFF;
+  transition: background-color 0.2s ease-in-out;
+  padding: 0rem 1.6rem;
+  font-size: 1.3rem;
   /*
-  * .btn--block-mobile (修飾符)
-  *
-  * 行為：
-  * 1. 小網 (預設)：寬度 100%，以填滿容器。
-  * 2. 大網 (md 斷點及以上)：恢復為 `inline-flex` (自動寬度)。
-  *
-  * 可與 .btn 或 .btn-text-card 組合使用。
-  */
+    * .btn--block-mobile (修飾符)
+    *
+    * 行為：
+    * 1. 小網 (預設)：寬度 100%，以填滿容器。
+    * 2. 大網 (md 斷點及以上)：恢復為 `inline-flex` (自動寬度)。
+    *
+    * 可與 .btn 或 .btn-text-card 組合使用。
+    */
 }
 .btn:focus {
   outline: none;
@@ -281,17 +309,16 @@ body::before {
   .btn {
     padding: 0rem 1.6rem;
     font-size: 1.5rem;
+    min-width: 10rem;
   }
 }
 .btn:hover {
   background-color: #F45100;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btn[disabled] {
   cursor: not-allowed;
   background-color: #E9EBEF;
   color: #A8AEB8;
-  box-shadow: none;
   opacity: 1;
 }
 .btn.btn--block-mobile {
@@ -304,6 +331,48 @@ body::before {
     display: flex;
     margin: 0 auto;
   }
+}
+.btn.btn--icon {
+  gap: 0.8rem;
+}
+.btn.btn--icon .icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn.btn--icon.btn--block-mobile {
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 1.6rem;
+}
+.btn.btn--icon.btn--block-mobile span {
+  flex: 1;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .btn.btn--icon.btn--block-mobile {
+    justify-content: center;
+    padding-left: 1.6rem;
+  }
+  .btn.btn--icon.btn--block-mobile span {
+    flex: initial;
+  }
+}
+.btn.btn--outline {
+  background-color: #FFFFFF;
+  border: 1px solid #A8AEB8;
+  color: #A8AEB8;
+}
+.btn.btn--outline:hover {
+  background-color: #FFFFFF;
+  color: #2D3033;
+}
+.btn.btn--outline[disabled] {
+  background-color: #E9EBEF;
+  color: #A8AEB8;
+  border-color: #E9EBEF;
 }
 
 .btn-text-card {
@@ -369,6 +438,199 @@ body::before {
    這是專案的主入口檔案，用於編譯生成 dist/style.css。
    ========================================================================== */
 /* ==========================================================================
+     Form Controls (_form.scss)
+     包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
+     ========================================================================== */
+/* ---------- Text inputs / textarea / select ---------- */
+.form-item {
+  display: grid;
+  gap: 8px;
+}
+.form-item label,
+.form-item .label {
+  font-size: 1.5rem;
+  line-height: 150%;
+  color: #515A68;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=search],
+textarea,
+select,
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  border-radius: 8rem;
+  border: 1px solid #A8AEB8;
+  color: #2D3033;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+  font-size: 1.5rem;
+  line-height: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+textarea:focus,
+select:focus,
+.form-input:focus {
+  outline: none;
+  border-color: #FF6700;
+}
+input[type=text].--error,
+input[type=email].--error,
+input[type=password].--error,
+input[type=search].--error,
+textarea.--error,
+select.--error,
+.form-input.--error {
+  border-color: #FF3B30;
+}
+input[type=text]:disabled,
+input[type=email]:disabled,
+input[type=password]:disabled,
+input[type=search]:disabled,
+textarea:disabled,
+select:disabled,
+.form-input:disabled {
+  background-color: #E9EBEF;
+  color: #A8AEB8;
+  cursor: not-allowed;
+}
+
+/* ---------- Checkbox & Radio (custom visuals, accessible) ---------- */
+.form-check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  position: relative;
+  /* label holds the visual custom control */
+  /* base box / circle (unchecked) */
+  /* checkmark for checkbox */
+  /* radio dot */
+  /* checked states */
+  /* disabled */
+  /* keep accent-color as progressive enhancement for browsers that render native controls */
+}
+.form-check input[type=checkbox],
+.form-check input[type=radio] {
+  /* keep native control available for assistive tech but visually hide it while preserving focus */
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.form-check label,
+.form-check .label {
+  position: relative;
+  padding-left: 3.2rem;
+  font-size: 1.5rem;
+  line-height: 150%;
+  color: #2D3033;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.form-check label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  transform: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #FFFFFF;
+  border: 1px solid #A8AEB8;
+  box-sizing: border-box;
+  transition: background 0.12s ease;
+}
+.form-check input[type=checkbox] + label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  transform: rotate(45deg) scale(0);
+  transform-origin: center;
+  width: 8px;
+  height: 16px;
+  /* draw white check when visible */
+  border: solid #FFFFFF;
+  border-width: 0 4px 4px 0;
+  transition: transform 0.12s ease;
+  z-index: 3;
+}
+.form-check input[type=radio] + label::before {
+  border-radius: 50%;
+}
+.form-check input[type=radio] + label::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  transform: translateY(-50%) scale(0);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FF6700;
+  transition: transform 0.12s ease;
+  z-index: 3;
+}
+.form-check input[type=checkbox]:checked + label::after {
+  transform: rotate(45deg) scale(1);
+}
+.form-check input[type=checkbox]:checked + label::before {
+  background: #FF6700;
+  border-color: #FF6700;
+}
+.form-check input[type=radio]:checked + label::after {
+  transform: translateY(-50%) scale(1);
+}
+.form-check input[type=radio]:checked + label::before {
+  border-color: #A8AEB8;
+}
+.form-check input[disabled] + label,
+.form-check input[disabled] {
+  cursor: not-allowed;
+  color: #A8AEB8;
+}
+.form-check input[type=checkbox],
+.form-check input[type=radio] {
+  accent-color: #FF6700;
+}
+.form-check a {
+  text-decoration: underline;
+}
+
+/* ---------- Inline helpers ---------- */
+.form-inline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  gap: 1.6rem;
+  align-items: center;
+  justify-content: start;
+}
+
+/* ==========================================================================
+   Style Styles Entry (src/scss/style.scss)
+   這是專案的主入口檔案，用於編譯生成 dist/style.css。
+   ========================================================================== */
+/* ==========================================================================
    Card Component (_card.scss)
    定義專案中用於卡片和內容區塊的樣式。
    ========================================================================== */
@@ -404,24 +666,83 @@ body::before {
  * 用於承載主要內容，例如文章、表單或詳細資訊。
  */
 .content-block {
-  background: linear-gradient(0deg, #FFF6F4 0%, #FFF6F4 100%), #FFF;
+  background: linear-gradient(0deg, #fff6f4 0%, #fff6f4 100%), #fff;
   border-radius: 2rem;
   width: auto;
-  margin: 0 2rem;
+  margin: 0 auto;
   padding: 2.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
 }
 @media (min-width: 992px) {
   .content-block {
-    margin: 0 auto;
     width: 100%;
     max-width: 1020px;
-    display: flex;
-    padding: 6rem;
-    align-items: flex-start;
-    gap: 40px;
+  }
+}
+
+/* --- 3. Popup (overlay + centered content) ---
+ * 使用示例：
+ * <div class="popup-overlay is-open">
+ *   <div class="popup">
+ *     <button class="popup-close" aria-label="關閉">×</button>
+ *     <div class="content-block">...popup content...</div>
+ *   </div>
+ * </div>
+ */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1200;
+}
+.popup-overlay.is-open {
+  display: flex;
+}
+.popup-overlay .popup {
+  position: static;
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .popup-overlay .popup {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+.popup-overlay .popup-close {
+  position: absolute;
+  right: 2.8rem;
+  top: 2.8rem;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  background: #2D3033;
+  border: none;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1210;
+}
+.popup-overlay .popup-close:hover {
+  color: #FF6700;
+}
+.popup-overlay .popup-close:focus {
+  outline: none;
+}
+@media (min-width: 992px) {
+  .popup-overlay .popup-close {
+    right: 2rem;
+    top: 2rem;
   }
 }/*# sourceMappingURL=style.css.map */
