@@ -268,6 +268,72 @@
                     </div>
                 </div>
             </section>
+
+            <section class="section-gap border-t-separator">
+                <h2 class="margin-bottom-lg">表單元件 (Form Controls)</h2>
+                <p class="margin-bottom-md text-sm-secondary">範例：文字欄位、textarea、select、checkbox 與 radio。使用 `.form-input` / `.form-check` / `.form-inline` 來預覽樣式。</p>
+
+                <h3 class="margin-bottom-md">文字欄位 (Text inputs)</h3>
+                <div class="margin-bottom-md">
+                    <label for="example-text" class="text-sm-secondary">標準輸入</label>
+                    <input id="example-text" type="text" class="form-input" placeholder="輸入文字...">
+                </div>
+
+                <div class="margin-bottom-md">
+                    <label for="example-text-error" class="text-sm-secondary">錯誤狀態</label>
+                    <input id="example-text-error" type="text" class="form-input --error" placeholder="錯誤範例">
+                </div>
+
+                <div class="margin-bottom-md">
+                    <label for="example-text-disabled" class="text-sm-secondary">Disabled</label>
+                    <input id="example-text-disabled" type="text" class="form-input" placeholder="不可輸入" disabled>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">多行與選單 (Textarea / Select)</h3>
+                <div class="margin-bottom-md">
+                    <label for="example-textarea" class="text-sm-secondary">多行文字</label>
+                    <textarea id="example-textarea" class="form-input" rows="4" placeholder="這是一個 textarea 範例..."></textarea>
+                </div>
+
+                <div class="margin-bottom-md">
+                    <label for="example-select" class="text-sm-secondary">選單</label>
+                    <select id="example-select" class="form-input">
+                        <option>請選擇</option>
+                        <option>選項 A</option>
+                        <option>選項 B</option>
+                    </select>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">Checkbox / Radio</h3>
+                <div class="margin-bottom-md">
+                    <div class="form-check">
+                        <input id="chk-1" type="checkbox">
+                        <label for="chk-1">選項 A (checkbox)</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="chk-2" type="checkbox" disabled>
+                        <label for="chk-2">選項 B (disabled)</label>
+                    </div>
+                </div>
+
+                <div class="margin-bottom-md">
+                    <div class="form-check">
+                        <input id="r-1" name="rad-group" type="radio">
+                        <label for="r-1">選項 1 (radio)</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="r-2" name="rad-group" type="radio">
+                        <label for="r-2">選項 2 (radio)</label>
+                    </div>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">Inline 範例與 Submit</h3>
+                <form class="form-inline margin-bottom-md" onsubmit="event.preventDefault()">
+                    <input type="text" class="form-input" style="max-width:300px;" placeholder="Email 或手機">
+                    <button class="btn" type="submit">送出</button>
+                </form>
+
+            </section>
         </div>
     </main>
 

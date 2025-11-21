@@ -20,6 +20,9 @@
     font-weight: 400;
     height: 44px;
     border-radius: m.space(5);
+    // 顏色與狀態（放在 nested rules 之前以避免 Sass mixed-decls 警示）
+    background-color: v.$color-surface-accent;
+    color: v.$color-text-invert-dark;
     // 避免點擊時出現藍色邊框
     &:focus {
         outline: none;
@@ -33,9 +36,6 @@
     @include m.media-query('md') {
         @include m.btn-size(m.space(0), m.space(2), 1.5rem);
     }
-    // 顏色與狀態
-    background-color: v.$color-surface-accent;
-    color: v.$color-text-invert-dark;
     // Hover 狀態
     &:hover {
         background-color: v.$color-surface-accent-dark;

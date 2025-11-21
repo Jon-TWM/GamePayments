@@ -1,0 +1,90 @@
+/* ==========================================================================
+	 Form Controls (_form.scss)
+	 包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
+	 ========================================================================== */
+
+// 引入抽象層
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+/* ---------- Text inputs / textarea / select ---------- */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select,
+.form-input {
+    display: block;
+    width: 100%;
+    padding: m.space(2);
+    border-radius: m.space(1);
+    border: 1px solid v.$color-surface-border;
+    background-color: v.$color-surface-form;
+    color: v.$color-text-primary;
+    font-family: v.$font-stack-primary;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &:focus {
+        outline: none;
+        border-color: v.$color-surface-accent;
+        box-shadow: 0 0 0 4px rgba(255, 103, 0, 0.12);
+    }
+    &.--error {
+        border-color: v.$color-danger;
+    }
+    &:disabled {
+        background-color: v.$color-surface-disabled;
+        color: v.$color-text-disabled;
+        cursor: not-allowed;
+    }
+    @include m.media-query('md') {
+        font-size: 1.8rem;
+        padding: m.space(2.5);
+    }
+}
+
+
+/* ---------- Checkbox & Radio (simple, accessible defaults) ---------- */
+
+.form-check {
+    display: inline-flex;
+    align-items: center;
+    gap: m.space(1.5);
+    cursor: pointer;
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+        /* modern browsers support accent-color */
+        accent-color: v.$color-surface-accent;
+        cursor: pointer;
+    }
+    label {
+        font-size: 1.4rem;
+        color: v.$color-text-primary;
+        cursor: pointer;
+    }
+    input[disabled]+label,
+    input[disabled] {
+        cursor: not-allowed;
+        color: v.$color-text-disabled;
+    }
+}
+
+
+/* ---------- Inline helpers ---------- */
+
+.form-inline {
+    display: flex;
+    align-items: center;
+    gap: m.space(2);
+}

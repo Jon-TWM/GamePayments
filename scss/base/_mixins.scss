@@ -5,6 +5,7 @@
 
 // 引入抽象層
 @use '../base/variables' as v;
+@use 'sass:map' as map;
 // --- 0. Breakpoints (斷點) ---
 // 定義常見的響應式斷點
 $breakpoints: ( 'sm': 576px, 'md': 768px, 'lg': 992px, 'xl': 1200px) !default;
@@ -17,7 +18,7 @@ $breakpoints: ( 'sm': 576px, 'md': 768px, 'lg': 992px, 'xl': 1200px) !default;
 // --- 2. Media Query Mixin ---
 // 使用方法：@include media-query('md') { ... }
 @mixin media-query($size) {
-    $breakpoint-value: map-get($breakpoints, $size);
+    $breakpoint-value: map.get($breakpoints, $size);
     @if $breakpoint-value {
         @media (min-width: $breakpoint-value) {
             @content;
