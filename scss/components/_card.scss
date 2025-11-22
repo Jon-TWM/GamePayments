@@ -88,8 +88,16 @@
     .popup {
         position: static;
         width: 100%;
-        max-width: 1020px;
-        margin: 0 1.6rem;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: m.space(2);
+        padding-right: m.space(2);
+        box-sizing: border-box;
+        @include m.media-query('md') {
+            padding-left: m.space(7.5);
+            padding-right: m.space(7.5);
+        }
     }
     .popup-close {
         position: absolute;
@@ -115,16 +123,16 @@
     .popup-close:focus {
         outline: none;
     }
-    .popup .content-block {
-        margin: 0; // use content-block as the popup panel
-        width: 100%;
-        max-width: 1020px;
-        padding: m.space(3);
-    }
+    // .popup .content-block {
+    //     margin: 0; // use content-block as the popup panel
+    //     width: 100%;
+    //     max-width: 1020px;
+    //     padding: m.space(3);
+    // }
     @include m.media-query('lg') {
-        .popup .content-block {
-            padding: m.space(7.5);
-        }
+        // .popup .content-block {
+        //     padding: m.space(7.5);
+        // }
         .popup-close {
             right: 2rem;
             top: 2rem;

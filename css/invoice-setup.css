@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Variables
+   專案中所有設計代幣 (Design Tokens) 的定義：顏色、字體、間距等。
+   ========================================================================== */
+/* ==========================================================================
+   Mixins (抽象層)
+   通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
+   ========================================================================== */
+.page-invoice-setup .content-block {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.page-invoice-setup .content-block .invoice-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}/*# sourceMappingURL=invoice-setup.css.map */
