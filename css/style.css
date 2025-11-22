@@ -254,6 +254,7 @@ body::before {
   cursor: pointer;
   border: none;
   text-align: center;
+  white-space: nowrap;
   text-decoration: none;
   font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
   font-weight: 400;
@@ -369,9 +370,9 @@ body::before {
    這是專案的主入口檔案，用於編譯生成 dist/style.css。
    ========================================================================== */
 /* ==========================================================================
-	 Form Controls (_form.scss)
-	 包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
-	 ========================================================================== */
+     Form Controls (_form.scss)
+     包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
+     ========================================================================== */
 /* ---------- Text inputs / textarea / select ---------- */
 input[type=text],
 input[type=email],
@@ -382,15 +383,13 @@ select,
 .form-input {
   display: block;
   width: 100%;
-  padding: 1.6rem;
-  border-radius: 0.8rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 8rem;
   border: 1px solid #A8AEB8;
-  background-color: #EEF3F6;
   color: #2D3033;
   font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.4;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  font-size: 1.4rem;
+  line-height: normal;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -404,7 +403,6 @@ select:focus,
 .form-input:focus {
   outline: none;
   border-color: #FF6700;
-  box-shadow: 0 0 0 4px rgba(255, 103, 0, 0.12);
 }
 input[type=text].--error,
 input[type=email].--error,
@@ -426,46 +424,112 @@ select:disabled,
   color: #A8AEB8;
   cursor: not-allowed;
 }
-@media (min-width: 768px) {
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=search],
-  textarea,
-  select,
-  .form-input {
-    font-size: 1.8rem;
-    padding: 2rem;
-  }
-}
 
-/* ---------- Checkbox & Radio (simple, accessible defaults) ---------- */
+/* ---------- Checkbox & Radio (custom visuals, accessible) ---------- */
 .form-check {
   display: inline-flex;
   align-items: center;
   gap: 1.2rem;
-  cursor: pointer;
+  position: relative;
+  /* label holds the visual custom control */
+  /* base box / circle (unchecked) */
+  /* checkmark for checkbox */
+  /* radio dot */
+  /* checked states */
+  /* disabled */
+  /* keep accent-color as progressive enhancement for browsers that render native controls */
 }
 .form-check input[type=checkbox],
 .form-check input[type=radio] {
+  /* keep native control available for assistive tech but visually hide it while preserving focus */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 18px;
   height: 18px;
   margin: 0;
   padding: 0;
-  vertical-align: middle;
-  /* modern browsers support accent-color */
-  accent-color: #FF6700;
+  opacity: 0;
+  z-index: 2;
   cursor: pointer;
 }
 .form-check label {
+  position: relative;
+  padding-left: 3.2rem;
   font-size: 1.4rem;
   color: #2D3033;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.form-check label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #FFFFFF;
+  border: 1px solid #A8AEB8;
+  box-sizing: border-box;
+  transition: background 0.12s ease;
+}
+.form-check input[type=checkbox] + label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg) scale(0);
+  transform-origin: center;
+  width: 8px;
+  height: 16px;
+  /* draw white check when visible */
+  border: solid #FFFFFF;
+  border-width: 0 4px 4px 0;
+  transition: transform 0.12s ease;
+  z-index: 3;
+}
+.form-check input[type=radio] + label::before {
+  border-radius: 50%;
+}
+.form-check input[type=radio] + label::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FF6700;
+  transition: transform 0.12s ease;
+  z-index: 3;
+}
+.form-check input[type=checkbox]:checked + label::after {
+  transform: translateY(-50%) rotate(45deg) scale(1);
+}
+.form-check input[type=checkbox]:checked + label::before {
+  background: #FF6700;
+  border-color: #FF6700;
+}
+.form-check input[type=radio]:checked + label::after {
+  transform: translateY(-50%) scale(1);
+}
+.form-check input[type=radio]:checked + label::before {
+  border-color: #A8AEB8;
 }
 .form-check input[disabled] + label,
 .form-check input[disabled] {
   cursor: not-allowed;
   color: #A8AEB8;
+}
+.form-check input[type=checkbox],
+.form-check input[type=radio] {
+  accent-color: #FF6700;
 }
 
 /* ---------- Inline helpers ---------- */
@@ -534,5 +598,72 @@ select:disabled,
     padding: 6rem;
     align-items: flex-start;
     gap: 40px;
+  }
+}
+
+/* --- 3. Popup (overlay + centered content) ---
+ * 使用示例：
+ * <div class="popup-overlay is-open">
+ *   <div class="popup">
+ *     <button class="popup-close" aria-label="關閉">×</button>
+ *     <div class="content-block">...popup content...</div>
+ *   </div>
+ * </div>
+ */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1200;
+}
+.popup-overlay.is-open {
+  display: flex;
+}
+.popup-overlay .popup {
+  position: static;
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 1.6rem;
+}
+.popup-overlay .popup-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  background: #2D3033;
+  border: none;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1210;
+}
+.popup-overlay .popup-close:hover {
+  color: #FF6700;
+}
+.popup-overlay .popup-close:focus {
+  outline: none;
+}
+.popup-overlay .popup .content-block {
+  margin: 0;
+  width: 100%;
+  max-width: 1020px;
+  padding: 2.4rem;
+}
+@media (min-width: 992px) {
+  .popup-overlay .popup .content-block {
+    padding: 6rem;
+  }
+  .popup-overlay .popup-close {
+    right: 2rem;
+    top: 2rem;
   }
 }/*# sourceMappingURL=style.css.map */

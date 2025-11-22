@@ -1,7 +1,7 @@
 /* ==========================================================================
-	 Form Controls (_form.scss)
-	 包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
-	 ========================================================================== */
+     Form Controls (_form.scss)
+     包含：input, textarea, checkbox, radio 的基礎樣式與狀態。
+     ========================================================================== */
 
 // 引入抽象層
 @use '../base/variables' as v;
@@ -18,22 +18,19 @@ select,
 .form-input {
     display: block;
     width: 100%;
-    padding: m.space(2);
-    border-radius: m.space(1);
-    border: 1px solid v.$color-surface-border;
-    background-color: v.$color-surface-form;
+    padding: m.space(1.5) m.space(2);
+    border-radius: m.space(10);
+    border: 1px solid v.$color-surface-primary-dark;
     color: v.$color-text-primary;
     font-family: v.$font-stack-primary;
-    font-size: 1.6rem;
-    line-height: 1.4;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    font-size: 1.4rem;
+    line-height: normal;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     &:focus {
         outline: none;
         border-color: v.$color-surface-accent;
-        box-shadow: 0 0 0 4px rgba(255, 103, 0, 0.12);
     }
     &.--error {
         border-color: v.$color-danger;
@@ -43,40 +40,112 @@ select,
         color: v.$color-text-disabled;
         cursor: not-allowed;
     }
-    @include m.media-query('md') {
-        font-size: 1.8rem;
-        padding: m.space(2.5);
-    }
 }
 
 
-/* ---------- Checkbox & Radio (simple, accessible defaults) ---------- */
+/* ---------- Checkbox & Radio (custom visuals, accessible) ---------- */
 
 .form-check {
     display: inline-flex;
     align-items: center;
     gap: m.space(1.5);
-    cursor: pointer;
+    position: relative;
     input[type="checkbox"],
     input[type="radio"] {
+        /* keep native control available for assistive tech but visually hide it while preserving focus */
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
         width: 18px;
         height: 18px;
         margin: 0;
         padding: 0;
-        vertical-align: middle;
-        /* modern browsers support accent-color */
-        accent-color: v.$color-surface-accent;
+        opacity: 0;
+        z-index: 2;
         cursor: pointer;
     }
+    /* label holds the visual custom control */
     label {
+        position: relative;
+        padding-left: m.space(4);
         font-size: 1.4rem;
         color: v.$color-text-primary;
         cursor: pointer;
+        user-select: none;
     }
+    /* base box / circle (unchecked) */
+    label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        background: v.$color-surface-primary;
+        border: 1px solid v.$color-surface-primary-dark;
+        box-sizing: border-box;
+        transition: background 0.12s ease;
+    }
+    /* checkmark for checkbox */
+    input[type="checkbox"]+label::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg) scale(0);
+        transform-origin: center;
+        width: 8px;
+        height: 16px;
+        /* draw white check when visible */
+        border: solid v.$color-surface-primary;
+        border-width: 0 4px 4px 0;
+        transition: transform 0.12s ease;
+        z-index: 3;
+    }
+    /* radio dot */
+    input[type="radio"]+label::before {
+        border-radius: 50%;
+    }
+    input[type="radio"]+label::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: v.$color-surface-accent;
+        transition: transform 0.12s ease;
+        z-index: 3;
+    }
+    /* checked states */
+    input[type="checkbox"]:checked+label::after {
+        transform: translateY(-50%) rotate(45deg) scale(1);
+    }
+    input[type="checkbox"]:checked+label::before {
+        background: v.$color-surface-accent;
+        border-color: v.$color-surface-accent;
+    }
+    input[type="radio"]:checked+label::after {
+        transform: translateY(-50%) scale(1);
+    }
+    input[type="radio"]:checked+label::before {
+        border-color: v.$color-surface-primary-dark;
+    }
+    /* disabled */
     input[disabled]+label,
     input[disabled] {
         cursor: not-allowed;
         color: v.$color-text-disabled;
+    }
+    /* keep accent-color as progressive enhancement for browsers that render native controls */
+    input[type="checkbox"],
+    input[type="radio"] {
+        accent-color: v.$color-surface-accent;
     }
 }
 

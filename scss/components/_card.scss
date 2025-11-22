@@ -62,3 +62,72 @@
         gap: 40px;
     }
 }
+
+
+/* --- 3. Popup (overlay + centered content) ---
+ * 使用示例：
+ * <div class="popup-overlay is-open">
+ *   <div class="popup">
+ *     <button class="popup-close" aria-label="關閉">×</button>
+ *     <div class="content-block">...popup content...</div>
+ *   </div>
+ * </div>
+ */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    display: none; // default hidden
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1200;
+    &.is-open {
+        display: flex;
+    }
+    .popup {
+        position: static;
+        width: 100%;
+        max-width: 1020px;
+        margin: 0 1.6rem;
+    }
+    .popup-close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        width: m.space(7);
+        height: m.space(7);
+        border-radius: 50%;
+        background: v.$color-text-primary;
+        border: none;
+        color: v.$color-text-invert-dark;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.4rem;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 1210;
+    }
+    .popup-close:hover {
+        color: v.$color-text-accent;
+    }
+    .popup-close:focus {
+        outline: none;
+    }
+    .popup .content-block {
+        margin: 0; // use content-block as the popup panel
+        width: 100%;
+        max-width: 1020px;
+        padding: m.space(3);
+    }
+    @include m.media-query('lg') {
+        .popup .content-block {
+            padding: m.space(7.5);
+        }
+        .popup-close {
+            right: 2rem;
+            top: 2rem;
+        }
+    }
+}

@@ -158,7 +158,7 @@
         <div class="container">
 
             <!-- 顏色色票：文字顏色 -->
-            <section class="section-gap">
+            <section class="section-gap content-block">
                 <h2 class="margin-bottom-lg">顏色色票 (Text Colors)</h2>
                 <div class="color-palette-grid">
 
@@ -187,7 +187,7 @@
             </section>
 
             <!-- 顏色色票：表面顏色 -->
-            <section class="section-gap border-t-separator">
+            <section class="section-gap border-t-separator content-block">
                 <h2 class="margin-bottom-lg">顏色色票 (Surface Colors)</h2>
                 <div class="color-palette-grid">
 
@@ -217,7 +217,7 @@
             </section>
 
 
-            <section class="section-gap border-t-separator">
+            <section class="section-gap border-t-separator content-block">
                 <h2 class="margin-bottom-lg">排版 (Typography)</h2>
                 <div>
                     <h1>H1 這是主標題</h1>
@@ -229,7 +229,7 @@
                 </div>
             </section>
 
-            <section class="section-gap border-t-separator">
+            <section class="section-gap border-t-separator content-block">
                 <h2 class="margin-bottom-lg">按鈕組件 (Buttons) - RWD 尺寸測試</h2>
                 <p class="margin-bottom-md text-sm-secondary">請拖曳瀏覽器視窗大小，測試按鈕尺寸自動變化：小 (手機) &rarr; normal (平板) &rarr; 大 (桌面)</p>
 
@@ -248,6 +248,9 @@
 
             <section class="section-gap border-t-separator">
                 <h2 class="margin-bottom-lg">卡片組件 (Cards)</h2>
+                <div class="margin-bottom-md">
+                    <button id="open-popup" class="btn">開啟 Popup 預覽</button>
+                </div>
                 <p class="margin-bottom-md text-sm-secondary">請拖曳瀏覽器視窗大小，測試卡片寬度自動變化。</p>
 
                 <h3 class="margin-bottom-md">狀態卡片 (.card)</h3>
@@ -269,7 +272,7 @@
                 </div>
             </section>
 
-            <section class="section-gap border-t-separator">
+            <section class="section-gap border-t-separator content-block">
                 <h2 class="margin-bottom-lg">表單元件 (Form Controls)</h2>
                 <p class="margin-bottom-md text-sm-secondary">範例：文字欄位、textarea、select、checkbox 與 radio。使用 `.form-input` / `.form-check` / `.form-inline` 來預覽樣式。</p>
 
@@ -342,6 +345,57 @@
             <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
         </div>
     </footer>
+    <!-- Popup overlay (preview) -->
+    <div class="popup-overlay" id="demo-popup" aria-hidden="true">
+        <div class="popup" role="dialog" aria-modal="true">
+            <button class="popup-close" id="popup-close" aria-label="關閉">&times;</button>
+            <div class="content-block">
+                <h4>Popup 範例標題</h4>
+                <p>這是 popup 內容區塊，使用現有的 <code>.content-block</code> 樣式。</p>
+                <div class="margin-top-md">
+                    <button class="btn" id="popup-action">知道了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var openBtn = document.getElementById('open-popup');
+            var overlay = document.getElementById('demo-popup');
+            var closeBtn = document.getElementById('popup-close');
+            var popupAction = document.getElementById('popup-action');
+
+            function openPopup() {
+                overlay.classList.add('is-open');
+                overlay.setAttribute('aria-hidden', 'false');
+                // focus the close button for keyboard users
+                closeBtn && closeBtn.focus();
+            }
+
+            function closePopup() {
+                overlay.classList.remove('is-open');
+                overlay.setAttribute('aria-hidden', 'true');
+                openBtn && openBtn.focus();
+            }
+
+            openBtn && openBtn.addEventListener('click', openPopup);
+            closeBtn && closeBtn.addEventListener('click', closePopup);
+            popupAction && popupAction.addEventListener('click', closePopup);
+
+            // click overlay to close when clicking outside popup
+            overlay && overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closePopup();
+            });
+
+            // close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+                    closePopup();
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
