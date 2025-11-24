@@ -192,6 +192,11 @@ body {
   align-items: center;
 }
 
+main {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
 .container {
   width: 100%;
   max-width: 1280px;
@@ -626,6 +631,17 @@ select:disabled,
   justify-content: start;
 }
 
+.radio-wrap {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  .radio-wrap {
+    flex-direction: row;
+  }
+}
+
 /* ==========================================================================
    Style Styles Entry (src/scss/style.scss)
    這是專案的主入口檔案，用於編譯生成 dist/style.css。
@@ -649,6 +665,7 @@ select:disabled,
   .card {
     width: 600px;
     margin: 0 auto;
+    padding: 4rem;
   }
 }
 .card p {
@@ -676,6 +693,7 @@ select:disabled,
   .content-block {
     width: 100%;
     max-width: 1020px;
+    padding: 6rem;
   }
 }
 
@@ -708,13 +726,17 @@ select:disabled,
   margin-right: auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .popup-overlay .popup {
     padding-left: 6rem;
     padding-right: 6rem;
   }
+}
+.popup-overlay .popup .content-block {
+  margin: auto;
+  padding: 4rem;
+  background: #FFFFFF;
 }
 .popup-overlay .popup-close {
   position: absolute;
@@ -734,15 +756,15 @@ select:disabled,
   cursor: pointer;
   z-index: 1210;
 }
-.popup-overlay .popup-close:hover {
-  color: #FF6700;
-}
-.popup-overlay .popup-close:focus {
-  outline: none;
-}
 @media (min-width: 992px) {
   .popup-overlay .popup-close {
     right: 2rem;
     top: 2rem;
   }
+}
+.popup-overlay .popup-close:hover {
+  color: #FF6700;
+}
+.popup-overlay .popup-close:focus {
+  outline: none;
 }/*# sourceMappingURL=style.css.map */

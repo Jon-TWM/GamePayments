@@ -1,249 +1,218 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>台灣大哥大 遊戲金流系統 設定發票資訊</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/invoice.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <header class="header">
-      <div class="container">
-        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
-      </div>
+        <div class="container">
+            <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+        </div>
     </header>
 
     <main>
-      <div class="container">
-        <div class="content-block invoice-content-block">
-          <div class="content">
-            <h2>設定您的發票資訊</h2>
+        <div class="container">
+            <div class="content-block invoice-content-block">
+                <div class="content">
+                    <h2>設定您的發票資訊</h2>
 
-            <div class="form-item">
-              <p class="label">
-                開立發票方式 <a href="#" id="open-note">注意事項</a>
-              </p>
+                    <div class="form-item">
+                        <p class="label">
+                            開立發票方式 <a href="#" id="open-note">注意事項</a>
+                        </p>
 
-              <div class="radio-wrap">
-                <div class="form-check">
-                  <input
-                    id="invoice-e-personal"
-                    name="invoice-type"
-                    type="radio" />
-                  <label for="invoice-e-personal">電子個人 (兩聯式)</label>
+                        <div class="radio-wrap">
+                            <div class="form-check">
+                                <input id="invoice-e-personal" name="invoice-type" type="radio" />
+                                <label for="invoice-e-personal">電子個人 (兩聯式)</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="invoice-company" name="invoice-type" type="radio" />
+                                <label for="invoice-company">公司用 (三聯式)</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="invoice-donate" name="invoice-type" type="radio" />
+                                <label for="invoice-donate">電子發票捐贈</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="invoice-paper" name="invoice-type" type="radio" />
+                                <label for="invoice-paper">紙本個人 (兩聯式)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #region 電子個人 (兩聯式) -->
+                    <div class="form-item">
+                        <p class="label">載具</p>
+                        <p>MDEUGBXR</p>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="full-name">真實姓名 Full Name</label>
+                        <input id="full-name" type="text" class="form-input" placeholder="請輸入您的姓名" />
+                    </div>
+                    <!-- #endregion 電子個人 (兩聯式) -->
+
+                    <!-- #region 公司用 (三聯式) -->
+                    <div class="form-item">
+                        <label for="company-name">公司抬頭</label>
+                        <input id="company-name" type="text" class="form-input" placeholder="請輸入公司抬頭" />
+                    </div>
+
+                    <div class="form-item">
+                        <label for="company-tax-id">統一編號</label>
+                        <input id="company-tax-id" type="text" class="form-input" placeholder="請輸入統一編號" />
+                    </div>
+                    <!-- #endregion 公司用 (三聯式) -->
+
+                    <div class="form-item">
+                        <label for="invoice-email">發票開立通知 Email</label>
+                        <input id="invoice-email" type="email" class="form-input" placeholder="請輸入您的Email" />
+                    </div>
+                    <div class="form-item">
+                        <label for="invoice-address">發票開立地址 Address</label>
+                        <input id="invoice-address" type="text" class="form-input" placeholder="請輸入您的地址" />
+                    </div>
+
+                    <!-- #region 電子發票捐贈 -->
+                    <div class="form-item">
+                        <p class="label">捐贈單位</p>
+                        <p>876 ( 財團法人心路社會福利基金會 )</p>
+                    </div>
+                    <!-- #endregion 電子發票捐贈 -->
+
+                    <div class="form-item">
+                        <label for="sms-code">簡訊驗證碼</label>
+                        <div class="form-inline">
+                            <input id="sms-code" type="text" class="form-input" placeholder="請輸入驗證碼" />
+                            <p class="otp-timer">重新發送(297 秒)</p>
+                            <a href="#" class="link-action otp-get-code">取得驗證碼</a>
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input id="chk-note" type="checkbox" />
+                        <label for="chk-note">個資條款文案待確認</label>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <button class="btn btn--outline btn--block-mobile">返回</button>
+                        <button class="btn btn--block-mobile">確認送出</button>
+                    </div>
                 </div>
-                <div class="form-check">
-                  <input
-                    id="invoice-company"
-                    name="invoice-type"
-                    type="radio" />
-                  <label for="invoice-company">公司用 (三聯式)</label>
-                </div>
-                <div class="form-check">
-                  <input id="invoice-donate" name="invoice-type" type="radio" />
-                  <label for="invoice-donate">電子發票捐贈</label>
-                </div>
-                <div class="form-check">
-                  <input id="invoice-paper" name="invoice-type" type="radio" />
-                  <label for="invoice-paper">紙本個人 (兩聯式)</label>
-                </div>
-              </div>
             </div>
-
-            <!-- #region 電子個人 (兩聯式) -->
-            <div class="form-item">
-              <p class="label">載具</p>
-              <p>MDEUGBXR</p>
-            </div>
-
-            <div class="form-item">
-              <label for="full-name">真實姓名 | Full Name</label>
-              <input
-                id="full-name"
-                type="text"
-                class="form-input"
-                placeholder="請輸入您的姓名" />
-            </div>
-            <!-- #endregion 電子個人 (兩聯式) -->
-
-            <!-- #region 公司用 (三聯式) -->
-            <div class="form-item">
-              <label for="company-name">公司抬頭</label>
-              <input
-                id="company-name"
-                type="text"
-                class="form-input"
-                placeholder="請輸入公司抬頭" />
-            </div>
-
-            <div class="form-item">
-              <label for="company-tax-id">統一編號</label>
-              <input
-                id="company-tax-id"
-                type="text"
-                class="form-input"
-                placeholder="請輸入統一編號" />
-            </div>
-            <!-- #endregion 公司用 (三聯式) -->
-
-            <div class="form-item">
-              <label for="invoice-email">發票開立通知 Email</label>
-              <input
-                id="invoice-email"
-                type="email"
-                class="form-input"
-                placeholder="請輸入您的Email" />
-            </div>
-            <div class="form-item">
-              <label for="invoice-address">發票開立地址 | Address</label>
-              <input
-                id="invoice-address"
-                type="text"
-                class="form-input"
-                placeholder="請輸入您的地址" />
-            </div>
-
-            <!-- #region 電子發票捐贈 -->
-            <div class="form-item">
-              <p class="label">捐贈單位</p>
-              <p>876 ( 財團法人心路社會福利基金會 )</p>
-            </div>
-            <!-- #endregion 電子發票捐贈 -->
-
-            <div class="form-item">
-              <label for="sms-code">簡訊驗證碼</label>
-              <div class="form-inline">
-                <input
-                  id="sms-code"
-                  type="text"
-                  class="form-input"
-                  placeholder="請輸入驗證碼" />
-                <p class="otp-timer">重新發送(297 秒)</p>
-                <a href="#" class="link-action otp-get-code">取得驗證碼</a>
-              </div>
-            </div>
-
-            <div class="form-check">
-              <input id="chk-note" type="checkbox" />
-              <label for="chk-note">個資條款文案待確認</label>
-            </div>
-
-            <div class="btn-wrap">
-              <button class="btn btn--outline btn--block-mobile">返回</button>
-              <button class="btn btn--block-mobile">確認送出</button>
-            </div>
-          </div>
         </div>
-      </div>
     </main>
 
     <footer class="footer">
-      <div class="container">
-        <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
-      </div>
+        <div class="container">
+            <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
+        </div>
     </footer>
 
     <!-- 注意事項 Popup -->
     <div class="popup-overlay" id="note-popup" aria-hidden="true">
-      <div class="popup" role="dialog" aria-modal="true">
-        <button class="popup-close" id="note-popup-close" aria-label="關閉">
+        <div class="popup" role="dialog" aria-modal="true">
+            <button class="popup-close" id="note-popup-close" aria-label="關閉">
           &times;
         </button>
-        <div class="content-block">
-          <h4>發票注意事項</h4>
-          <div class="text-wrap">
-            <ul>
-              <li>
-                如您要變更發票載具或捐贈對象，請至『台灣大客戶中心＞發票設定』進行設定。
-              </li>
-              <li>
-                建議您使用電子發票，不索取"紙本"發票，支持地球環保，減少地球上樹木的消失及暖化。
-              </li>
-              <li>
-                若選擇電子發票，可於台灣大客戶中心預設載具資料並進行載具之歸戶，若未進行設定，台灣大哥大將預設您的電子發票儲存於客戶載具，且提醒您電子發票一經開立，即不得變更載具之選擇。若要索取紙本發票，請於平台頁面選擇"索取紙本發票"。
-              </li>
-              <li>
-                電子發票開立後，台灣大哥大會將電子發票檔案儲存於台灣大客戶中心上您專屬的my
-                pay交易記錄及
-                您所選擇之載具中，並於24小時內將電子發票上傳至「電子發票整合服務平台」，並以e-mail通知您，電子發票不會主動寄送。有關電子發票作業與「電子發票實施作業要點」，可詳參財政部電子發票整合服務平台網站：www.einvoice.nat.gov.tw。
-              </li>
-              <li>
-                若您係使用未歸戶之客戶載具索取電子發票，財政部財政資訊中心將會為您對獎(但已索取紙本發票、已作廢、或已捐贈之電子發票除外)，台灣大哥大收到中獎名冊後會於統一發票開獎翌日起10日內以e-mail通知中獎。另台灣大哥大將會以您交易時所登錄的郵寄地址寄送中獎發票，請務必確認您登錄之資料為最新且正確，以利台灣大哥大郵寄中獎發票予您，若有任何疑問，請與客服中心連絡(客服中心聯絡電話：02-6606-2999)
-                ，謝謝您。
-              </li>
-              <li>
-                如您係使用已歸戶之客戶載具或共通性載具，中獎資訊將由財政部電子發票整合服務平台通知您。
-              </li>
-              <li>
-                另提醒您，依財政部所發佈之法令規定，發票副本僅供參考，不可直接兌獎。
-              </li>
-              <li>
-                若您選擇捐贈發票者，將由台灣大哥大代為捐贈給慈善機構，慈善機構亦可於台灣大客戶中心預設。
-              </li>
-              <li>
-                若您於訂購時已選擇開立二聯式發票者，恕無法換開三聯式發票；訂購時選擇開立三聯式發票，亦無法換開二聯式發票。
-              </li>
-              <li>
-                若您選擇開立紙本發票者，請於收到紙本發票後自行妥善保管，若有遺失、毀損等，恕不補發。
-              </li>
-              <li>台灣大哥大保有使用及停用電子發票之權利。</li>
-            </ul>
-          </div>
+            <div class="content-block">
+                <h4>發票注意事項</h4>
+                <div class="text-wrap">
+                    <ul>
+                        <li>
+                            如您要變更發票載具或捐贈對象，請至『台灣大客戶中心＞發票設定』進行設定。
+                        </li>
+                        <li>
+                            建議您使用電子發票，不索取"紙本"發票，支持地球環保，減少地球上樹木的消失及暖化。
+                        </li>
+                        <li>
+                            若選擇電子發票，可於台灣大客戶中心預設載具資料並進行載具之歸戶，若未進行設定，台灣大哥大將預設您的電子發票儲存於客戶載具，且提醒您電子發票一經開立，即不得變更載具之選擇。若要索取紙本發票，請於平台頁面選擇"索取紙本發票"。
+                        </li>
+                        <li>
+                            電子發票開立後，台灣大哥大會將電子發票檔案儲存於台灣大客戶中心上您專屬的my pay交易記錄及 您所選擇之載具中，並於24小時內將電子發票上傳至「電子發票整合服務平台」，並以e-mail通知您，電子發票不會主動寄送。有關電子發票作業與「電子發票實施作業要點」，可詳參財政部電子發票整合服務平台網站：www.einvoice.nat.gov.tw。
+                        </li>
+                        <li>
+                            若您係使用未歸戶之客戶載具索取電子發票，財政部財政資訊中心將會為您對獎(但已索取紙本發票、已作廢、或已捐贈之電子發票除外)，台灣大哥大收到中獎名冊後會於統一發票開獎翌日起10日內以e-mail通知中獎。另台灣大哥大將會以您交易時所登錄的郵寄地址寄送中獎發票，請務必確認您登錄之資料為最新且正確，以利台灣大哥大郵寄中獎發票予您，若有任何疑問，請與客服中心連絡(客服中心聯絡電話：02-6606-2999) ，謝謝您。
+                        </li>
+                        <li>
+                            如您係使用已歸戶之客戶載具或共通性載具，中獎資訊將由財政部電子發票整合服務平台通知您。
+                        </li>
+                        <li>
+                            另提醒您，依財政部所發佈之法令規定，發票副本僅供參考，不可直接兌獎。
+                        </li>
+                        <li>
+                            若您選擇捐贈發票者，將由台灣大哥大代為捐贈給慈善機構，慈善機構亦可於台灣大客戶中心預設。
+                        </li>
+                        <li>
+                            若您於訂購時已選擇開立二聯式發票者，恕無法換開三聯式發票；訂購時選擇開立三聯式發票，亦無法換開二聯式發票。
+                        </li>
+                        <li>
+                            若您選擇開立紙本發票者，請於收到紙本發票後自行妥善保管，若有遺失、毀損等，恕不補發。
+                        </li>
+                        <li>台灣大哥大保有使用及停用電子發票之權利。</li>
+                    </ul>
+                </div>
 
-          <div class="btn-wrap">
-            <button class="btn btn--block-mobile" id="note-popup-ok">
+                <div class="btn-wrap">
+                    <button class="btn btn--block-mobile" id="note-popup-ok">
               我知道了
             </button>
-            <a href="#" class="link-action">申請個人紙本發票</a>
-          </div>
+                    <a href="#" class="link-action">申請個人紙本發票</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <script>
-      (function () {
-        var openNote = document.getElementById("open-note");
-        var overlay = document.getElementById("note-popup");
-        var close = document.getElementById("note-popup-close");
-        var ok = document.getElementById("note-popup-ok");
+        (function() {
+            var openNote = document.getElementById("open-note");
+            var overlay = document.getElementById("note-popup");
+            var close = document.getElementById("note-popup-close");
+            var ok = document.getElementById("note-popup-ok");
 
-        function openPopup() {
-          overlay.classList.add("is-open");
-          overlay.setAttribute("aria-hidden", "false");
-          close && close.focus();
-        }
+            function openPopup() {
+                overlay.classList.add("is-open");
+                overlay.setAttribute("aria-hidden", "false");
+                close && close.focus();
+            }
 
-        function closePopup() {
-          overlay.classList.remove("is-open");
-          overlay.setAttribute("aria-hidden", "true");
-          openNote && openNote.focus();
-        }
-        openNote &&
-          openNote.addEventListener("click", function (e) {
-            e.preventDefault();
-            openPopup();
-          });
-        close && close.addEventListener("click", closePopup);
-        ok && ok.addEventListener("click", closePopup);
-        overlay &&
-          overlay.addEventListener("click", function (e) {
-            if (e.target === overlay) closePopup();
-          });
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && overlay.classList.contains("is-open"))
-            closePopup();
-        });
+            function closePopup() {
+                overlay.classList.remove("is-open");
+                overlay.setAttribute("aria-hidden", "true");
+                openNote && openNote.focus();
+            }
+            openNote &&
+                openNote.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    openPopup();
+                });
+            close && close.addEventListener("click", closePopup);
+            ok && ok.addEventListener("click", closePopup);
+            overlay &&
+                overlay.addEventListener("click", function(e) {
+                    if (e.target === overlay) closePopup();
+                });
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape" && overlay.classList.contains("is-open"))
+                    closePopup();
+            });
 
-        var invoiceType = document.getElementById("invoice-type");
-        var companyInfo = document.getElementById("company-info");
-        invoiceType &&
-          invoiceType.addEventListener("change", function () {
-            companyInfo.style.display =
-              this.value === "company" ? "block" : "none";
-          });
-      })();
+            var invoiceType = document.getElementById("invoice-type");
+            var companyInfo = document.getElementById("company-info");
+            invoiceType &&
+                invoiceType.addEventListener("change", function() {
+                    companyInfo.style.display =
+                        this.value === "company" ? "block" : "none";
+                });
+        })();
     </script>
-  </body>
+</body>
+
 </html>

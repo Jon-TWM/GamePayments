@@ -176,3 +176,12 @@ select,
     align-items: center;
     justify-content: start; // 靠左對齊
 }
+
+.radio-wrap {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    @include m.media-query("lg") {
+        flex-direction: row;
+    }
+}

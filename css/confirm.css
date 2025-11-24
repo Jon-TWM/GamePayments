@@ -34,6 +34,9 @@
   grid-template-columns: 4em 1fr;
   gap: 1.2rem 1.6rem;
 }
+.confirm-content-block .content .item .title {
+  color: #515A68;
+}
 @media (min-width: 992px) {
   .confirm-content-block .content .btn-wrap {
     display: grid;

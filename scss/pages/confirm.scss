@@ -1,116 +1,112 @@
 // 引入抽象層
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
-
 .confirm-content-block {
-  margin: auto;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  @include m.media-query("lg") {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    gap: 40px;
-  }
-  .content {
-    width: 100%;
-    display: grid;
-    gap: m.space(3);
-    h2 {
-      margin: 0;
-    }
-    .item {
-      display: grid;
-      grid-template-columns: 4em 1fr;
-      gap: m.space(1.5) m.space(2);
-    }
-    .btn-wrap {
-      @include m.media-query("lg") {
+    margin: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    @include m.media-query("lg") {
         display: grid;
-        justify-content: end;
-      }
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 40px;
     }
-  }
+    .content {
+        width: 100%;
+        display: grid;
+        gap: m.space(3);
+        h2 {
+            margin: 0;
+        }
+        .item {
+            display: grid;
+            grid-template-columns: 4em 1fr;
+            gap: m.space(1.5) m.space(2);
+            .title {
+                color: v.$color-text-secondary;
+            }
+        }
+        .btn-wrap {
+            @include m.media-query("lg") {
+                display: grid;
+                justify-content: end;
+            }
+        }
+    }
 }
 
 .popup {
-  .content-block {
-    display: grid;
-    gap: m.space(3);
-    h4 {
-      text-align: center;
-    }
-    .text-wrap {
-      max-height: 56vh;
-      overflow-y: auto;
-      @include m.media-query("lg") {
-        max-height: 524px;
-      }
-      // 法律條款列表樣式 (Privacy Policy & Terms)
-      .legal-list {
-        padding-left: 0;
-        list-style: none;
-        counter-reset: section;
-        margin-top: m.space(2);
-
-        > li {
-          position: relative;
-          padding-left: 1.25em;
-          margin-bottom: m.space(2);
-          &::before {
-            counter-increment: section;
-            content: counter(section, cjk-ideographic) "、";
-            position: absolute;
-            left: 0;
-            font-weight: 500;
-          }
-
-          > ol {
-            padding-left: 0;
-            list-style: none;
-            counter-reset: subsection;
-            margin-top: m.space(1);
-
-            > li {
-              position: relative;
-              padding-left: 1.5em;
-              margin-bottom: m.space(1);
-              &::before {
-                counter-increment: subsection;
-                content: counter(subsection) ". ";
-                position: absolute;
-                left: 0;
-              }
-
-              .list-parens {
+    .content-block {
+        display: grid;
+        gap: m.space(3);
+        h4 {
+            text-align: center;
+        }
+        .text-wrap {
+            max-height: 56vh;
+            overflow-y: auto;
+            @include m.media-query("lg") {
+                max-height: 524px;
+            }
+            // 法律條款列表樣式 (Privacy Policy & Terms)
+            .legal-list {
                 padding-left: 0;
                 list-style: none;
-                counter-reset: parens;
-                margin-top: m.space(1);
-
-                > li {
-                  position: relative;
-                  padding-left: 2.5em;
-                  margin-bottom: m.space(0.5);
-                  &::before {
-                    counter-increment: parens;
-                    content: "(" counter(parens) ") ";
-                    position: absolute;
-                    left: 0;
-                  }
-
-                  .list-alpha {
-                    padding-left: 1.5em;
-                    list-style-type: upper-alpha;
-                    margin-top: m.space(0.5);
-                  }
+                counter-reset: section;
+                margin-top: m.space(2);
+                >li {
+                    position: relative;
+                    padding-left: 1.25em;
+                    margin-bottom: m.space(2);
+                    &::before {
+                        counter-increment: section;
+                        content: counter(section, cjk-ideographic) "、";
+                        position: absolute;
+                        left: 0;
+                        font-weight: 500;
+                    }
+                    >ol {
+                        padding-left: 0;
+                        list-style: none;
+                        counter-reset: subsection;
+                        margin-top: m.space(1);
+                        >li {
+                            position: relative;
+                            padding-left: 1.5em;
+                            margin-bottom: m.space(1);
+                            &::before {
+                                counter-increment: subsection;
+                                content: counter(subsection) ". ";
+                                position: absolute;
+                                left: 0;
+                            }
+                            .list-parens {
+                                padding-left: 0;
+                                list-style: none;
+                                counter-reset: parens;
+                                margin-top: m.space(1);
+                                >li {
+                                    position: relative;
+                                    padding-left: 2.5em;
+                                    margin-bottom: m.space(0.5);
+                                    &::before {
+                                        counter-increment: parens;
+                                        content: "(" counter(parens) ") ";
+                                        position: absolute;
+                                        left: 0;
+                                    }
+                                    .list-alpha {
+                                        padding-left: 1.5em;
+                                        list-style-type: upper-alpha;
+                                        margin-top: m.space(0.5);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
         }
-      }
     }
-  }
 }

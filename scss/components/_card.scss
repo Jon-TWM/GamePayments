@@ -23,6 +23,7 @@
     @include m.media-query("lg") {
         width: 600px;
         margin: 0 auto;
+        padding: m.space(5);
     }
     // 卡片內的 <p> 專屬樣式
     p {
@@ -49,9 +50,9 @@
     padding: m.space(3);
     // 大網 (Desktop, >= 992px)
     @include m.media-query("lg") {
-        // margin: 0 auto;
         width: 100%;
         max-width: 1020px;
+        padding: m.space(7.5);
     }
 }
 
@@ -85,10 +86,14 @@
         margin-right: auto;
         padding-left: m.space(2);
         padding-right: m.space(2);
-        box-sizing: border-box;
         @include m.media-query("md") {
             padding-left: m.space(7.5);
             padding-right: m.space(7.5);
+        }
+        .content-block {
+            margin: auto; // use content-block as the popup panel
+            padding: m.space(5);
+            background: v.$color-surface-primary;
         }
     }
     .popup-close {
@@ -108,26 +113,15 @@
         line-height: 1;
         cursor: pointer;
         z-index: 1210;
-    }
-    .popup-close:hover {
-        color: v.$color-text-accent;
-    }
-    .popup-close:focus {
-        outline: none;
-    }
-    // .popup .content-block {
-    //     margin: 0; // use content-block as the popup panel
-    //     width: 100%;
-    //     max-width: 1020px;
-    //     padding: m.space(3);
-    // }
-    @include m.media-query("lg") {
-        // .popup .content-block {
-        //     padding: m.space(7.5);
-        // }
-        .popup-close {
+        @include m.media-query("lg") {
             right: 2rem;
             top: 2rem;
+        }
+        &:hover {
+            color: v.$color-text-accent;
+        }
+        &:focus {
+            outline: none;
         }
     }
 }
