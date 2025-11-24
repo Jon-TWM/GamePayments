@@ -4,8 +4,8 @@
    ========================================================================== */
 
 // 引入抽象層
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 /* --- 1. 狀態卡片 (.card) ---
  * 用於顯示狀態、通知或簡短資訊。
@@ -20,7 +20,7 @@
     margin: 0 20px;
     width: auto; // 寬度自動
     // 大網 (Desktop, >= 992px)
-    @include m.media-query('lg') {
+    @include m.media-query("lg") {
         width: 600px;
         margin: 0 auto;
     }
@@ -29,7 +29,7 @@
         color: v.$color-text-secondary;
         font-size: 1.5rem;
         font-weight: 400;
-        @include m.media-query('lg') {
+        @include m.media-query("lg") {
             font-size: 1.8rem;
         }
     }
@@ -41,25 +41,17 @@
  */
 
 .content-block {
-    background: linear-gradient(0deg, #FFF6F4 0%, #FFF6F4 100%), #FFF;
+    background: linear-gradient(0deg, #fff6f4 0%, #fff6f4 100%), #fff;
     border-radius: m.space(2.5);
-    // 小網 (Mobile Default): 
+    // 小網 (Mobile Default):
     width: auto;
-    margin: 0 m.space(2.5);
+    margin: 0 auto;
     padding: m.space(3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
     // 大網 (Desktop, >= 992px)
-    @include m.media-query('lg') {
-        margin: 0 auto;
+    @include m.media-query("lg") {
+        // margin: 0 auto;
         width: 100%;
         max-width: 1020px;
-        display: flex;
-        padding: m.space(7.5);
-        align-items: flex-start;
-        gap: 40px;
     }
 }
 
@@ -80,7 +72,7 @@
     display: none; // default hidden
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1200;
     &.is-open {
         display: flex;
@@ -94,15 +86,15 @@
         padding-left: m.space(2);
         padding-right: m.space(2);
         box-sizing: border-box;
-        @include m.media-query('md') {
+        @include m.media-query("md") {
             padding-left: m.space(7.5);
             padding-right: m.space(7.5);
         }
     }
     .popup-close {
         position: absolute;
-        right: 1rem;
-        top: 1rem;
+        right: 2.8rem;
+        top: 2.8rem;
         width: m.space(7);
         height: m.space(7);
         border-radius: 50%;
@@ -129,7 +121,7 @@
     //     max-width: 1020px;
     //     padding: m.space(3);
     // }
-    @include m.media-query('lg') {
+    @include m.media-query("lg") {
         // .popup .content-block {
         //     padding: m.space(7.5);
         // }

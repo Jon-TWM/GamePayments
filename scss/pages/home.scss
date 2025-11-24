@@ -1,31 +1,24 @@
 // 引入抽象層
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
-body {
-    padding-top: 0;
-    padding-bottom: 0;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
-    align-items: center;
-}
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 .home-content-block {
-    flex-direction: column-reverse;
-    margin: m.space(7.5) auto;
-    @include m.media-query('lg') {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        justify-items: center;
-        align-items: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  @include m.media-query("lg") {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 40px;
+  }
+  .content {
+    width: 100%;
+    .btn-wrap {
+      margin-top: m.space(3);
+      display: grid;
+      gap: 16px;
     }
-    .content {
-        width: 100%;
-        .btn-wrap {
-            margin-top: m.space(3);
-            display: grid;
-            gap: 16px;
-        }
-    }
+  }
 }

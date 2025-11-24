@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Variables
+   專案中所有設計代幣 (Design Tokens) 的定義：顏色、字體、間距等。
+   ========================================================================== */
+/* ==========================================================================
+   Mixins (抽象層)
+   通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
+   ========================================================================== */
+.confirm-content-block {
+  margin: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+@media (min-width: 992px) {
+  .confirm-content-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 40px;
+  }
+}
+.confirm-content-block .content {
+  width: 100%;
+  display: grid;
+  gap: 2.4rem;
+}
+.confirm-content-block .content h2 {
+  margin: 0;
+}
+.confirm-content-block .content .item {
+  display: grid;
+  grid-template-columns: 4em 1fr;
+  gap: 1.2rem 1.6rem;
+}
+@media (min-width: 992px) {
+  .confirm-content-block .content .btn-wrap {
+    display: grid;
+    justify-content: end;
+  }
+}
+
+.popup .content-block {
+  display: grid;
+  gap: 2.4rem;
+}
+.popup .content-block h4 {
+  text-align: center;
+}
+.popup .content-block .text-wrap {
+  max-height: 56vh;
+  overflow-y: auto;
+}
+@media (min-width: 992px) {
+  .popup .content-block .text-wrap {
+    max-height: 524px;
+  }
+}
+.popup .content-block .text-wrap .legal-list {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: section;
+  margin-top: 1.6rem;
+}
+.popup .content-block .text-wrap .legal-list > li {
+  position: relative;
+  padding-left: 1.25em;
+  margin-bottom: 1.6rem;
+}
+.popup .content-block .text-wrap .legal-list > li::before {
+  counter-increment: section;
+  content: counter(section, cjk-ideographic) "、";
+  position: absolute;
+  left: 0;
+  font-weight: 500;
+}
+.popup .content-block .text-wrap .legal-list > li > ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: subsection;
+  margin-top: 0.8rem;
+}
+.popup .content-block .text-wrap .legal-list > li > ol > li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.8rem;
+}
+.popup .content-block .text-wrap .legal-list > li > ol > li::before {
+  counter-increment: subsection;
+  content: counter(subsection) ". ";
+  position: absolute;
+  left: 0;
+}
+.popup .content-block .text-wrap .legal-list > li > ol > li .list-parens {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: parens;
+  margin-top: 0.8rem;
+}
+.popup .content-block .text-wrap .legal-list > li > ol > li .list-parens > li {
+  position: relative;
+  padding-left: 2.5em;
+  margin-bottom: 0.4rem;
+}
+.popup .content-block .text-wrap .legal-list > li > ol > li .list-parens > li::before {
+  counter-increment: parens;
+  content: "(" counter(parens) ") ";
+  position: absolute;
+  left: 0;
+}
+.popup .content-block .text-wrap .legal-list > li > ol > li .list-parens > li .list-alpha {
+  padding-left: 1.5em;
+  list-style-type: upper-alpha;
+  margin-top: 0.4rem;
+}/*# sourceMappingURL=confirm.css.map */

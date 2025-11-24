@@ -4,10 +4,21 @@
      ========================================================================== */
 
 // 引入抽象層
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 /* ---------- Text inputs / textarea / select ---------- */
+
+.form-item {
+    display: grid;
+    gap: 8px;
+    label,
+    .label {
+        font-size: 1.5rem;
+        line-height: 150%;
+        color: v.$color-text-secondary;
+    }
+}
 
 input[type="text"],
 input[type="email"],
@@ -23,7 +34,7 @@ select,
     border: 1px solid v.$color-surface-primary-dark;
     color: v.$color-text-primary;
     font-family: v.$font-stack-primary;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     line-height: normal;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -47,7 +58,7 @@ select,
 
 .form-check {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: m.space(1.5);
     position: relative;
     input[type="checkbox"],
@@ -55,10 +66,10 @@ select,
         /* keep native control available for assistive tech but visually hide it while preserving focus */
         position: absolute;
         left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
+        top: 0;
+        transform: none;
+        width: 24px;
+        height: 24px;
         margin: 0;
         padding: 0;
         opacity: 0;
@@ -66,10 +77,12 @@ select,
         cursor: pointer;
     }
     /* label holds the visual custom control */
-    label {
+    label,
+    .label {
         position: relative;
         padding-left: m.space(4);
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+        line-height: 150%;
         color: v.$color-text-primary;
         cursor: pointer;
         user-select: none;
@@ -79,8 +92,8 @@ select,
         content: "";
         position: absolute;
         left: 0;
-        top: 50%;
-        transform: translateY(-50%);
+        top: -2px;
+        transform: none;
         width: 24px;
         height: 24px;
         border-radius: 4px;
@@ -94,8 +107,8 @@ select,
         content: "";
         position: absolute;
         left: 8px;
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg) scale(0);
+        top: 0;
+        transform: rotate(45deg) scale(0);
         transform-origin: center;
         width: 8px;
         height: 16px;
@@ -113,7 +126,7 @@ select,
         content: "";
         position: absolute;
         left: 4px;
-        top: 50%;
+        top: 10px;
         transform: translateY(-50%) scale(0);
         width: 16px;
         height: 16px;
@@ -124,7 +137,7 @@ select,
     }
     /* checked states */
     input[type="checkbox"]:checked+label::after {
-        transform: translateY(-50%) rotate(45deg) scale(1);
+        transform: rotate(45deg) scale(1);
     }
     input[type="checkbox"]:checked+label::before {
         background: v.$color-surface-accent;
@@ -147,13 +160,19 @@ select,
     input[type="radio"] {
         accent-color: v.$color-surface-accent;
     }
+    a {
+        text-decoration: underline;
+    }
 }
 
 
 /* ---------- Inline helpers ---------- */
 
 .form-inline {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
     gap: m.space(2);
+    align-items: center;
+    justify-content: start; // 靠左對齊
 }

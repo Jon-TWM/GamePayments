@@ -7,15 +7,6 @@
    Mixins (抽象層)
    通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
    ========================================================================== */
-body {
-  padding-top: 0;
-  padding-bottom: 0;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-  align-items: center;
-}
-
 .card {
   display: grid;
   justify-items: center;
