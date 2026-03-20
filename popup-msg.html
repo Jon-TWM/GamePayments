@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>台灣大哥大 遊戲金流系統 通用訊息彈窗</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/popup-msg.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+      </div>
+    </header>
+
+    <main>
+      <div class="container"></div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- 成功類型訊息 Popup -->
+    <div class="popup-overlay is-open" id="success-popup" aria-hidden="false">
+      <div class="popup" role="dialog" aria-modal="true">
+        <div class="content-block popup-msg">
+          <img class="popup-msg__icon" src="/src/images/icon-popup-success.svg" alt="" />
+          <h4 class="popup-msg__title">成功</h4>
+          <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
+          <div class="btn-wrap">
+            <button class="btn btn--block-mobile" id="success-popup-ok">
+              按鈕文案
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 失敗/警示類型訊息 Popup -->
+    <div class="popup-overlay" id="error-popup" aria-hidden="true">
+      <div class="popup" role="dialog" aria-modal="true">
+        <div class="content-block popup-msg">
+          <img class="popup-msg__icon" src="/src/images/icon-popup-error.svg" alt="" />
+          <h4 class="popup-msg__title">失敗/警示</h4>
+          <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
+          <div class="btn-wrap">
+            <button class="btn btn--block-mobile" id="error-popup-ok">
+              按鈕文案
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 一般訊息 Popup -->
+    <div class="popup-overlay" id="info-popup" aria-hidden="true">
+      <div class="popup" role="dialog" aria-modal="true">
+        <div class="content-block popup-msg">
+          <h4 class="popup-msg__title">一般文字訊息</h4>
+          <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
+          <div class="btn-wrap">
+            <button class="btn btn--block-mobile" id="info-popup-ok">
+              按鈕文案
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // 切換展示不同彈窗的按鈕邏輯
+        var popups = ["success-popup", "error-popup", "info-popup"];
+        var currentIndex = 0;
+
+        function showPopup(id) {
+          popups.forEach(function (popupId) {
+            var el = document.getElementById(popupId);
+            el.classList.remove("is-open");
+            el.setAttribute("aria-hidden", "true");
+          });
+          var target = document.getElementById(id);
+          target.classList.add("is-open");
+          target.setAttribute("aria-hidden", "false");
+        }
+
+        // 點擊按鈕後切換到下一個彈窗展示
+        popups.forEach(function (popupId, index) {
+          var okBtn = document.getElementById(popupId.replace("-popup", "-popup-ok"));
+          if (okBtn) {
+            okBtn.addEventListener("click", function () {
+              var nextIndex = (index + 1) % popups.length;
+              showPopup(popups[nextIndex]);
+            });
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

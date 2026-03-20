@@ -1,0 +1,123 @@
+// 引入抽象層
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.login-content-block {
+  margin: auto;
+  .content {
+    width: 100%;
+    display: grid;
+    gap: m.space(3);
+    justify-items: center;
+    h2 {
+      margin: 0;
+      text-align: center;
+    }
+  }
+}
+
+/* --- 同意條款區塊 --- */
+.login-agree {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+  &__error {
+    color: v.$color-danger;
+    font-size: 1.3rem;
+    margin: m.space(0.5) 0 0;
+    @include m.media-query("lg") {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+/* --- 社群登入區塊 --- */
+.login-social,
+.btn-text-card {
+  width: 100%;
+}
+.login-social {
+  text-align: center;
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: m.space(2);
+    color: v.$color-text-secondary;
+    font-size: 1.3rem;
+    margin-bottom: m.space(2);
+    @include m.media-query("lg") {
+      font-size: 1.5rem;
+    }
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: v.$color-surface-primary-dark;
+    }
+    span {
+      white-space: nowrap;
+    }
+  }
+  &__icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: m.space(2);
+  }
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    transition: opacity 0.2s ease;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:focus {
+      outline: none;
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    // 遊客登入文字按鈕
+    &--guest {
+      width: auto;
+      height: auto;
+      border-radius: m.space(2.5);
+      background-color: v.$color-text-primary;
+      color: v.$color-text-invert-dark;
+      font-family: v.$font-stack-primary;
+      font-size: 1.1rem;
+      padding: m.space(1) m.space(1.5);
+      white-space: nowrap;
+      @include m.media-query("lg") {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+/* --- 遊客登入提醒 popup --- */
+#guest-popup {
+  .content-block {
+    display: grid;
+    gap: m.space(3);
+    h4 {
+      text-align: center;
+    }
+    .text-wrap {
+      p {
+        text-align: center;
+      }
+    }
+  }
+}

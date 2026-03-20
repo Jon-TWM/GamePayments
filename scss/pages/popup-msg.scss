@@ -1,0 +1,33 @@
+// 引入抽象層
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+/* --- 通用訊息彈窗 --- */
+.popup-msg {
+  display: grid;
+  gap: m.space(2);
+  text-align: center;
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    @include m.media-query("lg") {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__desc {
+    color: v.$color-text-secondary;
+    font-size: 1.4rem;
+    margin: 0;
+    @include m.media-query("lg") {
+      font-size: 1.6rem;
+    }
+  }
+}
