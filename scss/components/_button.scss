@@ -8,46 +8,41 @@
 @use "../base/mixins" as m;
 // --- 1. 基礎按鈕樣式 (.btn - 實心按鈕) ---
 .btn {
-    // 基礎樣式與排版 (共用部分)
+    // 基礎樣式與排版
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     border: none;
     text-align: center;
-    white-space: nowrap;
     text-decoration: none;
     font-family: v.$font-stack-primary;
     font-weight: 400;
-    height: 44px;
-    min-width: m.space(11.25);
-    border-radius: m.space(5);
-    // 顏色與狀態（放在 nested rules 之前以避免 Sass mixed-decls 警示）
     background-color: v.$color-surface-accent;
     color: v.$color-text-invert-dark;
-    // 避免點擊時出現藍色邊框
+    transition: background-color 0.2s ease-in-out;
     &:focus {
         outline: none;
     }
-    // 平滑過渡效果
-    transition: background-color 0.2s ease-in-out;
+    &:hover {
+        background-color: v.$color-surface-accent-dark;
+    }
+    &[disabled] {
+        cursor: not-allowed;
+        background-color: v.$color-surface-disabled;
+        color: v.$color-text-disabled;
+        opacity: 1;
+    }
+    white-space: nowrap;
+    height: 44px;
+    min-width: m.space(11.25);
+    border-radius: m.space(5);
     // 1.2.1 Small Size (Mobile Default)
     @include m.btn-size(m.space(0), m.space(2), 1.3rem);
     // 1.2.2 Normal Size (Tablet, >= 768px)
     @include m.media-query("md") {
         @include m.btn-size(m.space(0), m.space(2), 1.5rem);
         min-width: m.space(12.5);
-    }
-    // Hover 狀態
-    &:hover {
-        background-color: v.$color-surface-accent-dark;
-    }
-    // Disable 狀態
-    &[disabled] {
-        cursor: not-allowed;
-        background-color: v.$color-surface-disabled;
-        color: v.$color-text-disabled;
-        opacity: 1;
     }
     /*
     * .btn--block-mobile (修飾符)
@@ -58,6 +53,7 @@
     *
     * 可與 .btn 或 .btn-text-card 組合使用。
     */
+    // 小網 100%，中網以上 auto（適用於頁面主按鈕）
     &.btn--block-mobile {
         width: 100%;
         display: flex;
@@ -67,10 +63,14 @@
             margin: 0 auto;
         }
     }
+    // 永遠 100%（適用於 popup 內按鈕、需要撐滿容器的場景）
+    &.btn--block {
+        width: 100%;
+        display: flex;
+    }
     // 按鈕帶 Icon (.btn--icon)
     &.btn--icon {
         gap: m.space(1);
-        // padding-right: m.space(1);
         // Icon 容器
         .icon {
             width: 24px;
@@ -88,9 +88,6 @@
             span {
                 flex: 1;
                 text-align: center;
-                // 為了視覺置中，可以考慮扣掉 icon 的寬度，或者直接讓文字置中
-                // 這裡採用 flex: 1 + text-align: center，文字會在 icon 左側的空間置中
-                // 若要絕對置中，可能需要更複雜的結構，目前依需求「文字依左邊的空間置中」
             }
             @include m.media-query("md") {
                 justify-content: center;
@@ -99,6 +96,52 @@
                     flex: initial;
                 }
             }
+        }
+    }
+    // --- 品牌色修飾符 ---
+    &.btn--facebook {
+        @include m.brand-variant(v.$color-brand-facebook, v.$color-brand-facebook-dark);
+        .icon img {
+            filter: brightness(0) invert(1);
+        }
+        &[disabled] .icon img {
+            filter: none;
+        }
+    }
+    &.btn--google {
+        @include m.brand-variant(v.$color-brand-google, v.$color-brand-google-dark, v.$color-brand-apple);
+    }
+    &.btn--apple {
+        @include m.brand-variant(v.$color-brand-apple, v.$color-brand-apple-dark);
+        .icon img {
+            filter: brightness(0) invert(1);
+        }
+        &[disabled] .icon img {
+            filter: none;
+        }
+    }
+    &.btn--guest {
+        @include m.brand-variant(v.$color-text-tertiary, v.$color-brand-guest-dark, v.$color-surface-form);
+    }
+    // --- 方形按鈕修飾符 (.btn--square) ---
+    // 覆蓋 .btn 的形狀與尺寸，品牌色直接沿用 .btn--facebook 等
+    &.btn--square {
+        width: m.space(5.5); // 44px
+        height: m.space(5.5);
+        min-width: auto;
+        border-radius: m.space(3); // 24px
+        padding: m.space(1); // 8px
+        font-size: 1.2rem;
+        line-height: 1.1;
+        white-space: normal; // 允許自動換行
+        word-break: break-word;
+        overflow: hidden;
+        // 圖片自適應
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: m.space(1); // 8px
         }
     }
     // Outline Button (.btn--outline)
@@ -174,6 +217,22 @@
             background-color: v.$color-surface-accent;
             img {
                 filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7475%) hue-rotate(16deg) brightness(98%) contrast(108%);
+            }
+        }
+    }
+    // Fill 版本（主色填底、白字）
+    &.btn-text-card--fill {
+        background-color: v.$color-surface-accent;
+        color: v.$color-text-invert-dark;
+        box-shadow: none;
+        .arrow {
+            background-color: v.$color-surface-primary;
+        }
+        &:hover {
+            background-color: v.$color-surface-accent-dark;
+            color: v.$color-text-invert-dark;
+            .arrow {
+                background-color: rgba(255, 255, 255, 0.3);
             }
         }
     }

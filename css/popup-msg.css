@@ -10,8 +10,10 @@
 /* --- 通用訊息彈窗 --- */
 .popup-msg {
   display: grid;
-  gap: 1.6rem;
+  gap: 2.4rem;
   text-align: center;
+  padding: 4rem;
+  margin-bottom: 2.4rem;
 }
 .popup-msg__icon {
   width: 40px;
@@ -36,4 +38,4 @@
   .popup-msg__desc {
     font-size: 1.6rem;
   }
-}
+}/*# sourceMappingURL=popup-msg.css.map */

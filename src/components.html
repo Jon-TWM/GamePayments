@@ -19,11 +19,22 @@
             --color-text-link: #ff6700;
             --color-text-invert-dark: #ffffff;
             --color-text-disabled: #a8aeb8;
+            --color-text-tertiary: #838d9c;
+            --color-text-warning: #fe5933;
             --color-surface-primary: #ffffff;
             --color-surface-accent: #ff6700;
             --color-surface-accent-dark: #f45100;
             --color-surface-disabled: #e9ebef;
+            --color-surface-form: #eef3f6;
             --color-surface-footer: #000000;
+            --color-border-primary: #a8aeb8;
+            --color-brand-facebook: #0866FF;
+            --color-brand-facebook-dark: #0033AA;
+            --color-brand-google: #F2F2F2;
+            --color-brand-google-dark: #E5E5E5;
+            --color-brand-apple: #000000;
+            --color-brand-apple-dark: #444444;
+            --color-brand-guest-dark: #6B7685;
             --spacing-xs: 0.4rem;
             --spacing-sm: 0.8rem;
             --spacing-md: 1.6rem;
@@ -155,89 +166,58 @@
 
     <main>
         <div class="container">
-            <!-- 顏色色票：文字顏色 -->
+            <!-- 顏色色票 -->
             <section class="section-gap content-block">
-                <h2 class="margin-bottom-lg">顏色色票 (Text Colors)</h2>
-                <div class="color-palette-grid">
-                    <!-- Text Colors -->
+                <h2 class="margin-bottom-lg">顏色色票 (Colors)</h2>
+
+                <h3 class="margin-bottom-md">文字色 (Text)</h3>
+                <div class="color-palette-grid margin-bottom-lg">
                     <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="
-                  color: var(--color-text-primary);
-                  background-color: var(--color-surface-primary);
-                  border-color: var(--color-text-disabled);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: bold;
-                ">
+                        <div class="color-sample color-sample-border" style="color: var(--color-text-primary); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">
                             text-primary
                         </div>
                         <p class="color-sample-label">#2D3033</p>
                     </div>
                     <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="
-                  color: var(--color-text-secondary);
-                  background-color: var(--color-surface-primary);
-                  border-color: var(--color-text-disabled);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: bold;
-                ">
+                        <div class="color-sample color-sample-border" style="color: var(--color-text-secondary); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">
                             text-secondary
                         </div>
                         <p class="color-sample-label">#515A68</p>
                     </div>
                     <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="
-                  color: var(--color-text-accent);
-                  background-color: var(--color-surface-primary);
-                  border-color: var(--color-text-disabled);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: bold;
-                ">
+                        <div class="color-sample color-sample-border" style="color: var(--color-text-accent); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">
                             text-accent
                         </div>
                         <p class="color-sample-label">#FF6700</p>
                     </div>
                     <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-border" style="
-                  color: var(--color-text-disabled);
-                  background-color: var(--color-surface-primary);
-                  border-color: var(--color-text-disabled);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: bold;
-                ">
+                        <div class="color-sample color-sample-shadow" style="color: var(--color-text-invert-dark); background-color: var(--color-surface-footer); display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            text-invert-dark
+                        </div>
+                        <p class="color-sample-label">#FFFFFF</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-border" style="color: var(--color-text-disabled); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">
                             text-disabled
                         </div>
                         <p class="color-sample-label">#A8AEB8</p>
                     </div>
                     <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="
-                  color: var(--color-text-primary);
-                  background-color: var(--color-surface-footer);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: bold;
-                  color: var(--color-text-invert-dark);
-                ">
-                            text-invert-dark
+                        <div class="color-sample color-sample-border" style="color: var(--color-text-tertiary); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            text-tertiary
                         </div>
-                        <p class="color-sample-label">#FFFFFF</p>
+                        <p class="color-sample-label">#838D9C</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-border" style="color: var(--color-text-warning); background-color: var(--color-surface-primary); border-color: var(--color-text-disabled); display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                            text-warning
+                        </div>
+                        <p class="color-sample-label">#FE5933</p>
                     </div>
                 </div>
-            </section>
 
-            <!-- 顏色色票：表面顏色 -->
-            <section class="section-gap border-t-separator content-block">
-                <h2 class="margin-bottom-lg">顏色色票 (Surface Colors)</h2>
-                <div class="color-palette-grid">
-                    <!-- Surface Colors -->
+                <h3 class="margin-bottom-md">表面色 (Surface)</h3>
+                <div class="color-palette-grid margin-bottom-lg">
                     <div class="color-sample-wrapper">
                         <div class="color-sample color-sample-border" style="background-color: var(--color-surface-primary)"></div>
                         <p class="color-sample-label">surface-primary: #FFFFFF</p>
@@ -247,9 +227,7 @@
                         <p class="color-sample-label">surface-accent: #FF6700</p>
                     </div>
                     <div class="color-sample-wrapper">
-                        <div class="color-sample color-sample-shadow" style="
-                  background-color: var(--color-surface-accent-dark);
-                "></div>
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-accent-dark)"></div>
                         <p class="color-sample-label">accent-dark: #F45100</p>
                     </div>
                     <div class="color-sample-wrapper">
@@ -257,8 +235,54 @@
                         <p class="color-sample-label">surface-disabled: #E9EBEF</p>
                     </div>
                     <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-form)"></div>
+                        <p class="color-sample-label">surface-form: #EEF3F6</p>
+                    </div>
+                    <div class="color-sample-wrapper">
                         <div class="color-sample color-sample-shadow" style="background-color: var(--color-surface-footer)"></div>
                         <p class="color-sample-label">surface-footer: #000000</p>
+                    </div>
+                </div>
+
+                <h3 class="margin-bottom-md">邊框色 (Border)</h3>
+                <div class="color-palette-grid margin-bottom-lg">
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-border" style="background-color: var(--color-surface-primary); border-color: var(--color-border-primary); border-width: 2px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--color-text-tertiary);">
+                            border-primary
+                        </div>
+                        <p class="color-sample-label">#A8AEB8</p>
+                    </div>
+                </div>
+
+                <h3 class="margin-bottom-md">品牌色 (Brand)</h3>
+                <div class="color-palette-grid">
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-brand-facebook)"></div>
+                        <p class="color-sample-label">brand-facebook: #0866FF</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-brand-facebook-dark)"></div>
+                        <p class="color-sample-label">facebook-dark: #0033AA</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-border" style="background-color: var(--color-brand-google)"></div>
+                        <p class="color-sample-label">brand-google: #F2F2F2</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-border" style="background-color: var(--color-brand-google-dark)"></div>
+                        <p class="color-sample-label">google-dark: #E5E5E5</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-brand-apple)"></div>
+                        <p class="color-sample-label">brand-apple: #000000</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-brand-apple-dark)"></div>
+                        <p class="color-sample-label">apple-dark: #444444</p>
+                    </div>
+                    <div class="color-sample-wrapper">
+                        <div class="color-sample color-sample-shadow" style="background-color: var(--color-brand-guest-dark)"></div>
+                        <p class="color-sample-label">guest-dark: #6B7685</p>
                     </div>
                 </div>
             </section>
@@ -316,6 +340,92 @@
                 </div>
 
                 <h3 class="margin-top-lg margin-bottom-md">
+                    按鈕帶圖示 + 品牌色 (.btn--icon)
+                </h3>
+                <p class="margin-bottom-md text-sm-secondary">
+                    HTML 順序決定 icon 在左或右。<br> 可搭配品牌色修飾符：.btn--facebook / .btn--google / .btn--apple
+                </p>
+                <div class="flex-group">
+                    <button class="btn btn--icon">
+                      <span class="icon"><img src="/src/images/icon-login-twm.svg" alt="" /></span>
+                      <span>有icon的按鈕</span>
+                    </button>
+                    <button class="btn btn--icon btn--block">
+                      <span class="icon"><img src="/src/images/icon-login-twm.svg" alt="" /></span>
+                      <span>滿版 + icon</span>
+                    </button>
+                    <button class="btn btn--icon btn--block btn--facebook">
+                      <span class="icon"><img src="/src/images/icon-login-facebook.svg" alt="" /></span>
+                      <span>Facebook</span>
+                    </button>
+                    <button class="btn btn--icon btn--block btn--google">
+                      <span class="icon"><img src="/src/images/icon-login-google.svg" alt="" /></span>
+                      <span>Google</span>
+                    </button>
+                    <button class="btn btn--icon btn--block btn--apple">
+                      <span class="icon"><img src="/src/images/icon-login-apple.svg" alt="" /></span>
+                      <span>Apple ID</span>
+                    </button>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">
+                    滿版按鈕 (.btn--block)
+                </h3>
+                <p class="margin-bottom-md text-sm-secondary">
+                    所有斷點都是 width: 100%。適用於 popup 內按鈕、需要撐滿容器的場景。<br> 與 .btn--block-mobile（小網 100%、中網以上 auto）區分。
+                </p>
+                <div class="flex-group">
+                    <button class="btn btn--block">btn--block（永遠 100%）</button>
+                    <button class="btn btn--block-mobile">btn--block-mobile（小網 100%、中網 auto）</button>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">
+                    方形按鈕 (.btn--square)
+                </h3>
+                <p class="margin-bottom-md text-sm-secondary">
+                    以 .btn 為基礎，加上 .btn--square 修飾符改變形狀。可放圖片或文字，文字 12px 自動換行。<br> 品牌色直接沿用 .btn--facebook / .btn--google / .btn--apple / .btn--guest。
+                </p>
+                <div class="flex-group margin-bottom-md" style="flex-wrap: wrap;">
+                    <!-- 基本：放圖片 -->
+                    <button class="btn btn--square" type="button">
+                      <img src="/src/images/icon-login-twm.svg" alt="TWM" />
+                    </button>
+                    <!-- 基本：放文字 -->
+                    <button class="btn btn--square" type="button">
+                      遊客登入
+                    </button>
+                    <!-- Disabled -->
+                    <button class="btn btn--square" type="button" disabled>
+                      <img src="/src/images/icon-login-twm.svg" alt="" />
+                    </button>
+                    <button class="btn btn--square" type="button" disabled>
+                      Disabled
+                    </button>
+                </div>
+                <div class="flex-group" style="flex-wrap: wrap;">
+                    <!-- 品牌色：TWM（預設橘色，不需額外修飾符） -->
+                    <button class="btn btn--square" type="button">
+                      <img src="/src/images/icon-login-twm.svg" alt="TWM" />
+                    </button>
+                    <!-- 品牌色：Facebook -->
+                    <button class="btn btn--square btn--facebook" type="button">
+                      <img src="/src/images/icon-login-facebook.svg" alt="Facebook" />
+                    </button>
+                    <!-- 品牌色：Google -->
+                    <button class="btn btn--square btn--google" type="button">
+                      <img src="/src/images/icon-login-google.svg" alt="Google" />
+                    </button>
+                    <!-- 品牌色：Apple -->
+                    <button class="btn btn--square btn--apple" type="button">
+                      <img src="/src/images/icon-login-apple.svg" alt="Apple" />
+                    </button>
+                    <!-- 文字：品牌色 -->
+                    <button class="btn btn--square btn--guest" type="button">
+                      遊客登入
+                    </button>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">
                     文字卡片按鈕 (.btn-text-card)
                 </h3>
                 <div class="flex-group">
@@ -338,45 +448,62 @@
               </div>
             </button>
                 </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">
+                    文字卡片按鈕 - Fill (.btn-text-card--fill)
+                </h3>
+                <p class="margin-bottom-md text-sm-secondary">
+                    主色填底、白字版本。適用於需要強調的入口按鈕。
+                </p>
+                <div class="flex-group">
+                    <button class="btn-text-card btn-text-card--fill">
+                      Fill 文字按鈕
+                      <div class="arrow">
+                        <img
+                          src="/src/images/icon-btn-text-card-arrow.svg"
+                          alt=""
+                          class="" />
+                      </div>
+                    </button>
+                </div>
+
+
             </section>
 
             <section class="section-gap border-t-separator">
-                <h2 class="margin-bottom-lg">卡片組件 (Cards)</h2>
-                <div class="margin-bottom-md">
-                    <button id="open-popup" class="btn">開啟 Popup 預覽</button>
-                </div>
+                <h2 class="margin-bottom-lg">佈局元件 (Layout)</h2>
                 <p class="margin-bottom-md text-sm-secondary">
-                    請拖曳瀏覽器視窗大小，測試卡片寬度自動變化。
+                    請拖曳瀏覽器視窗大小，測試寬度自動變化。
                 </p>
 
-                <h3 class="margin-bottom-md">狀態卡片 (.card)</h3>
+                <h3 class="margin-bottom-md">內容區塊 (.content-block)</h3>
+                <div class="content-block">
+                    <h4>主要內容區塊</h4>
+                    <p>
+                        用於承載主要文章或表單。大網 (>=992px) 最大寬度為 1020px，並有 60px 的內部間距。
+                    </p>
+                    <div class="margin-top-md">
+                        <button class="btn-text-card">
+                            次要動作
+                            <div class="arrow">
+                                <img src="/src/images/icon-btn-text-card-arrow.svg" alt="" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <h3 class="margin-top-lg margin-bottom-md">狀態卡片 (.card)</h3>
                 <div class="card">
                     <h4 class="margin-bottom-sm">狀態卡片</h4>
-                    <p>這是一個狀態卡片，用於通知。大網 (>=992px) 寬度固定為 600px。</p>
+                    <p>用於通知。大網 (>=992px) 寬度固定為 600px。</p>
                     <div class="margin-top-md">
                         <button class="btn btn--block-mobile">卡片內的按鈕</button>
                     </div>
                 </div>
 
-                <h3 class="margin-top-lg margin-bottom-md">
-                    內容區塊 (.content-block)
-                </h3>
-                <div class="content-block">
-                    <h4>主要內容區塊</h4>
-                    <p>
-                        這是一個內容區塊，用於承載主要文章或表單。大網 (>=992px) 最大寬度為 1020px，並有 60px 的內部間距。
-                    </p>
-                    <div class="margin-top-md">
-                        <button class="btn-text-card">
-                次要動作
-                <div class="arrow">
-                  <img
-                    src="/src/images/icon-btn-text-card-arrow.svg"
-                    alt=""
-                    class="" />
-                </div>
-              </button>
-                    </div>
+                <h3 class="margin-top-lg margin-bottom-md">Popup 彈窗</h3>
+                <div class="margin-bottom-md">
+                    <button id="open-popup" class="btn">開啟 Popup 預覽</button>
                 </div>
             </section>
 

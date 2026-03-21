@@ -29,7 +29,19 @@ $breakpoints: ( 'sm': 576px, 'md': 768px, 'lg': 992px, 'xl': 1200px) !default;
     }
 }
 
-// --- 3. [新函式] 活用間距 (Spacing Function) ---
+// --- 3. 品牌色修飾符 ---
+// 用法：@include brand-variant(v.$color-brand-facebook, v.$color-brand-facebook-dark);
+@mixin brand-variant($bg, $bg-hover, $text: v.$color-text-invert-dark) {
+    background-color: $bg;
+    color: $text;
+    &:hover { background-color: $bg-hover; }
+    &[disabled] {
+        background-color: v.$color-surface-disabled;
+        color: v.$color-text-disabled;
+    }
+}
+
+// --- 4. [新函式] 活用間距 (Spacing Function) ---
 // 讓您可以用自訂倍數計算間距
 @function space($multiplier) {
     // @return $multiplier * v.$spacing-unit;

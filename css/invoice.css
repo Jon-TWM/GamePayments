@@ -27,29 +27,10 @@
   }
 }
 
-.popup .content-block {
-  display: grid;
-  gap: 2.4rem;
-}
-.popup .content-block h4 {
-  text-align: center;
-}
-.popup .content-block .text-wrap {
-  max-height: 56vh;
-  overflow-y: auto;
-}
-@media (min-width: 992px) {
-  .popup .content-block .text-wrap {
-    max-height: 524px;
-  }
-}
 .popup .content-block .text-wrap ul {
   list-style: disc;
   padding-left: 2em;
 }
 .popup .content-block .btn-wrap {
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
   align-items: center;
-}
+}/*# sourceMappingURL=invoice.css.map */

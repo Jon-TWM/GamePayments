@@ -1,92 +1,102 @@
 <!doctype html>
 <html lang="zh-Hant">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>台灣大哥大 遊戲金流系統 會員帳號綁定</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/bind.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <header class="header">
-      <div class="container">
-        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
-      </div>
+        <div class="container">
+            <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+        </div>
     </header>
 
     <main>
-      <div class="container"></div>
+        <div class="container"></div>
     </main>
 
     <footer class="footer">
-      <div class="container">
-        <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
-      </div>
+        <div class="container">
+            <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
+        </div>
     </footer>
 
     <!-- 會員帳號綁定 Popup -->
     <div class="popup-overlay is-open" id="bind-popup" aria-hidden="false">
-      <div class="popup" role="dialog" aria-modal="true">
-        <button class="popup-close" id="bind-popup-close" aria-label="關閉">&times;</button>
-        <div class="content-block">
-          <h4>選擇綁定的登入方式</h4>
-          <div class="bind-grid">
-            <button class="bind-btn bind-btn--twm" type="button" data-provider="twm">
-              <img src="/src/images/icon-social-google.svg" alt="" class="bind-btn__icon" />
-              <span>綁定台灣大哥大</span>
-            </button>
-            <button class="bind-btn bind-btn--facebook" type="button" data-provider="facebook">
-              <img src="/src/images/icon-social-facebook.svg" alt="" class="bind-btn__icon" />
-              <span>綁定 Facebook</span>
-            </button>
-            <button class="bind-btn bind-btn--google" type="button" data-provider="google">
-              <img src="/src/images/icon-social-google.svg" alt="" class="bind-btn__icon" />
-              <span>綁定 Google</span>
-            </button>
-            <button class="bind-btn bind-btn--apple" type="button" disabled data-provider="apple">
-              <img src="/src/images/icon-social-apple.svg" alt="" class="bind-btn__icon" />
-              <span>綁定 Apple ID</span>
-            </button>
-          </div>
+        <div class="popup" role="dialog" aria-modal="true">
+            <button class="popup-close" id="bind-popup-close" aria-label="關閉">&times;</button>
+            <div class="content-block">
+                <h4>選擇綁定的登入方式</h4>
+                <div class="bind-grid">
+                    <!-- 綁定台灣大哥大 -->
+                    <button class="btn btn--icon btn--block" type="button" data-provider="twm">
+                      <span class="icon"><img src="/src/images/icon-login-twm.svg" alt="" /></span>
+                      <span>綁定台灣大哥大</span>
+                    </button>
+                    <!-- 綁定 Facebook -->
+                    <button class="btn btn--icon btn--block btn--facebook" type="button" data-provider="facebook">
+                      <span class="icon"><img src="/src/images/icon-login-facebook.svg" alt="" /></span>
+                      <span>綁定 Facebook</span>
+                    </button>
+                    <!-- 綁定 Google -->
+                    <button class="btn btn--icon btn--block btn--google" type="button" data-provider="google">
+                      <span class="icon"><img src="/src/images/icon-login-google.svg" alt="" /></span>
+                      <span>綁定 Google</span>
+                    </button>
+                    <!-- 綁定 Apple ID -->
+                    <button class="btn btn--icon btn--block btn--apple" type="button" data-provider="apple">
+                      <span class="icon"><img src="/src/images/icon-login-apple.svg" alt="" /></span>
+                      <span>綁定 Apple ID</span>
+                    </button>
+                </div>
 
-          <!-- === 已綁定狀態（示意用，預設隱藏）=== -->
-          <!-- <div class="bind-grid">
-            <button class="bind-btn bind-btn--bound" type="button" disabled data-provider="twm">
+                <!-- === 已綁定狀態預覽（與上方同結構，僅加 disabled，icon 會自動隱藏）=== -->
+                <div class="bind-grid">
+                    <button class="btn btn--icon btn--block" type="button" disabled data-provider="twm">
+              <span class="icon"><img src="/src/images/icon-login-twm.svg" alt="" /></span>
               <span>已綁定台灣大哥大</span>
             </button>
-            <button class="bind-btn bind-btn--bound" type="button" disabled data-provider="facebook">
+                    <button class="btn btn--icon btn--block btn--facebook" type="button" disabled data-provider="facebook">
+              <span class="icon"><img src="/src/images/icon-login-facebook.svg" alt="" /></span>
               <span>已綁定 Facebook</span>
             </button>
-            <button class="bind-btn bind-btn--bound" type="button" disabled data-provider="google">
+                    <button class="btn btn--icon btn--block btn--google" type="button" disabled data-provider="google">
+              <span class="icon"><img src="/src/images/icon-login-google.svg" alt="" /></span>
               <span>已綁定 Google</span>
             </button>
-            <button class="bind-btn bind-btn--bound" type="button" disabled data-provider="apple">
+                    <button class="btn btn--icon btn--block btn--apple" type="button" disabled data-provider="apple">
+              <span class="icon"><img src="/src/images/icon-login-apple.svg" alt="" /></span>
               <span>已綁定 Apple ID</span>
             </button>
-          </div> -->
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <script>
-      (function () {
-        var overlay = document.getElementById("bind-popup");
-        var close = document.getElementById("bind-popup-close");
+        (function() {
+            var overlay = document.getElementById("bind-popup");
+            var close = document.getElementById("bind-popup-close");
 
-        function closePopup() {
-          overlay.classList.remove("is-open");
-          overlay.setAttribute("aria-hidden", "true");
-        }
+            function closePopup() {
+                overlay.classList.remove("is-open");
+                overlay.setAttribute("aria-hidden", "true");
+            }
 
-        close.addEventListener("click", closePopup);
-        overlay.addEventListener("click", function (e) {
-          if (e.target === overlay) closePopup();
-        });
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && overlay.classList.contains("is-open")) closePopup();
-        });
-      })();
+            close.addEventListener("click", closePopup);
+            overlay.addEventListener("click", function(e) {
+                if (e.target === overlay) closePopup();
+            });
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape" && overlay.classList.contains("is-open")) closePopup();
+            });
+        })();
     </script>
-  </body>
+</body>
+
 </html>

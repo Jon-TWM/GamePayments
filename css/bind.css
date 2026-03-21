@@ -12,84 +12,15 @@
   display: grid;
   gap: 1.2rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .bind-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1.6rem;
   }
 }
-
-/* --- 綁定按鈕共用樣式 --- */
-.bind-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  width: 100%;
-  height: 44px;
-  border-radius: 4rem;
-  border: none;
-  cursor: pointer;
-  font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
-}
-@media (min-width: 992px) {
-  .bind-btn {
-    font-size: 1.5rem;
-  }
-}
-.bind-btn:hover {
-  opacity: 0.85;
-}
-.bind-btn:focus {
-  outline: none;
-}
-.bind-btn__icon {
-  width: 20px;
-  height: 20px;
+.bind-grid .icon img {
   border-radius: 50%;
 }
-.bind-btn--twm {
-  background-color: #FF6700;
-  color: #FFFFFF;
-}
-.bind-btn--twm .bind-btn__icon {
-  filter: brightness(0) invert(1);
-}
-.bind-btn--facebook {
-  background-color: #1877F2;
-  color: #FFFFFF;
-}
-.bind-btn--facebook .bind-btn__icon {
-  filter: brightness(0) invert(1);
-}
-.bind-btn--google {
-  background-color: #E9EBEF;
-  color: #2D3033;
-}
-.bind-btn--apple {
-  background-color: #2D3033;
-  color: #FFFFFF;
-}
-.bind-btn--apple .bind-btn__icon {
-  filter: brightness(0) invert(1);
-}
-.bind-btn--bound {
-  background-color: #E9EBEF;
-  color: #A8AEB8;
-  cursor: not-allowed;
-}
-.bind-btn--bound:hover {
-  opacity: 1;
-}
-
-/* --- 綁定 popup 內容 --- */
-#bind-popup .content-block {
-  display: grid;
-  gap: 2.4rem;
-}
-#bind-popup .content-block h4 {
-  text-align: center;
-}
+.bind-grid .btn[disabled] .icon {
+  display: none;
+}/*# sourceMappingURL=bind.css.map */

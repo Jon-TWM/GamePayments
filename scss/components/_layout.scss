@@ -79,7 +79,7 @@ body::before {
     height: 100vh;
     z-index: -1;
     /* --- 小網 (Mobile-First) 樣式 --- */
-    background-image: url("/src/images/bg-sm.png"), linear-gradient(to right, v.$color-surface-accent, #ff6700);
+    background-image: url("/src/images/bg-sm.png"), linear-gradient(to right, v.$color-surface-accent, v.$color-surface-accent);
     background-repeat: no-repeat, no-repeat;
     background-position: center top, center;
     background-size: 100%, cover;

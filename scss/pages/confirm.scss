@@ -38,17 +38,7 @@
 
 .popup {
     .content-block {
-        display: grid;
-        gap: m.space(3);
-        h4 {
-            text-align: center;
-        }
         .text-wrap {
-            max-height: 56vh;
-            overflow-y: auto;
-            @include m.media-query("lg") {
-                max-height: 524px;
-            }
             // 法律條款列表樣式 (Privacy Policy & Terms)
             .legal-list {
                 padding-left: 0;

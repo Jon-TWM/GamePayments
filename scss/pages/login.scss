@@ -65,55 +65,11 @@
     justify-content: center;
     gap: m.space(2);
   }
-  &__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    background: transparent;
-    transition: opacity 0.2s ease;
-    &:hover {
-      opacity: 0.8;
-    }
-    &:focus {
-      outline: none;
-    }
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-    // 遊客登入文字按鈕
-    &--guest {
-      width: auto;
-      height: auto;
-      border-radius: m.space(2.5);
-      background-color: v.$color-text-primary;
-      color: v.$color-text-invert-dark;
-      font-family: v.$font-stack-primary;
-      font-size: 1.1rem;
-      padding: m.space(1) m.space(1.5);
-      white-space: nowrap;
-      @include m.media-query("lg") {
-        font-size: 1.2rem;
-      }
-    }
-  }
 }
 
 /* --- 遊客登入提醒 popup --- */
 #guest-popup {
   .content-block {
-    display: grid;
-    gap: m.space(3);
-    h4 {
-      text-align: center;
-    }
     .text-wrap {
       p {
         text-align: center;

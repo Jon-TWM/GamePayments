@@ -255,7 +255,7 @@ body::before {
   height: 100vh;
   z-index: -1;
   /* --- 小網 (Mobile-First) 樣式 --- */
-  background-image: url("/src/images/bg-sm.png"), linear-gradient(to right, #FF6700, #ff6700);
+  background-image: url("/src/images/bg-sm.png"), linear-gradient(to right, #FF6700, #FF6700);
   background-repeat: no-repeat, no-repeat;
   background-position: center top, center;
   background-size: 100%, cover;
@@ -285,37 +285,15 @@ body::before {
   cursor: pointer;
   border: none;
   text-align: center;
-  white-space: nowrap;
   text-decoration: none;
   font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
   font-weight: 400;
-  height: 44px;
-  min-width: 9rem;
-  border-radius: 4rem;
   background-color: #FF6700;
   color: #FFFFFF;
   transition: background-color 0.2s ease-in-out;
-  padding: 0rem 1.6rem;
-  font-size: 1.3rem;
-  /*
-  * .btn--block-mobile (修飾符)
-  *
-  * 行為：
-  * 1. 小網 (預設)：寬度 100%，以填滿容器。
-  * 2. 大網 (md 斷點及以上)：恢復為 `inline-flex` (自動寬度)。
-  *
-  * 可與 .btn 或 .btn-text-card 組合使用。
-  */
 }
 .btn:focus {
   outline: none;
-}
-@media (min-width: 768px) {
-  .btn {
-    padding: 0rem 1.6rem;
-    font-size: 1.5rem;
-    min-width: 10rem;
-  }
 }
 .btn:hover {
   background-color: #F45100;
@@ -325,6 +303,32 @@ body::before {
   background-color: #E9EBEF;
   color: #A8AEB8;
   opacity: 1;
+}
+.btn {
+  white-space: nowrap;
+  height: 44px;
+  min-width: 9rem;
+  border-radius: 4rem;
+  padding: 0rem 1.6rem;
+  font-size: 1.3rem;
+}
+@media (min-width: 768px) {
+  .btn {
+    padding: 0rem 1.6rem;
+    font-size: 1.5rem;
+    min-width: 10rem;
+  }
+}
+.btn {
+  /*
+  * .btn--block-mobile (修飾符)
+  *
+  * 行為：
+  * 1. 小網 (預設)：寬度 100%，以填滿容器。
+  * 2. 大網 (md 斷點及以上)：恢復為 `inline-flex` (自動寬度)。
+  *
+  * 可與 .btn 或 .btn-text-card 組合使用。
+  */
 }
 .btn.btn--block-mobile {
   width: 100%;
@@ -336,6 +340,10 @@ body::before {
     display: flex;
     margin: 0 auto;
   }
+}
+.btn.btn--block {
+  width: 100%;
+  display: flex;
 }
 .btn.btn--icon {
   gap: 0.8rem;
@@ -365,6 +373,81 @@ body::before {
     flex: initial;
   }
 }
+.btn.btn--facebook {
+  background-color: #0866FF;
+  color: #FFFFFF;
+}
+.btn.btn--facebook:hover {
+  background-color: #0033AA;
+}
+.btn.btn--facebook[disabled] {
+  background-color: #E9EBEF;
+  color: #A8AEB8;
+}
+.btn.btn--facebook .icon img {
+  filter: brightness(0) invert(1);
+}
+.btn.btn--facebook[disabled] .icon img {
+  filter: none;
+}
+.btn.btn--google {
+  background-color: #F2F2F2;
+  color: #000000;
+}
+.btn.btn--google:hover {
+  background-color: #E5E5E5;
+}
+.btn.btn--google[disabled] {
+  background-color: #E9EBEF;
+  color: #A8AEB8;
+}
+.btn.btn--apple {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.btn.btn--apple:hover {
+  background-color: #444444;
+}
+.btn.btn--apple[disabled] {
+  background-color: #E9EBEF;
+  color: #A8AEB8;
+}
+.btn.btn--apple .icon img {
+  filter: brightness(0) invert(1);
+}
+.btn.btn--apple[disabled] .icon img {
+  filter: none;
+}
+.btn.btn--guest {
+  background-color: #838D9C;
+  color: #EEF3F6;
+}
+.btn.btn--guest:hover {
+  background-color: #6B7685;
+}
+.btn.btn--guest[disabled] {
+  background-color: #E9EBEF;
+  color: #A8AEB8;
+}
+.btn.btn--square {
+  width: 4.4rem;
+  height: 4.4rem;
+  min-width: auto;
+  border-radius: 2.4rem;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  white-space: normal;
+  word-break: break-word;
+  overflow: hidden;
+}
+.btn.btn--square img {
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 0.8rem;
+}
 .btn.btn--outline {
   background-color: #FFFFFF;
   border: 1px solid #A8AEB8;
@@ -391,6 +474,11 @@ body::before {
   text-decoration: none;
   font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
   font-weight: 500;
+}
+.btn-text-card:focus {
+  outline: none;
+}
+.btn-text-card {
   background-color: #FFFFFF;
   color: #2D3033;
   border-radius: 2rem;
@@ -398,9 +486,6 @@ body::before {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   padding: 2.4rem 2.4rem;
   font-size: 1.5rem;
-}
-.btn-text-card:focus {
-  outline: none;
 }
 @media (min-width: 768px) {
   .btn-text-card {
@@ -436,6 +521,21 @@ body::before {
 }
 .btn-text-card:hover .arrow img {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7475%) hue-rotate(16deg) brightness(98%) contrast(108%);
+}
+.btn-text-card.btn-text-card--fill {
+  background-color: #FF6700;
+  color: #FFFFFF;
+  box-shadow: none;
+}
+.btn-text-card.btn-text-card--fill .arrow {
+  background-color: #FFFFFF;
+}
+.btn-text-card.btn-text-card--fill:hover {
+  background-color: #F45100;
+  color: #FFFFFF;
+}
+.btn-text-card.btn-text-card--fill:hover .arrow {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* ==========================================================================
@@ -515,13 +615,6 @@ select:disabled,
   align-items: flex-start;
   gap: 1.2rem;
   position: relative;
-  /* label holds the visual custom control */
-  /* base box / circle (unchecked) */
-  /* checkmark for checkbox */
-  /* radio dot */
-  /* checked states */
-  /* disabled */
-  /* keep accent-color as progressive enhancement for browsers that render native controls */
 }
 .form-check input[type=checkbox],
 .form-check input[type=radio] {
@@ -538,6 +631,9 @@ select:disabled,
   z-index: 2;
   cursor: pointer;
 }
+.form-check {
+  /* label holds the visual custom control */
+}
 .form-check label,
 .form-check .label {
   position: relative;
@@ -549,6 +645,9 @@ select:disabled,
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+.form-check {
+  /* base box / circle (unchecked) */
 }
 .form-check label::before {
   content: "";
@@ -564,6 +663,9 @@ select:disabled,
   box-sizing: border-box;
   transition: background 0.12s ease;
 }
+.form-check {
+  /* checkmark for checkbox */
+}
 .form-check input[type=checkbox] + label::after {
   content: "";
   position: absolute;
@@ -578,6 +680,9 @@ select:disabled,
   border-width: 0 4px 4px 0;
   transition: transform 0.12s ease;
   z-index: 3;
+}
+.form-check {
+  /* radio dot */
 }
 .form-check input[type=radio] + label::before {
   border-radius: 50%;
@@ -595,6 +700,9 @@ select:disabled,
   transition: transform 0.12s ease;
   z-index: 3;
 }
+.form-check {
+  /* checked states */
+}
 .form-check input[type=checkbox]:checked + label::after {
   transform: rotate(45deg) scale(1);
 }
@@ -608,10 +716,16 @@ select:disabled,
 .form-check input[type=radio]:checked + label::before {
   border-color: #A8AEB8;
 }
+.form-check {
+  /* disabled */
+}
 .form-check input[disabled] + label,
 .form-check input[disabled] {
   cursor: not-allowed;
   color: #A8AEB8;
+}
+.form-check {
+  /* keep accent-color as progressive enhancement for browsers that render native controls */
 }
 .form-check input[type=checkbox],
 .form-check input[type=radio] {
@@ -737,6 +851,38 @@ select:disabled,
   margin: auto;
   padding: 4rem;
   background: #FFFFFF;
+  display: grid;
+  gap: 2.4rem;
+}
+.popup-overlay .popup .content-block h4 {
+  text-align: center;
+}
+.popup-overlay .popup .text-wrap {
+  max-height: 56vh;
+  overflow-y: auto;
+}
+@media (min-width: 992px) {
+  .popup-overlay .popup .text-wrap {
+    max-height: 60vh;
+  }
+}
+.popup-overlay .popup .btn-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+@media (min-width: 768px) {
+  .popup-overlay .popup .btn-wrap {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .popup-overlay .popup .btn-wrap .btn {
+    flex: 1;
+  }
+  .popup-overlay .popup .btn-wrap .btn:only-child {
+    flex: initial;
+    width: auto;
+  }
 }
 .popup-overlay .popup-close {
   position: absolute;

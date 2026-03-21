@@ -75,55 +75,8 @@
   justify-content: center;
   gap: 1.6rem;
 }
-.login-social__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  transition: opacity 0.2s ease;
-}
-.login-social__btn:hover {
-  opacity: 0.8;
-}
-.login-social__btn:focus {
-  outline: none;
-}
-.login-social__btn img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-.login-social__btn--guest {
-  width: auto;
-  height: auto;
-  border-radius: 2rem;
-  background-color: #2D3033;
-  color: #FFFFFF;
-  font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
-  font-size: 1.1rem;
-  padding: 0.8rem 1.2rem;
-  white-space: nowrap;
-}
-@media (min-width: 992px) {
-  .login-social__btn--guest {
-    font-size: 1.2rem;
-  }
-}
 
 /* --- 遊客登入提醒 popup --- */
-#guest-popup .content-block {
-  display: grid;
-  gap: 2.4rem;
-}
-#guest-popup .content-block h4 {
-  text-align: center;
-}
 #guest-popup .content-block .text-wrap p {
   text-align: center;
-}
+}/*# sourceMappingURL=login.css.map */

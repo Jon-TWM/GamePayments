@@ -12,6 +12,8 @@ $color-text-accent:#FF6700;
 $color-text-link: $color-text-accent;
 $color-text-invert-dark: #FFFFFF;
 $color-text-disabled: #A8AEB8;
+$color-text-tertiary: #838D9C;
+$color-text-warning: #FE5933;
 // 1.2 表面顏色 (Surface Colors)
 $color-surface-accent: #FF6700;
 $color-surface-accent-dark: #F45100;
@@ -20,6 +22,16 @@ $color-surface-form: #EEF3F6;
 $color-surface-primary: #FFFFFF;
 $color-surface-primary-dark: #A8AEB8;
 $color-surface-footer:#000000;
+// 1.3 邊框顏色 (Border Colors)
+$color-border-primary: #A8AEB8;
+// 1.4 品牌色 (Brand Colors)
+$color-brand-facebook: #0866FF;
+$color-brand-facebook-dark: #0033AA;
+$color-brand-google: #F2F2F2;
+$color-brand-google-dark: #E5E5E5;
+$color-brand-apple: #000000;
+$color-brand-apple-dark: #444444;
+$color-brand-guest-dark: #6B7685;
 // Danger / error color
 $color-danger: #FF3B30;
 // 2. 字體變數 (Typography)

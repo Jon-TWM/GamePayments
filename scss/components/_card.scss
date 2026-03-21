@@ -94,6 +94,35 @@
             margin: auto; // use content-block as the popup panel
             padding: m.space(5);
             background: v.$color-surface-primary;
+            display: grid;
+            gap: m.space(3);
+            h4 {
+                text-align: center;
+            }
+        }
+        .text-wrap {
+            max-height: 56vh;
+            overflow-y: auto;
+            @include m.media-query("lg") {
+                max-height: 60vh;
+            }
+        }
+        .btn-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: m.space(2);
+            @include m.media-query("md") {
+                flex-direction: row;
+                justify-content: center;
+                .btn {
+                    flex: 1;
+                    // 單一按鈕時不撐滿，置中顯示
+                    &:only-child {
+                        flex: initial;
+                        width: auto;
+                    }
+                }
+            }
         }
     }
     .popup-close {

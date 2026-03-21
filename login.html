@@ -1,48 +1,43 @@
 <!doctype html>
 <html lang="zh-Hant">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>台灣大哥大 遊戲金流系統 會員登入</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/login.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <header class="header">
-      <div class="container">
-        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
-      </div>
+        <div class="container">
+            <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+        </div>
     </header>
 
     <main>
-      <div class="container">
-        <div class="content-block login-content-block">
-          <div class="content">
-            <h2>選擇登入方式</h2>
+        <div class="container">
+            <div class="content-block login-content-block">
+                <div class="content">
+                    <h2>選擇登入方式</h2>
 
-            <!-- 主要登入按鈕 -->
-            <button
-              class="btn-text-card btn--block-mobile"
-              id="btn-twm-login"
-              type="button"
-            >
+                    <!-- 主要登入按鈕 -->
+                    <button class="btn-text-card btn-text-card--fill" id="btn-twm-login" type="button">
               台灣大哥大會員登入
               <div class="arrow">
                 <img
                   src="/src/images/icon-btn-text-card-arrow.svg"
                   alt=""
-                  class=""
                 />
               </div>
             </button>
 
-            <!-- 同意條款 checkbox -->
-            <div class="login-agree">
-              <div class="form-check">
-                <input id="chk-agree" type="checkbox" checked />
-                <label for="chk-agree"
-                  >同意 <a href="#" id="open-privacy">隱私權政策</a> 與
+                    <!-- 同意條款 checkbox -->
+                    <div class="login-agree">
+                        <div class="form-check">
+                            <input id="chk-agree" type="checkbox" checked />
+                            <label for="chk-agree">同意 <a href="#" id="open-privacy">隱私權政策</a> 與
                   <a href="#" id="open-terms">會員服務條款</a></label
                 >
               </div>
@@ -59,34 +54,31 @@
               </div>
               <div class="login-social__icons">
                 <button
-                  class="login-social__btn"
+                  class="btn btn--square btn--apple"
                   type="button"
                   data-provider="apple"
                   aria-label="Apple 登入"
                 >
-                  <img src="/src/images/icon-social-apple.svg" alt="Apple" />
+                  <img src="/src/images/icon-login-apple.svg" alt="Apple" />
                 </button>
                 <button
-                  class="login-social__btn"
+                  class="btn btn--square btn--google"
                   type="button"
                   data-provider="google"
                   aria-label="Google 登入"
                 >
-                  <img src="/src/images/icon-social-google.svg" alt="Google" />
+                  <img src="/src/images/icon-login-google.svg" alt="Google" />
                 </button>
                 <button
-                  class="login-social__btn"
+                  class="btn btn--square btn--facebook"
                   type="button"
                   data-provider="facebook"
                   aria-label="Facebook 登入"
                 >
-                  <img
-                    src="/src/images/icon-social-facebook.svg"
-                    alt="Facebook"
-                  />
+                  <img src="/src/images/icon-login-facebook.svg" alt="Facebook" />
                 </button>
                 <button
-                  class="login-social__btn login-social__btn--guest"
+                  class="btn btn--square btn--guest"
                   type="button"
                   id="btn-guest-login"
                   data-provider="guest"
@@ -306,7 +298,7 @@
         var chkAgree = document.getElementById("chk-agree");
         var agreeError = document.getElementById("agree-error");
         var btnTwmLogin = document.getElementById("btn-twm-login");
-        var socialBtns = document.querySelectorAll(".login-social__btn");
+        var socialBtns = document.querySelectorAll(".login-social__icons .btn--square");
 
         function validateAgree(callback) {
           if (!chkAgree.checked) {

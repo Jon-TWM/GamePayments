@@ -5,8 +5,10 @@
 /* --- 通用訊息彈窗 --- */
 .popup-msg {
   display: grid;
-  gap: m.space(2);
+  gap: m.space(3);
   text-align: center;
+  padding: m.space(5);
+  margin-bottom: m.space(3);
 
   &__icon {
     width: 40px;
