@@ -17,10 +17,4 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.6rem;
   }
-}
-.bind-grid .icon img {
-  border-radius: 50%;
-}
-.bind-grid .btn[disabled] .icon {
-  display: none;
 }/*# sourceMappingURL=bind.css.map */

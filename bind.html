@@ -78,22 +78,13 @@
         </div>
     </div>
 
+    <script src="/src/js/popup-utils.js"></script>
     <script>
         (function() {
-            var overlay = document.getElementById("bind-popup");
-            var close = document.getElementById("bind-popup-close");
-
-            function closePopup() {
-                overlay.classList.remove("is-open");
-                overlay.setAttribute("aria-hidden", "true");
-            }
-
-            close.addEventListener("click", closePopup);
-            overlay.addEventListener("click", function(e) {
-                if (e.target === overlay) closePopup();
-            });
-            document.addEventListener("keydown", function(e) {
-                if (e.key === "Escape" && overlay.classList.contains("is-open")) closePopup();
+            PopupUtils.setupPopup({
+                overlayId: "bind-popup",
+                closeId: "bind-popup-close",
+                returnFocusToTrigger: false
             });
         })();
     </script>

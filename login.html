@@ -239,60 +239,31 @@
       </div>
     </div>
 
+    <script src="/src/js/popup-utils.js"></script>
     <script>
       (function () {
-        // Helper: setup popup
-        function setupPopup(triggerId, overlayId, closeId, okId) {
-          var trigger = document.getElementById(triggerId);
-          var overlay = document.getElementById(overlayId);
-          var close = document.getElementById(closeId);
-          var ok = document.getElementById(okId);
-
-          if (!trigger || !overlay) return;
-
-          function openPopup(e) {
-            if (e) e.preventDefault();
-            overlay.classList.add("is-open");
-            overlay.setAttribute("aria-hidden", "false");
-            if (close) close.focus();
-          }
-
-          function closePopup() {
-            overlay.classList.remove("is-open");
-            overlay.setAttribute("aria-hidden", "true");
-            trigger.focus();
-          }
-
-          trigger.addEventListener("click", openPopup);
-          if (close) close.addEventListener("click", closePopup);
-          if (ok) ok.addEventListener("click", closePopup);
-          overlay.addEventListener("click", function (e) {
-            if (e.target === overlay) closePopup();
-          });
-          document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape" && overlay.classList.contains("is-open"))
-              closePopup();
-          });
-        }
-
         // 隱私權政策 popup
-        setupPopup(
-          "open-privacy",
-          "privacy-popup",
-          "privacy-popup-close",
-          "privacy-popup-ok",
-        );
+        PopupUtils.setupPopup({
+          triggerId: "open-privacy",
+          overlayId: "privacy-popup",
+          closeId: "privacy-popup-close",
+          okId: "privacy-popup-ok",
+        });
 
         // 會員服務條款 popup
-        setupPopup(
-          "open-terms",
-          "terms-popup",
-          "terms-popup-close",
-          "terms-popup-ok",
-        );
+        PopupUtils.setupPopup({
+          triggerId: "open-terms",
+          overlayId: "terms-popup",
+          closeId: "terms-popup-close",
+          okId: "terms-popup-ok",
+        });
 
         // 遊客登入提醒 popup
-        setupPopup("btn-guest-login", "guest-popup", null, "guest-popup-ok");
+        PopupUtils.setupPopup({
+          triggerId: "btn-guest-login",
+          overlayId: "guest-popup",
+          okId: "guest-popup-ok",
+        });
 
         // Checkbox 驗證：未勾選時顯示錯誤訊息
         var chkAgree = document.getElementById("chk-agree");

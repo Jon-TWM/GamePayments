@@ -355,6 +355,12 @@ body::before {
   align-items: center;
   justify-content: center;
 }
+.btn.btn--icon .icon img {
+  border-radius: 50%;
+}
+.btn.btn--icon[disabled] .icon {
+  display: none;
+}
 .btn.btn--icon.btn--block-mobile {
   width: 100%;
   justify-content: space-between;
