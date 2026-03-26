@@ -10,12 +10,4 @@
     grid-template-columns: 1fr 1fr;
     gap: m.space(2);
   }
-  // 社群 icon 圓角
-  .icon img {
-    border-radius: 50%;
-  }
-  // disabled 時隱藏 icon
-  .btn[disabled] .icon {
-    display: none;
-  }
 }
