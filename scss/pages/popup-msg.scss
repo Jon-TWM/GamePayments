@@ -3,33 +3,41 @@
 @use "../base/mixins" as m;
 
 /* --- 通用訊息彈窗 --- */
+.popup-overlay .popup .content-block.popup-msg {
+  gap: m.space(1);
+}
+
 .popup-msg {
   display: grid;
-  gap: m.space(3);
+  gap: m.space(1);
   text-align: center;
-  padding: m.space(5);
-  margin-bottom: m.space(3);
+  padding: m.space(3);
 
   &__icon {
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     margin: 0 auto;
     @include m.media-query("lg") {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
     }
   }
 
   &__title {
+    font-size: 2.2rem;
     margin: 0;
   }
 
   &__desc {
     color: v.$color-text-secondary;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin: 0;
     @include m.media-query("lg") {
       font-size: 1.6rem;
     }
+  }
+
+  .btn-wrap {
+    margin-top: m.space(1);
   }
 }

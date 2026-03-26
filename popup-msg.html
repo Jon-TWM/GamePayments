@@ -1,59 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>台灣大哥大 遊戲金流系統 通用訊息彈窗</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/popup-msg.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <div class="container">
-            <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
-        </div>
+      <div class="container">
+        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+      </div>
     </header>
 
-    <main>
-        <div class="container">
-            <!-- 成功類型訊息 -->
-            <div class="content-block popup-msg">
-                <img class="popup-msg__icon" src="/src/images/icon-result-Success.png" alt="" />
-                <h4 class="popup-msg__title">成功</h4>
-                <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
-                <div class="btn-wrap">
-                    <button class="btn btn--block-mobile">按鈕文案</button>
-                </div>
-            </div>
+    <main></main>
 
-            <!-- 失敗/警示類型訊息 -->
-            <div class="content-block popup-msg">
-                <img class="popup-msg__icon" src="/src/images/icon-result-Error.png" alt="" />
-                <h4 class="popup-msg__title">失敗/警示</h4>
-                <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
-                <div class="btn-wrap">
-                    <button class="btn btn--block-mobile">按鈕文案</button>
-                </div>
-            </div>
-
-            <!-- 一般訊息 -->
-            <div class="content-block popup-msg">
-                <h4 class="popup-msg__title">一般文字訊息</h4>
-                <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
-                <div class="btn-wrap">
-                    <button class="btn btn--block-mobile">按鈕文案</button>
-                </div>
-            </div>
+    <!-- 完整訊息 Popup -->
+    <div class="popup-overlay is-open" id="popup-msg" aria-hidden="false">
+      <div class="popup" role="dialog" aria-modal="true">
+        <div class="content-block popup-msg">
+          <img class="popup-msg__icon" src="/src/images/icon-result-Success.png" alt="" />
+          <img class="popup-msg__icon" src="/src/images/icon-result-Error.png" alt="" />
+          <h4 class="popup-msg__title">成功</h4>
+          <p class="popup-msg__desc">彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案彈窗文案</p>
+          <div class="btn-wrap">
+            <button class="btn btn--block-mobile">按鈕文案</button>
+          </div>
         </div>
-    </main>
+      </div>
+    </div>
 
     <footer class="footer">
-        <div class="container">
-            <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>

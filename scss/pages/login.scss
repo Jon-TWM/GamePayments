@@ -3,15 +3,17 @@
 @use "../base/mixins" as m;
 
 .login-content-block {
-  margin: auto;
-  .content {
-    width: 100%;
-    display: grid;
-    gap: m.space(3);
-    justify-items: center;
-    h2 {
-      margin: 0;
-      text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: m.space(3);
+  align-items: center;
+  width: 100%;
+  h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.7rem;
+    @include m.media-query("lg") {
+      font-size: 2.1rem;
     }
   }
 }
@@ -23,8 +25,9 @@
   text-align: left;
   &__error {
     color: v.$color-danger;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin: m.space(0.5) 0 0;
+    text-align: center;
     @include m.media-query("lg") {
       font-size: 1.5rem;
     }

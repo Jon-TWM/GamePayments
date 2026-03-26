@@ -1,96 +1,72 @@
 <!doctype html>
 <html lang="zh-Hant">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>台灣大哥大 遊戲金流系統 會員登入</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/login.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <div class="container">
-            <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
-        </div>
+      <div class="container">
+        <img class="logo-TWM" src="/src/images/logo-TWM.svg" alt="" />
+      </div>
     </header>
 
-    <main>
-        <div class="container">
-            <div class="content-block login-content-block">
-                <div class="content">
-                    <h2>選擇登入方式</h2>
+    <main></main>
 
-                    <!-- 主要登入按鈕 -->
-                    <button class="btn-text-card btn-text-card--fill" id="btn-twm-login" type="button">
-              台灣大哥大會員登入
-              <div class="arrow">
-                <img
-                  src="/src/images/icon-btn-text-card-arrow.svg"
-                  alt=""
-                />
-              </div>
-            </button>
+    <!-- 登入方式 Popup（頁面載入自動開啟） -->
+    <div class="popup-overlay is-open" id="login-popup" aria-hidden="false">
+      <div class="popup" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <div class="content-block login-content-block">
+          <h2 id="login-title">選擇登入方式</h2>
 
-                    <!-- 同意條款 checkbox -->
-                    <div class="login-agree">
-                        <div class="form-check">
-                            <input id="chk-agree" type="checkbox" checked />
-                            <label for="chk-agree">同意 <a href="#" id="open-privacy">隱私權政策</a> 與
-                  <a href="#" id="open-terms">會員服務條款</a></label
-                >
-              </div>
-              <!-- 未勾選時顯示的錯誤提示 -->
-              <p class="login-agree__error" id="agree-error">
-                請先同意隱私權政策與會員服務條款
-              </p>
+          <!-- 主要登入按鈕 -->
+          <button class="btn-text-card btn-text-card--fill" id="btn-twm-login" type="button">
+            台灣大哥大會員登入
+            <div class="arrow">
+              <img src="/src/images/icon-btn-text-card-arrow.svg" alt="" />
             </div>
+          </button>
 
-            <!-- 其他登入方式 -->
-            <div class="login-social">
-              <div class="login-social__divider">
-                <span>或以其他方式登入</span>
-              </div>
-              <div class="login-social__icons">
-                <button
-                  class="btn btn--square btn--apple"
-                  type="button"
-                  data-provider="apple"
-                  aria-label="Apple 登入"
-                >
-                  <img src="/src/images/icon-login-apple.svg" alt="Apple" />
-                </button>
-                <button
-                  class="btn btn--square btn--google"
-                  type="button"
-                  data-provider="google"
-                  aria-label="Google 登入"
-                >
-                  <img src="/src/images/icon-login-google.svg" alt="Google" />
-                </button>
-                <button
-                  class="btn btn--square btn--facebook"
-                  type="button"
-                  data-provider="facebook"
-                  aria-label="Facebook 登入"
-                >
-                  <img src="/src/images/icon-login-facebook.svg" alt="Facebook" />
-                </button>
-                <button
-                  class="btn btn--square btn--guest"
-                  type="button"
-                  id="btn-guest-login"
-                  data-provider="guest"
-                >
-                  遊客登入
-                </button>
-              </div>
+          <!-- 同意條款 checkbox -->
+          <div class="login-agree">
+            <div class="form-check">
+              <input id="chk-agree" type="checkbox" checked />
+              <label for="chk-agree">同意 <a href="#" id="open-privacy">隱私權政策</a> 與
+                <a href="#" id="open-terms">會員服務條款</a></label>
+            </div>
+            <!-- 未勾選時顯示的錯誤提示 -->
+            <p class="login-agree__error" id="agree-error">
+              請先同意隱私權政策與會員服務條款
+            </p>
+          </div>
+
+          <!-- 其他登入方式 -->
+          <div class="login-social">
+            <div class="login-social__divider">
+              <span>或以其他方式登入</span>
+            </div>
+            <div class="login-social__icons">
+              <button class="btn btn--square btn--apple" type="button" data-provider="apple" aria-label="Apple 登入">
+                <img src="/src/images/icon-login-apple.svg" alt="Apple" />
+              </button>
+              <button class="btn btn--square btn--google" type="button" data-provider="google" aria-label="Google 登入">
+                <img src="/src/images/icon-login-google.svg" alt="Google" />
+              </button>
+              <button class="btn btn--square btn--facebook" type="button" data-provider="facebook" aria-label="Facebook 登入">
+                <img src="/src/images/icon-login-facebook.svg" alt="Facebook" />
+              </button>
+              <button class="btn btn--square btn--guest" type="button" id="btn-guest-login" data-provider="guest">
+                遊客登入
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
     <footer class="footer">
       <div class="container">
@@ -104,15 +80,10 @@
         <div class="content-block">
           <h4>遊客登入提醒</h4>
           <div class="text-wrap">
-            <p>
-              您即將以遊客身分登入，建議您先至個人資料綁定帳號確認，以確保您的遊戲
-              紀錄資料。
-            </p>
+            <p>您即將以遊客身分登入，建議您先至個人資料綁定帳號確認，以確保您的遊戲 紀錄資料。</p>
           </div>
           <div class="btn-wrap">
-            <button class="btn btn--block-mobile" id="guest-popup-ok">
-              確認
-            </button>
+            <button class="btn btn--block-mobile" id="guest-popup-ok">確認</button>
           </div>
         </div>
       </div>
@@ -121,16 +92,12 @@
     <!-- 隱私權政策 Popup -->
     <div class="popup-overlay" id="privacy-popup" aria-hidden="true">
       <div class="popup" role="dialog" aria-modal="true">
-        <button class="popup-close" id="privacy-popup-close" aria-label="關閉">
-          &times;
-        </button>
+        <button class="popup-close" id="privacy-popup-close" aria-label="關閉">&times;</button>
         <div class="content-block">
           <h4>隱私權政策</h4>
           <div class="text-wrap">
             <p>
-              本公司十分重視每位使用者的隱私權，將依下列隱私權保護政策(下稱「本政策
-              」)及個人資料保護等相關法令規定，蒐集、利用、處理與保護您的個人資料，
-              為保障您的權益，也希望您在使用GeForce
+              本公司十分重視每位使用者的隱私權，將依下列隱私權保護政策(下稱「本政策 」)及個人資料保護等相關法令規定，蒐集、利用、處理與保護您的個人資料， 為保障您的權益，也希望您在使用GeForce
               NOW服務（下稱「本服務」）前， 能夠詳細閱讀下列說明，並確實遵守：
             </p>
 
@@ -155,9 +122,7 @@
                       <li>
                         本公司在您使用本網站服務、線上購買月租服務、瀏覽本網站服務網頁、加入本服務會員、訂閱服務訊息、回報使用意見、參加宣傳促銷廣告方案、贈獎遊戲、訂購本服務產品/服務或使用其他網站服務時，將會請您提供您的個人相關資料，包括但不限於姓名、年齡、性別、發票寄送地址、電子郵件地址與連絡電話，或其它於您註冊時或日後所同意本公司基於服務之提供所蒐集之個人資料等。
                       </li>
-                      <li>
-                        本服務會保留您所提供的上述資料，也會保留您上網瀏覽、查詢或使用服務時，在系統上產生的相關紀錄，包括IP位址、使用時間、瀏覽器、瀏覽及點選紀錄等。
-                      </li>
+                      <li>本服務會保留您所提供的上述資料，也會保留您上網瀏覽、查詢或使用服務時，在系統上產生的相關紀錄，包括IP位址、使用時間、瀏覽器、瀏覽及點選紀錄等。</li>
                       <li>
                         若您有使用Facebook或其他社群服務，本網站服務可能透過相關社群服務系統設計，於取得您的同意後，將部分本網站服務的資訊發布於您的社群活動資訊頁面，若您不同意該等訊息之發布，請您勿點選同意鍵，或於事後透過各該社群服務之會員機制移除該等資訊或拒絕本服務繼續發布相關訊息。若有任何問題，仍可與本公司聯絡，本公司將協助您確認、處理相關事宜。
                       </li>
@@ -168,17 +133,13 @@
               <li>
                 資料之保護
                 <ol>
-                  <li>
-                    本公司會將您的個人資料完整儲存於我們的資料儲存系統中，並以嚴密的保護措施防止未經授權人員之接觸。
-                  </li>
+                  <li>本公司會將您的個人資料完整儲存於我們的資料儲存系統中，並以嚴密的保護措施防止未經授權人員之接觸。</li>
                 </ol>
               </li>
             </ol>
           </div>
           <div class="btn-wrap">
-            <button class="btn btn--block-mobile" id="privacy-popup-ok">
-              確認
-            </button>
+            <button class="btn btn--block-mobile" id="privacy-popup-ok">確認</button>
           </div>
         </div>
       </div>
@@ -187,16 +148,12 @@
     <!-- 會員服務條款 Popup -->
     <div class="popup-overlay" id="terms-popup" aria-hidden="true">
       <div class="popup" role="dialog" aria-modal="true">
-        <button class="popup-close" id="terms-popup-close" aria-label="關閉">
-          &times;
-        </button>
+        <button class="popup-close" id="terms-popup-close" aria-label="關閉">&times;</button>
         <div class="content-block">
           <h4>會員服務條款</h4>
           <div class="text-wrap">
             <p>
-              本公司十分重視每位使用者的隱私權，將依下列隱私權保護政策(下稱「本政策
-              」)及個人資料保護等相關法令規定，蒐集、利用、處理與保護您的個人資料，
-              為保障您的權益，也希望您在使用GeForce
+              本公司十分重視每位使用者的隱私權，將依下列隱私權保護政策(下稱「本政策 」)及個人資料保護等相關法令規定，蒐集、利用、處理與保護您的個人資料， 為保障您的權益，也希望您在使用GeForce
               NOW服務（下稱「本服務」）前，能夠詳細閱讀下列說明，並確實遵守：
             </p>
 
@@ -207,33 +164,25 @@
                   <li>
                     隱私權保護政策內容，包括本公司如何處理使用者使用本網站服務(下稱「本服務」)、進行線上購買、參加本網站活動、申請加入本服務會員等時所蒐集到的身分識別資料，也包括本公司如何處理在商業伙伴與本公司合作時分享的任何身份識別資料。
                   </li>
-                  <li>
-                    本政策僅及於本網站服務，若您點選第三人網站之連結或廣告，拜訪各該網站或網頁時，應依各該網站或網頁經營者所定之隱私權保護政策規定辦理，概與本公司無涉。
-                  </li>
+                  <li>本政策僅及於本網站服務，若您點選第三人網站之連結或廣告，拜訪各該網站或網頁時，應依各該網站或網頁經營者所定之隱私權保護政策規定辦理，概與本公司無涉。</li>
                 </ol>
               </li>
               <li>
                 資料之蒐集
                 <ol>
-                  <li>
-                    此資料的蒐集目的係為確認在本公司於服務網站上取得資訊的使用者身份及提供各項服務之用。
-                  </li>
+                  <li>此資料的蒐集目的係為確認在本公司於服務網站上取得資訊的使用者身份及提供各項服務之用。</li>
                 </ol>
               </li>
               <li>
                 資料之保護
                 <ol>
-                  <li>
-                    本公司會將您的個人資料完整儲存於我們的資料儲存系統中，並以嚴密的保護措施防止未經授權人員之接觸。
-                  </li>
+                  <li>本公司會將您的個人資料完整儲存於我們的資料儲存系統中，並以嚴密的保護措施防止未經授權人員之接觸。</li>
                 </ol>
               </li>
             </ol>
           </div>
           <div class="btn-wrap">
-            <button class="btn btn--block-mobile" id="terms-popup-ok">
-              確認
-            </button>
+            <button class="btn btn--block-mobile" id="terms-popup-ok">確認</button>
           </div>
         </div>
       </div>
@@ -270,26 +219,15 @@
             if (e.target === overlay) closePopup();
           });
           document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape" && overlay.classList.contains("is-open"))
-              closePopup();
+            if (e.key === "Escape" && overlay.classList.contains("is-open")) closePopup();
           });
         }
 
         // 隱私權政策 popup
-        setupPopup(
-          "open-privacy",
-          "privacy-popup",
-          "privacy-popup-close",
-          "privacy-popup-ok",
-        );
+        setupPopup("open-privacy", "privacy-popup", "privacy-popup-close", "privacy-popup-ok");
 
         // 會員服務條款 popup
-        setupPopup(
-          "open-terms",
-          "terms-popup",
-          "terms-popup-close",
-          "terms-popup-ok",
-        );
+        setupPopup("open-terms", "terms-popup", "terms-popup-close", "terms-popup-ok");
 
         // 遊客登入提醒 popup
         setupPopup("btn-guest-login", "guest-popup", null, "guest-popup-ok");
