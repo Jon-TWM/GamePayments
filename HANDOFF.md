@@ -1,5 +1,29 @@
 # Phase 3 切版交接筆記
 
+---
+
+## 2026-03-27 更新
+
+### HTML 異動
+
+| 檔案             | 說明                                                                                      |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| `login.html`     | `<main>` 清空，登入表單移至 `popup-overlay is-open`（頁面載入自動顯示）                   |
+| `popup-msg.html` | `<main>` 清空，`content-block popup-msg` 移至 `popup-overlay is-open`（頁面載入自動顯示） |
+
+### CSS 異動（RD 覆蓋這些）
+
+| 檔案                | 異動說明                                                      |
+| ------------------- | ------------------------------------------------------------- |
+| `css/login.css`     | `.login-content-block` flex 佈局；`h2` font-size 17px / 21px |
+| `css/popup-msg.css` | `.btn-wrap` 上方間距 16px；補 gap override（見優先權說明）    |
+
+### ⚠️ CSS 優先權說明
+
+`_card.scss` 的 `.popup-overlay .popup .content-block`（權重 0,3,0）設有 `gap: 2.4rem`，會蓋過 `.popup-msg` 的 `gap: 0.8rem`（權重 0,1,0）。解法：以 `.popup-overlay .popup .content-block.popup-msg`（權重 0,4,0）覆蓋。**重新編譯 SCSS 後此規則會自動輸出，無需手動維護 CSS。**
+
+---
+
 ## 本次新增 / 異動摘要
 
 ### 新增頁面
