@@ -169,6 +169,7 @@ select,
 /* ---------- Error message ---------- */
 
 .form-error {
+    padding-left: m.space(2); // 對齊 input 內文起始位置
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 150%;

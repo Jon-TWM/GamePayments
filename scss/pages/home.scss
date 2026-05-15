@@ -58,7 +58,6 @@
 
 .popup-dcb__otp-error {
     display: none;
-    padding-left: m.space(2); // 對齊 input 內文起始位置
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.9px;
     &.is-visible {
