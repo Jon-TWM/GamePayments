@@ -166,6 +166,16 @@ select,
 }
 
 
+/* ---------- Error message ---------- */
+
+.form-error {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 150%;
+    color: v.$color-text-warning;
+}
+
+
 /* ---------- Inline helpers ---------- */
 
 .form-inline {
