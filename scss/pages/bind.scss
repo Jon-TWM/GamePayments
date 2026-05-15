@@ -10,4 +10,7 @@
     grid-template-columns: 1fr 1fr;
     gap: m.space(2);
   }
+  & + .bind-grid {
+    margin-top: m.space(3);
+  }
 }

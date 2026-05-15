@@ -3,8 +3,11 @@
 @use "../base/mixins" as m;
 
 /* --- 通用訊息彈窗 --- */
+// specificity 0,4,1 / 0,4,0 — 覆蓋 _card.scss 的 h4 margin-bottom 與 > p margin-bottom
 .popup-overlay .popup .content-block.popup-msg {
   gap: m.space(1);
+  h4 { margin-bottom: 0; }
+  > p { margin-bottom: 0; }
 }
 
 .popup-msg {
