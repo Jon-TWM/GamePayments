@@ -44,7 +44,7 @@
 | 初始       | `<button disabled>`，`.popup-dcb__resend` 無 class |
 | 有輸入值   | 移除 `button[disabled]`                            |
 | 可重新發送 | `.popup-dcb__resend` 加 `.is-link`                 |
-| 驗證錯誤   | input 加 `.--error`；`.popup-dcb__otp-error` 加 `.is-visible` |
+| 驗證錯誤   | input 加 `.--error`；`.form-error.popup-dcb__otp-error` 加 `.is-visible` |
 
 ---
 
@@ -61,7 +61,27 @@
 
 > ⚠️ **h4 有 breaking change**：原大網 `font-size: 2.1rem` 已移除，請確認現有頁面視覺無異常。
 
-#### 2. `_card.scss` — popup 內容間距重構
+#### 2. `_form.scss` — 新增 `.form-error`
+
+```html
+<div class="form-item">
+  <label class="label">欄位名稱</label>
+  <input type="text" class="--error" />
+  <span class="form-error">錯誤訊息文字</span>
+</div>
+```
+
+| 屬性 | 值 |
+| ---- | -- |
+| `padding-left` | 16px（對齊 input 內文起始位置） |
+| `font-size` | 1.5rem |
+| `font-weight` | 400 |
+| `line-height` | 150% |
+| `color` | `$color-text-warning` |
+
+> `.popup-dcb__otp-error` 繼承 `.form-error`，僅覆蓋 `font-family: Poppins`、`letter-spacing: 0.9px`、`display: none / .is-visible`。
+
+#### 3. `_card.scss` — popup 內容間距重構
 
 | 屬性 | 原規格 | 新規格 |
 | ---- | ------ | ------ |
@@ -81,22 +101,30 @@
 
 ### CSS 異動（RD 覆蓋這些）
 
-| 檔案                | 異動說明                                                                    |
-| ------------------- | --------------------------------------------------------------------------- |
-| `css/style.css`     | h4 規格更新、新增 h5、popup 間距重構（gap → margin-bottom）                 |
-| `css/home.css`      | 新增 `popup-dcb__*` 系列樣式（panel、step、otp-header、resend、otp-error）  |
-| `css/popup-msg.css` | 補 specificity override 保護 `.popup-msg__desc` 字型不被 popup component 蓋掉 |
+| 檔案                | 異動說明                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------- |
+| `css/style.css`     | h4 規格更新、新增 h5、新增 `.form-error`、popup 間距重構（gap → margin-bottom）                   |
+| `css/home.css`      | 新增 `popup-dcb__*` 系列樣式；`.popup-dcb__otp-error` 簡化為 DCB 專屬覆蓋                        |
+| `css/popup-msg.css` | 補 specificity override 保護 `.popup-msg__desc` 字型；補 h4 / `> p` margin-bottom reset          |
+| `css/bind.css`      | `.bind-grid + .bind-grid` 補 `margin-top: 24px`（修正 gap: 0 後兩個預覽狀態緊貼）                |
 
 ### ⚠️ CSS 優先權說明
 
-`_card.scss` 的 `.popup-overlay .popup .content-block p`（權重 0,3,1）會蓋過 `.popup-msg__desc`（0,1,0）。解法：在 `popup-msg.css` 以 `.popup-overlay .popup p.popup-msg__desc`（0,3,1）寫在後面，cascade 後發者勝。**重新編譯 SCSS 後自動輸出，無需手動維護。**
+`_card.scss` 的 `.popup-overlay .popup .content-block`（0,3,0–0,3,1）規則會影響所有 popup 內的 h4、`> p`：
+
+| 被覆蓋的元素 | 解法 | 位置 |
+| ------------ | ---- | ---- |
+| `.popup-msg__desc` 字型 | `.popup-overlay .popup p.popup-msg__desc`（0,3,1），cascade 後發者勝 | `popup-msg.css` |
+| `.popup-msg` 的 h4 / `> p` margin | `.popup-overlay .popup .content-block.popup-msg`（0,4,1/0,4,0）reset | `popup-msg.css` |
+
+**重新編譯 SCSS 後自動輸出，無需手動維護。**
 
 ### components.html 更新
 
 | 區塊 | 異動 |
 | ---- | ---- |
 | 排版 (Typography) | 新增 h5 展示 |
-| 表單元件 (Form Controls) | 文字欄位改用 `.form-item` 包裝示範（原為裸 label + input） |
+| 表單元件 (Form Controls) | 文字欄位改用 `.form-item` 包裝示範；錯誤狀態補 `<span class="form-error">` |
 | Popup demo | 更新為含 `form-item`、`btn-wrap`（主按鈕 + outline）的完整結構；改用 `popup-utils.js` |
 
 ---
