@@ -294,6 +294,7 @@
                     <h2>H2 這是次標題</h2>
                     <h3>H3 這是三級標題</h3>
                     <h4>H4 這是四級標題</h4>
+                    <h5>H5 這是五級標題（Popup 內文）</h5>
                     <p>
                         這是標準段落文字。排版是網站的基礎，請確保易讀性。這是
                         <a href="#link">一個連結</a>。
@@ -513,33 +514,22 @@
                     範例：文字欄位、textarea、select、checkbox 與 radio。使用 `.form-input` / `.form-check` / `.form-inline` 來預覽樣式。
                 </p>
 
-                <h3 class="margin-bottom-md">文字欄位 (Text inputs)</h3>
-                <div class="margin-bottom-md">
-                    <label for="example-text" class="text-sm-secondary">標準輸入</label>
-                    <input id="example-text" type="text" class="form-input" placeholder="輸入文字..." />
+                <h3 class="margin-bottom-md">表單欄位包裝 (.form-item)</h3>
+                <p class="margin-bottom-md text-sm-secondary">
+                    以 <code>.form-item</code> 包住 label 與 input，gap: 8px 統一控制間距。label 使用 <code>.label</code> class 或原生 <code>&lt;label&gt;</code> 皆可。
+                </p>
+                <div class="form-item margin-bottom-md">
+                    <label for="example-text" class="label">標準輸入</label>
+                    <input id="example-text" type="text" placeholder="輸入文字..." />
                 </div>
-
-                <div class="margin-bottom-md">
-                    <label for="example-text-error" class="text-sm-secondary">錯誤狀態</label
-            >
-            <input
-              id="example-text-error"
-              type="text"
-              class="form-input --error"
-              placeholder="錯誤範例" />
-          </div>
-
-          <div class="margin-bottom-md">
-            <label for="example-text-disabled" class="text-sm-secondary"
-              >Disabled</label
-            >
-            <input
-              id="example-text-disabled"
-              type="text"
-              class="form-input"
-              placeholder="不可輸入"
-              disabled />
-          </div>
+                <div class="form-item margin-bottom-md">
+                    <label for="example-text-error" class="label">錯誤狀態</label>
+                    <input id="example-text-error" type="text" class="--error" placeholder="錯誤範例" />
+                </div>
+                <div class="form-item margin-bottom-md">
+                    <label for="example-text-disabled" class="label">Disabled</label>
+                    <input id="example-text-disabled" type="text" placeholder="不可輸入" disabled />
+                </div>
 
           <h3 class="margin-top-lg margin-bottom-md">
             多行與選單 (Textarea / Select)
@@ -616,61 +606,42 @@
             <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
         </div>
     </footer>
-    <!-- Popup overlay (preview) -->
+    <!-- Popup overlay (preview)
+         結構說明：
+         - .popup-overlay        全螢幕遮罩，is-open 時顯示
+         - .popup-close          關閉按鈕，absolute 定位於遮罩內
+         - .popup > .content-block  內容卡片，padding 24px 兩斷點
+         - gap: 0 + 各元素 margin-bottom 控制間距：
+             h4        → 16px
+             > p       → 24px
+             .form-item → 32px  -->
     <div class="popup-overlay" id="demo-popup" aria-hidden="true">
-        <div class="popup" role="dialog" aria-modal="true">
-            <button class="popup-close" id="popup-close" aria-label="關閉">
-          &times;
-        </button>
+        <button class="popup-close" id="popup-close" aria-label="關閉">&times;</button>
+        <div class="popup" role="dialog" aria-modal="true" aria-labelledby="demo-popup-title">
             <div class="content-block">
-                <h4>Popup 範例標題</h4>
-                <p>
-                    這是 popup 內容區塊，使用現有的 <code>.content-block</code> 樣式。
-                </p>
-                <div class="margin-top-md">
-                    <button class="btn" id="popup-action">知道了</button>
+                <h4 id="demo-popup-title">Popup 範例標題</h4>
+                <p>這是 popup 說明文字，使用 h5 規格：小網 1.5rem、大網 1.8rem，line-height 1.5。</p>
+                <div class="form-item">
+                    <label class="label">輸入欄位範例</label>
+                    <input type="text" placeholder="表單欄位 margin-bottom 32px" />
+                </div>
+                <div class="btn-wrap">
+                    <button class="btn btn--block-mobile" id="popup-action">確認</button>
+                    <button class="btn btn--outline btn--block-mobile" id="popup-cancel">取消</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="/src/js/popup-utils.js"></script>
     <script>
-        (function() {
-            var openBtn = document.getElementById("open-popup");
-            var overlay = document.getElementById("demo-popup");
-            var closeBtn = document.getElementById("popup-close");
-            var popupAction = document.getElementById("popup-action");
-
-            function openPopup() {
-                overlay.classList.add("is-open");
-                overlay.setAttribute("aria-hidden", "false");
-                // focus the close button for keyboard users
-                closeBtn && closeBtn.focus();
-            }
-
-            function closePopup() {
-                overlay.classList.remove("is-open");
-                overlay.setAttribute("aria-hidden", "true");
-                openBtn && openBtn.focus();
-            }
-
-            openBtn && openBtn.addEventListener("click", openPopup);
-            closeBtn && closeBtn.addEventListener("click", closePopup);
-            popupAction && popupAction.addEventListener("click", closePopup);
-
-            // click overlay to close when clicking outside popup
-            overlay &&
-                overlay.addEventListener("click", function(e) {
-                    if (e.target === overlay) closePopup();
-                });
-
-            // close on Escape
-            document.addEventListener("keydown", function(e) {
-                if (e.key === "Escape" && overlay.classList.contains("is-open")) {
-                    closePopup();
-                }
-            });
-        })();
+        PopupUtils.setupPopup({ triggerId: 'open-popup', overlayId: 'demo-popup', closeId: 'popup-close' });
+        document.getElementById('popup-action') && document.getElementById('popup-action').addEventListener('click', function() {
+            document.getElementById('demo-popup').classList.remove('is-open');
+        });
+        document.getElementById('popup-cancel') && document.getElementById('popup-cancel').addEventListener('click', function() {
+            document.getElementById('demo-popup').classList.remove('is-open');
+        });
     </script>
 </body>
 

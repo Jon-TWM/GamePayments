@@ -41,3 +41,13 @@
     margin-top: m.space(1);
   }
 }
+
+// specificity 0,3,1 — 與 _card.scss 的 .popup-overlay .popup .content-block p 相同
+// popup-msg.css 載入順序較晚，cascade 後發者勝，確保 __desc 保住自己的規格
+.popup-overlay .popup p.popup-msg__desc {
+  font-size: 1.5rem;
+  letter-spacing: normal;
+  @include m.media-query("lg") {
+    font-size: 1.6rem;
+  }
+}

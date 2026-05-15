@@ -91,13 +91,31 @@
             padding-right: m.space(7.5);
         }
         .content-block {
-            margin: auto; // use content-block as the popup panel
-            padding: m.space(5);
+            margin: auto;
+            padding: m.space(3);
             background: v.$color-surface-primary;
             display: grid;
-            gap: m.space(3);
+            gap: 0;
             h4 {
                 text-align: center;
+                margin-bottom: m.space(2);   // 16px
+            }
+            > p {
+                margin-bottom: m.space(3);   // 24px
+            }
+            .text-wrap {
+                margin-bottom: m.space(3);   // 24px
+            }
+            .form-item {
+                margin-bottom: m.space(4);   // 32px
+            }
+            p {
+                font-size: 1.5rem;
+                line-height: 1.5;
+                letter-spacing: 1.8px;
+                @include m.media-query("lg") {
+                    font-size: 1.8rem;
+                }
             }
         }
         .text-wrap {

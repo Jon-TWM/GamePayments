@@ -2,6 +2,74 @@
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
 
+// popup-dcb：電信帳單代收驗證流程
+
+.popup-dcb__panel {
+    @include m.media-query("lg") {
+        max-width: 600px;
+    }
+}
+
+.popup-dcb__step {
+    display: none;
+    &.is-active {
+        display: grid;
+        gap: m.space(3);
+    }
+    p {
+        text-align: center;
+        color: v.$color-text-secondary;
+    }
+}
+
+// popup-dcb btn-wrap：大網左右對調 + 按鈕恢復 auto width
+// specificity 0,3,0 / 0,4,0 — 與 _card.scss 同級，home.css 載入較晚故後發者勝
+.popup-overlay .popup-dcb__step {
+    .btn-wrap {
+        @include m.media-query("md") {
+            flex-direction: row-reverse;
+        }
+        .btn {
+            @include m.media-query("md") {
+                flex: initial;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.popup-dcb__otp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-dcb__resend {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 1.2px;
+    color: v.$color-text-secondary;
+    &.is-link {
+        color: v.$color-text-accent;
+        cursor: pointer;
+    }
+}
+
+.popup-dcb__otp-error {
+    display: none;
+    padding-left: m.space(2); // 對齊 input 內文起始位置
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.9px;
+    color: v.$color-text-warning;
+    &.is-visible {
+        display: block;
+    }
+}
+
 .home-content-block {
   margin: auto;
   display: flex;

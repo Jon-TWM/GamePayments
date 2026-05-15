@@ -7,6 +7,68 @@
    Mixins (抽象層)
    通用、可重複使用的 Sass 混入 (Mixins) 和函式 (Functions)。
    ========================================================================== */
+@media (min-width: 992px) {
+  .popup-dcb__panel {
+    max-width: 600px;
+  }
+}
+
+.popup-dcb__step {
+  display: none;
+}
+.popup-dcb__step.is-active {
+  display: grid;
+  gap: 2.4rem;
+}
+.popup-dcb__step p {
+  text-align: center;
+  color: #515A68;
+}
+
+@media (min-width: 768px) {
+  .popup-overlay .popup-dcb__step .btn-wrap {
+    flex-direction: row-reverse;
+  }
+}
+@media (min-width: 768px) {
+  .popup-overlay .popup-dcb__step .btn-wrap .btn {
+    flex: initial;
+    margin: 0;
+  }
+}
+
+.popup-dcb__otp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-dcb__resend {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 1.2px;
+  color: #515A68;
+}
+.popup-dcb__resend.is-link {
+  color: #FF6700;
+  cursor: pointer;
+}
+
+.popup-dcb__otp-error {
+  display: none;
+  padding-left: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.9px;
+  color: #FE5933;
+}
+.popup-dcb__otp-error.is-visible {
+  display: block;
+}
+
 .home-content-block {
   margin: auto;
   display: flex;
@@ -28,4 +90,6 @@
   margin-top: 2.4rem;
   display: grid;
   gap: 16px;
-}/*# sourceMappingURL=home.css.map */
+}
+
+/*# sourceMappingURL=home.css.map */

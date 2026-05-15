@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台灣大哥大 遊戲金流系統</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/home.css">
 </head>
@@ -24,7 +27,7 @@
                     <h2>選擇付款方式</h2>
                     <p>選好方式後即可前往結帳</p>
                     <div class="btn-wrap">
-                        <button class="btn-text-card btn--block-mobile">台灣大哥大電信帳單代收<div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
+                        <button class="btn-text-card btn--block-mobile" id="btn-dcb" type="button">台灣大哥大電信帳單代收<div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
                         <button class="btn-text-card btn--block-mobile">信用卡<div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
                         <button class="btn-text-card btn--block-mobile"><img class="method" src="/src/images/method-MyCard.svg" alt="" ><div class="arrow"><img src="/src/images/icon-btn-text-card-arrow.svg" alt="" class=""></div></button>
                     </div>
@@ -38,6 +41,64 @@
             <p>台灣大哥大版權所有 © 2025 TaiwanMobile All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- popup-dcb：電信帳單代收驗證流程
+         ┌ 正式使用：移除 .is-open；初始狀態僅 data-step="confirm" 保留 .is-active
+         └ 預覽模式：保留 .is-open 與全部 .is-active 以顯示所有狀態 -->
+    <div class="popup-overlay is-open" id="popup-dcb" aria-hidden="false">
+        <button class="popup-close" id="dcb-close" aria-label="關閉">×</button>
+        <div class="popup" role="dialog" aria-modal="true" aria-labelledby="dcb-title">
+            <div class="content-block popup-dcb__panel">
+
+                <!-- ── Step: confirm ────────────────────────────── -->
+                <div class="popup-dcb__step is-active" data-step="confirm">
+                    <h4 id="dcb-title">透過台灣大哥大電信帳單支付</h4>
+                    <p>簡訊已發送至您的門號 09XXXX8291，<br>請查看並輸入其中的驗證碼</p>
+                    <div class="btn-wrap">
+                        <button class="btn btn--block-mobile" type="button">驗證手機號碼</button>
+                        <button class="btn btn--outline btn--block-mobile" type="button">取消</button>
+                    </div>
+                </div>
+
+                <!-- ── Step: otp ─────────────────────────────────
+                     初始：input 空白，主按鈕 disabled，resend 灰字倒數
+                     有輸入：移除 button[disabled]
+                     可重送：.popup-dcb__resend 加 .is-link，文字改為「重新發送驗證碼」
+                     驗證錯誤：input 加 .--error，.popup-dcb__otp-error 加 .is-visible -->
+                <div class="popup-dcb__step is-active" data-step="otp">
+                    <h4>請輸入驗證碼</h4>
+                    <p>簡訊已發送至您的門號 09XXXX8291，<br>請查看並輸入其中的驗證碼</p>
+                    <div class="form-item popup-dcb__otp-field">
+                        <div class="popup-dcb__otp-header">
+                            <span class="label">簡訊驗證碼</span>
+                            <span class="popup-dcb__resend is-link" id="dcb-resend">重新發送驗證碼</span>
+                        </div>
+                        <input type="text" id="dcb-otp" inputmode="numeric" value="993891" class="--error" />
+                        <span class="popup-dcb__otp-error is-visible" id="dcb-otp-error">驗證碼不正確，請重新輸入</span>
+                    </div>
+                    <div class="btn-wrap">
+                        <button class="btn btn--block-mobile" id="dcb-submit" type="button">啟用電信帳單儲值資格</button>
+                        <button class="btn btn--outline btn--block-mobile" type="button">取消</button>
+                    </div>
+                </div>
+
+                <!-- ── Step: billing-error ───────────────────────── -->
+                <div class="popup-dcb__step is-active" data-step="billing-error">
+                    <h4>目前無法使用帳單代付</h4>
+                    <p>您目前的台灣大哥大電信帳單支付額度不足，<br>請改用其他付款方式完成付款</p>
+                    <div class="btn-wrap">
+                        <button class="btn btn--block-mobile" type="button">選擇其他付款方式</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/src/js/popup-utils.js"></script>
+    <script>
+        PopupUtils.setupPopup({ triggerId: 'btn-dcb', overlayId: 'popup-dcb', closeId: 'dcb-close' });
+    </script>
 
 </body>
 

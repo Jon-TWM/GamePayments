@@ -45,4 +45,16 @@
 }
 .popup-msg .btn-wrap {
   margin-top: 0.8rem;
-}/*# sourceMappingURL=popup-msg.css.map */
+}
+
+.popup-overlay .popup p.popup-msg__desc {
+  font-size: 1.5rem;
+  letter-spacing: normal;
+}
+@media (min-width: 992px) {
+  .popup-overlay .popup p.popup-msg__desc {
+    font-size: 1.6rem;
+  }
+}
+
+/*# sourceMappingURL=popup-msg.css.map */
