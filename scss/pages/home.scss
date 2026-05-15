@@ -8,6 +8,10 @@
     @include m.media-query("lg") {
         max-width: 600px;
     }
+
+    h4          { margin-bottom: 16px; }
+    p           { margin-bottom: 24px; }
+    .form-item  { margin-bottom: 32px; }
 }
 
 .popup-dcb__step {
