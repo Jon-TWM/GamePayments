@@ -1,4 +1,103 @@
-# Phase 3 切版交接筆記
+# Phase 3–4 切版交接筆記
+
+---
+
+## 2026-05-15 更新 (Phase 4)
+
+### HTML 異動
+
+| 檔案         | 說明                                                                 |
+| ------------ | -------------------------------------------------------------------- |
+| `index.html` | 新增 `popup-dcb`（電信帳單代收）彈窗，含 confirm / otp / billing-error 三步驟 |
+
+#### popup-dcb 結構說明
+
+```html
+<!-- 觸發按鈕 -->
+<button id="btn-dcb">台灣大哥大電信帳單代收</button>
+
+<!-- 彈窗結構 -->
+<div class="popup-overlay" id="popup-dcb">
+  <button class="popup-close" id="dcb-close">×</button>
+  <div class="popup">
+    <div class="content-block popup-dcb__panel">
+      <div class="popup-dcb__step" data-step="confirm">...</div>
+      <div class="popup-dcb__step" data-step="otp">...</div>
+      <div class="popup-dcb__step" data-step="billing-error">...</div>
+    </div>
+  </div>
+</div>
+
+<script src="/src/js/popup-utils.js"></script>
+<script>
+  PopupUtils.setupPopup({ triggerId: 'btn-dcb', overlayId: 'popup-dcb', closeId: 'dcb-close' });
+</script>
+```
+
+- **預覽模式**：overlay 加 `.is-open`、全步驟加 `.is-active`，可同時看到所有狀態
+- **正式使用**：移除 `.is-open`；初始僅 `data-step="confirm"` 保留 `.is-active`；RD 用 JS 切換各步驟的 `.is-active`
+
+#### OTP 步驟狀態對照
+
+| 狀態       | HTML 寫法                                          |
+| ---------- | -------------------------------------------------- |
+| 初始       | `<button disabled>`，`.popup-dcb__resend` 無 class |
+| 有輸入值   | 移除 `button[disabled]`                            |
+| 可重新發送 | `.popup-dcb__resend` 加 `.is-link`                 |
+| 驗證錯誤   | input 加 `.--error`；`.popup-dcb__otp-error` 加 `.is-visible` |
+
+---
+
+### ⚠️ 元件層異動（影響所有頁面）
+
+以下異動寫在 `css/style.css`，所有引用頁面均受影響。
+
+#### 1. `_typography.scss` — h4 規格更新、h5 新增
+
+| 元素 | 異動                                                                              |
+| ---- | --------------------------------------------------------------------------------- |
+| h4   | 移除大網放大規格；大小網統一：`font-size: 1.7rem; line-height: 1.5; letter-spacing: 1.02px` |
+| h5   | 新增：小網 `1.5rem`、大網 `1.8rem`；`font-weight: 400; line-height: 1.5; letter-spacing: 1.8px` |
+
+> ⚠️ **h4 有 breaking change**：原大網 `font-size: 2.1rem` 已移除，請確認現有頁面視覺無異常。
+
+#### 2. `_card.scss` — popup 內容間距重構
+
+| 屬性 | 原規格 | 新規格 |
+| ---- | ------ | ------ |
+| `.popup .content-block` padding | 小網 24px / 大網 40px | 兩斷點統一 24px |
+| 內部間距方式 | `gap: 24px`（uniform） | `gap: 0` + 各元素 margin-bottom |
+
+個別元素 margin-bottom：
+
+| 元素 | margin-bottom |
+| ---- | ------------- |
+| `h4` | 16px |
+| `.content-block > p`（直接子元素） | 24px |
+| `.text-wrap` | 24px |
+| `.form-item` | 32px |
+
+---
+
+### CSS 異動（RD 覆蓋這些）
+
+| 檔案                | 異動說明                                                                    |
+| ------------------- | --------------------------------------------------------------------------- |
+| `css/style.css`     | h4 規格更新、新增 h5、popup 間距重構（gap → margin-bottom）                 |
+| `css/home.css`      | 新增 `popup-dcb__*` 系列樣式（panel、step、otp-header、resend、otp-error）  |
+| `css/popup-msg.css` | 補 specificity override 保護 `.popup-msg__desc` 字型不被 popup component 蓋掉 |
+
+### ⚠️ CSS 優先權說明
+
+`_card.scss` 的 `.popup-overlay .popup .content-block p`（權重 0,3,1）會蓋過 `.popup-msg__desc`（0,1,0）。解法：在 `popup-msg.css` 以 `.popup-overlay .popup p.popup-msg__desc`（0,3,1）寫在後面，cascade 後發者勝。**重新編譯 SCSS 後自動輸出，無需手動維護。**
+
+### components.html 更新
+
+| 區塊 | 異動 |
+| ---- | ---- |
+| 排版 (Typography) | 新增 h5 展示 |
+| 表單元件 (Form Controls) | 文字欄位改用 `.form-item` 包裝示範（原為裸 label + input） |
+| Popup demo | 更新為含 `form-item`、`btn-wrap`（主按鈕 + outline）的完整結構；改用 `popup-utils.js` |
 
 ---
 
