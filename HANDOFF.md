@@ -41,9 +41,9 @@
 
 | 狀態       | HTML 寫法                                          |
 | ---------- | -------------------------------------------------- |
-| 初始       | `<button disabled>`，`.popup-dcb__resend` 無 class |
-| 有輸入值   | 移除 `button[disabled]`                            |
-| 可重新發送 | `.popup-dcb__resend` 加 `.is-link`                 |
+| 初始       | 主按鈕 `disabled`；`#dcb-resend` 加 `disabled`（灰字倒數） |
+| 有輸入值   | 移除主按鈕 `disabled`                              |
+| 可重新發送 | 移除 `#dcb-resend` 的 `disabled`                   |
 | 驗證錯誤   | input 加 `.--error`；`.form-error.popup-dcb__otp-error` 加 `.is-visible` |
 
 ---

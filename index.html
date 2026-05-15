@@ -53,7 +53,7 @@
                 <!-- ── Step: confirm ────────────────────────────── -->
                 <div class="popup-dcb__step is-active" data-step="confirm">
                     <h4 id="dcb-title">透過台灣大哥大電信帳單支付</h4>
-                    <p>簡訊已發送至您的門號 09XXXX8291，<br>請查看並輸入其中的驗證碼</p>
+                    <p class="popup-dcb__desc">簡訊已發送至您的門號 09XXXX8291，<br>請查看並輸入其中的驗證碼</p>
                     <div class="btn-wrap">
                         <button class="btn btn--block-mobile" type="button">驗證手機號碼</button>
                         <button class="btn btn--outline btn--block-mobile" type="button">取消</button>
@@ -61,17 +61,17 @@
                 </div>
 
                 <!-- ── Step: otp ─────────────────────────────────
-                     初始：input 空白，主按鈕 disabled，resend 灰字倒數
+                     初始：input 空白，主按鈕 disabled，resend button[disabled] 灰字倒數
                      有輸入：移除 button[disabled]
-                     可重送：.popup-dcb__resend 加 .is-link，文字改為「重新發送驗證碼」
+                     可重送：移除 button[disabled]，文字改為「重新發送驗證碼」
                      驗證錯誤：input 加 .--error，.popup-dcb__otp-error 加 .is-visible -->
                 <div class="popup-dcb__step is-active" data-step="otp">
                     <h4>請輸入驗證碼</h4>
-                    <p>簡訊已發送至您的門號 09XXXX8291，<br>請查看並輸入其中的驗證碼</p>
+                    <p class="popup-dcb__desc">簡訊已發送至您的門號 09XXXX8291，<br>請查看並輸入其中的驗證碼</p>
                     <div class="form-item popup-dcb__otp-field">
                         <div class="popup-dcb__otp-header">
                             <span class="label">簡訊驗證碼</span>
-                            <span class="popup-dcb__resend is-link" id="dcb-resend">重新發送驗證碼</span>
+                            <button type="button" class="popup-dcb__resend" id="dcb-resend">重新發送驗證碼</button>
                         </div>
                         <input type="text" id="dcb-otp" inputmode="numeric" value="993891" class="--error" />
                         <span class="form-error popup-dcb__otp-error is-visible" id="dcb-otp-error">驗證碼不正確，請重新輸入</span>
@@ -85,7 +85,7 @@
                 <!-- ── Step: billing-error ───────────────────────── -->
                 <div class="popup-dcb__step is-active" data-step="billing-error">
                     <h4>目前無法使用帳單代付</h4>
-                    <p>您目前的台灣大哥大電信帳單支付額度不足，<br>請改用其他付款方式完成付款</p>
+                    <p class="popup-dcb__desc">您目前的台灣大哥大電信帳單支付額度不足，<br>請改用其他付款方式完成付款</p>
                     <div class="btn-wrap">
                         <button class="btn btn--block-mobile" type="button">選擇其他付款方式</button>
                     </div>
